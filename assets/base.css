@@ -217,7 +217,83 @@ em{font-family:var(--f-display);font-style:italic;}
   .cart-link{padding:8px 12px;font-size:9px;letter-spacing:.1em;text-indent:.1em;}
 }
 
-/* ---------- hero ---------- */
+/* ---------- hero banner ---------- */
+/* A photograph edge to edge with the copy on a label plaque laid over it. The
+   plaque is what carries the contrast, so the scrim stays a styling choice
+   rather than the thing standing between the type and the picture. */
+.hero-banner{position:relative;display:grid;isolation:isolate;overflow:hidden;background:var(--deep);}
+.hero-banner--short{min-height:clamp(320px,42vh,460px);}
+.hero-banner--tall{min-height:clamp(440px,64vh,660px);}
+.hero-banner--full{min-height:calc(100svh - 120px);}
+.hero-banner__img{grid-area:1/1;width:100%;height:100%;object-fit:cover;}
+.hero-banner__img--empty{background:var(--deep);position:relative;overflow:hidden;}
+.hero-banner__img--empty .botanical--field{opacity:.16;}
+.hero-banner__scrim{grid-area:1/1;background:linear-gradient(100deg,rgba(7,48,31,.5),rgba(7,48,31,.12) 62%);}
+/* The image is full-bleed but the copy is not: it shares the content measure so
+   the plaque lines up with everything above and below it. */
+.hero-banner__inner{grid-area:1/1;display:flex;align-items:center;padding:38px 28px;width:100%;max-width:var(--wrap);margin:0 auto;}
+.hero-banner__inner--left{justify-content:flex-start;}
+.hero-banner__inner--center{justify-content:center;}
+.hero-banner__inner--right{justify-content:flex-end;}
+
+.hero-banner__box{max-width:min(30rem,100%);}
+.hero-banner__box--plaque{
+  background:var(--sheet);border:1px solid var(--gold);
+  border-radius:var(--arch);padding:34px 38px 32px;position:relative;
+  box-shadow:0 18px 44px rgba(7,48,31,.22);
+}
+.hero-banner__box--plaque::after{content:"";position:absolute;inset:5px;border:1px solid var(--rule-soft);border-radius:inherit;pointer-events:none;}
+.hero-banner__inner--center .hero-banner__box{text-align:center;}
+.hero-banner__inner--center .hero-banner__ctas{justify-content:center;}
+.hero-banner__sprig{display:block;color:var(--gold);margin-bottom:10px;}
+.hero-banner__inner--center .hero-banner__sprig{display:flex;justify-content:center;}
+.hero-banner__eyebrow{font-family:var(--f-body);font-weight:500;font-size:10px;letter-spacing:.22em;text-transform:uppercase;text-indent:.22em;color:var(--stamp);margin-bottom:12px;}
+.hero-banner__h{font-family:var(--f-display);font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1.03;font-size:calc(clamp(2rem,4.4vw,3.3rem) * var(--display-scale));margin-bottom:14px;}
+/* Brass, not bottle green: green-on-green is only two shades apart and the
+   emphasis disappears. */
+.hero-banner__h em{color:var(--stamp);font-style:normal;}
+.hero-banner__attrs{margin:0 0 16px;}
+.hero-banner__lede{color:var(--ink-2);line-height:1.6;max-width:42ch;}
+.hero-banner__ctas{display:flex;gap:11px;flex-wrap:wrap;margin-top:24px;}
+
+/* Straight on the image: no plaque to sit on, so the type reverses out and the
+   scrim is doing the work. */
+.hero-banner__box--bare{color:var(--sheet);text-shadow:0 1px 18px rgba(7,48,31,.55);}
+.hero-banner__box--bare .hero-banner__eyebrow{color:var(--gold-lit);}
+.hero-banner__box--bare .hero-banner__h{color:#fff;}
+.hero-banner__box--bare .hero-banner__h em{color:var(--gold-lit);}
+.hero-banner__box--bare .hero-banner__lede{color:rgba(255,255,255,.9);}
+.hero-banner__box--bare .hero-banner__sprig{color:var(--gold-lit);}
+.hero-banner__box--bare .pdp__attrs{color:var(--gold-lit);}
+.hero-banner__box--bare .pdp__attrs span{color:#fff;}
+.hero-banner__box--bare .btn--ghost{border-color:var(--gold-lit);color:#fff;text-shadow:none;}
+.hero-banner__box--bare .btn--ghost:hover{background:var(--gold-lit);color:var(--deep);border-color:var(--gold-lit);}
+
+/* On a phone the plaque is nearly as tall as the banner, so overlaying it hides
+   the photograph entirely. Stack instead: the image keeps its own frame and the
+   plaque laps over the bottom edge of it, the way the label laps the pack. */
+@media (max-width:760px){
+  .hero-banner{display:block;min-height:0;background:var(--ground);}
+  .hero-banner--short,.hero-banner--tall,.hero-banner--full{min-height:0;}
+  .hero-banner__img{aspect-ratio:4/3;height:auto;}
+  .hero-banner__img--empty{aspect-ratio:4/3;}
+  .hero-banner__scrim{display:none;}
+  .hero-banner__inner{position:relative;padding:0 18px;margin-top:-46px;max-width:none;}
+  .hero-banner__box{max-width:none;width:100%;}
+  .hero-banner__box--plaque{padding:24px 22px 22px;}
+  .hero-banner__box--bare{background:var(--sheet);border:1px solid var(--gold);border-radius:var(--arch);padding:24px 22px 22px;color:var(--ink);text-shadow:none;}
+  .hero-banner__box--bare .hero-banner__h{color:var(--ink);}
+  .hero-banner__box--bare .hero-banner__h em{color:var(--stamp);}
+  .hero-banner__box--bare .hero-banner__eyebrow{color:var(--stamp);}
+  .hero-banner__box--bare .hero-banner__lede{color:var(--ink-2);}
+  .hero-banner__box--bare .hero-banner__sprig{color:var(--gold);}
+  .hero-banner__box--bare .pdp__attrs{color:var(--gold);}
+  .hero-banner__box--bare .pdp__attrs span{color:var(--ink-2);}
+  .hero-banner__box--bare .btn--ghost{border-color:var(--gold);color:var(--stamp);}
+  .hero-banner__ctas .btn{flex:1 1 auto;text-align:center;}
+}
+
+/* ---------- hero, editorial variant ---------- */
 .hero{padding:70px 0 58px;}
 .hero__grid{display:grid;grid-template-columns:1.55fr .95fr;gap:56px;align-items:end;}
 @media (max-width:900px){.hero__grid{grid-template-columns:1fr;gap:34px;}}
@@ -236,6 +312,22 @@ em{font-family:var(--f-display);font-style:italic;}
 .readout__row dt{color:var(--ink-2);letter-spacing:.08em;text-transform:uppercase;font-size:10px;font-family:var(--f-body);font-weight:500;}
 .readout__row dd{margin:0;color:var(--ink);text-align:right;}
 .readout .workings{padding:10px 14px;border-top:1px solid var(--rule-soft);margin:0;}
+
+/* ---------- story ---------- */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.story--flip .story__art{order:2;}
+.story__art{position:relative;border:1px solid var(--gold);background:var(--sheet);border-radius:var(--arch-soft);overflow:hidden;}
+.story__art::after{content:"";position:absolute;inset:5px;border:1px solid var(--rule-soft);border-radius:inherit;pointer-events:none;opacity:.75;}
+.story__art img{width:100%;height:100%;object-fit:cover;display:block;}
+.story__empty{aspect-ratio:1/1;background:var(--sheet-2);position:relative;overflow:hidden;}
+.story__h{margin-bottom:14px;}
+.story__text{margin-bottom:24px;}
+.story__readout{margin-bottom:24px;}
+.story__cta{margin:0;}
+@media (max-width:860px){
+  .story{grid-template-columns:1fr;gap:28px;}
+  .story--flip .story__art{order:0;}
+}
 
 /* ---------- method ---------- */
 .method{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--gold);}
@@ -296,6 +388,7 @@ em{font-family:var(--f-display);font-style:italic;}
 
 /* ---------- product cards ---------- */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;}
+.cards__cta{margin:30px 0 0;text-align:center;}
 .card{display:flex;flex-direction:column;border-radius:4px;}
 /* background-color, not the shorthand: .gridpaper's rules are a background-image
    and the shorthand would wipe them. The recess is what makes the arch read on

@@ -27,6 +27,10 @@
       {%- endfor -%}
     {%- endif -%}
   </div>
+  {%- if section.settings.link_label != blank -%}
+    {%- assign all_url = coll.url | default: routes.all_products_collection_url -%}
+    <p class="cards__cta"><a class="btn btn--ghost" href="{{ all_url }}">{{ section.settings.link_label }}</a></p>
+  {%- endif -%}
 </div>
 {% schema %}
 {
@@ -36,7 +40,8 @@
     { "type": "text", "id": "label", "label": "Label", "default": "Current lots" },
     { "type": "text", "id": "meta", "label": "Right-hand note", "default": "packed to order" },
     { "type": "collection", "id": "collection", "label": "Collection" },
-    { "type": "range", "id": "count", "label": "Products shown", "min": 2, "max": 12, "step": 1, "default": 3 }
+    { "type": "range", "id": "count", "label": "Products shown", "min": 2, "max": 12, "step": 1, "default": 3 },
+    { "type": "text", "id": "link_label", "label": "Button under the grid", "default": "See every lot", "info": "Goes to the chosen collection, or to all products when none is set. Leave empty to drop the button." }
   ],
   "presets": [{ "name": "Featured collection" }]
 }

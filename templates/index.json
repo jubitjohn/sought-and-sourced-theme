@@ -2,29 +2,20 @@
   "sections": {
     "hero": {
       "type": "hero",
-      "blocks": {
-        "r1": { "type": "row", "settings": { "key": "Species", "value": "Elettaria cardamomum" } },
-        "r2": { "type": "row", "settings": { "key": "Region", "value": "Cardamom Hills, Idukki" } },
-        "r3": { "type": "row", "settings": { "key": "Elevation", "value": "900 – 1,400 m" } },
-        "r4": { "type": "row", "settings": { "key": "Harvest", "value": "Oct – Feb" } },
-        "r5": { "type": "row", "settings": { "key": "Grades held", "value": "6 mm · 7 mm · 8 mm+" } }
-      },
-      "block_order": ["r1", "r2", "r3", "r4", "r5"],
       "settings": {
-        "heading": "We went up until the air turned <em>cold</em>.",
-        "lede": "<p>Green cardamom from the Cardamom Hills of Idukki — bought by aroma, graded by sieve, and sold whole, because the pod is the only packaging that actually keeps.</p>",
-        "footnote": "Figures describe the growing region, not a single farm."
+        "focal": "center",
+        "height": "tall",
+        "scrim": 15,
+        "overlay_style": "plaque",
+        "align": "left",
+        "show_sprig": true,
+        "eyebrow": "Idukki, Kerala · 900–1,400 m",
+        "heading": "Idukki Green <em>Cardamom</em>",
+        "attributes": "Single-Origin · Hand Selected · Estate Fresh",
+        "lede": "<p>Bought by aroma, graded by sieve, and sold whole — because the pod is the only packaging that actually keeps.</p>",
+        "cta_label": "Shop the harvest",
+        "cta2_label": "How we grade"
       }
-    },
-    "method": {
-      "type": "the-search",
-      "blocks": {
-        "m1": { "type": "claim", "settings": { "claim": "We buy by nose, not by size.", "body": "A sieve sorts pods by width. It says nothing about how much volatile oil is inside. We open a pod before we agree a price." } },
-        "m2": { "type": "claim", "settings": { "claim": "A grade is a measurement, not a verdict.", "body": "8 mm pods cost more because they look impressive whole. For anything you crush, a 7 mm pod is frequently the better buy — and we'll say so." } },
-        "m3": { "type": "claim", "settings": { "claim": "Whole pods only. The pod is the packaging.", "body": "Ground cardamom begins losing aroma the moment it is ground. The husk is a sealed container evolved for exactly this job. We don't improve on it." } }
-      },
-      "block_order": ["m1", "m2", "m3"],
-      "settings": { "number": "§ 01", "label": "Method", "meta": "how we buy" }
     },
     "assurances": {
       "type": "assurances",
@@ -37,6 +28,32 @@
       "block_order": ["a1", "a2", "a3", "a4"],
       "settings": { "number": "", "label": "", "meta": "" }
     },
+    "lots": {
+      "type": "featured-collection",
+      "settings": { "number": "§ 01", "label": "Current lots", "meta": "packed to order", "count": 3, "link_label": "See every lot" }
+    },
+    "region": {
+      "type": "image-with-text",
+      "blocks": {
+        "r1": { "type": "row", "settings": { "key": "Species", "value": "Elettaria cardamomum" } },
+        "r2": { "type": "row", "settings": { "key": "Region", "value": "Cardamom Hills, Idukki" } },
+        "r3": { "type": "row", "settings": { "key": "Elevation", "value": "900 – 1,400 m" } },
+        "r4": { "type": "row", "settings": { "key": "Harvest", "value": "Oct – Feb" } },
+        "r5": { "type": "row", "settings": { "key": "Grades held", "value": "6 mm · 7 mm · 8 mm+" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5"],
+      "settings": {
+        "number": "§ 02",
+        "label": "The region",
+        "meta": "where it grows",
+        "kicker": "Where it grows",
+        "heading": "We went up until the air turned cold.",
+        "text": "<p>Cardamom grows here between roughly 900 and 1,400 metres, under shade, on the western slopes of the Ghats. Harvest runs October to February and the pods are picked green, several passes to a plant, because they do not ripen together.</p><p>We buy at the estate, open a pod before agreeing a price, and pack whole.</p>",
+        "readout_title": "The Record",
+        "footnote": "Figures describe the growing region, not a single farm.",
+        "link_label": "Shop the harvest"
+      }
+    },
     "grades": {
       "type": "grade-scale",
       "blocks": {
@@ -45,7 +62,7 @@
         "g3": { "type": "grade", "settings": { "mm": 8, "title": "8 mm+", "trade": "AGEB · Extra Bold", "use": "Biryani, pulao, gifting — anywhere the pod is seen on the plate." } }
       },
       "block_order": ["g1", "g2", "g3"],
-      "settings": { "number": "§ 02", "label": "Grades at true size", "meta": "shown actual size", "show_caliper": true }
+      "settings": { "number": "§ 03", "label": "Grades at true size", "meta": "shown actual size", "show_caliper": true }
     },
     "router": {
       "type": "use-router",
@@ -56,11 +73,17 @@
         "u4": { "type": "use", "settings": { "label": "A gift", "grade": "8 mm+", "trade": "AGEB", "mm": 8, "why": "The only occasion where buying for the eye is the correct call. Big pods, tin sealed, harvest and fill dates printed on the label.", "size_rare": "100 g", "size_weekly": "250 g", "size_daily": "250 g" } }
       },
       "block_order": ["u1", "u2", "u3", "u4"],
-      "settings": { "number": "§ 03", "label": "What are you cooking?", "meta": "two questions" }
+      "settings": { "number": "§ 04", "label": "What are you cooking?", "meta": "two questions" }
     },
-    "lots": {
-      "type": "featured-collection",
-      "settings": { "number": "§ 04", "label": "Current lots", "meta": "packed to order", "count": 3 }
+    "method": {
+      "type": "the-search",
+      "blocks": {
+        "m1": { "type": "claim", "settings": { "claim": "We buy by nose, not by size.", "body": "A sieve sorts pods by width. It says nothing about how much volatile oil is inside. We open a pod before we agree a price." } },
+        "m2": { "type": "claim", "settings": { "claim": "A grade is a measurement, not a verdict.", "body": "8 mm pods cost more because they look impressive whole. For anything you crush, a 7 mm pod is frequently the better buy — and we'll say so." } },
+        "m3": { "type": "claim", "settings": { "claim": "Whole pods only. The pod is the packaging.", "body": "Ground cardamom begins losing aroma the moment it is ground. The husk is a sealed container evolved for exactly this job. We don't improve on it." } }
+      },
+      "block_order": ["m1", "m2", "m3"],
+      "settings": { "number": "§ 05", "label": "Method", "meta": "how we buy" }
     },
     "freshness": {
       "type": "the-freshness-case",
@@ -70,13 +93,9 @@
         "f3": { "type": "row", "settings": { "key": "Ground on site", "value": "Never" } }
       },
       "block_order": ["f1", "f2", "f3"],
-      "settings": { "number": "§ 05", "label": "Why we print the date", "meta": "freshness" }
-    },
-    "region": {
-      "type": "image-with-text",
-      "settings": { "number": "§ 06", "label": "The region", "heading": "The Cardamom Hills" }
+      "settings": { "number": "§ 06", "label": "Why we print the date", "meta": "freshness", "readout_title": "How we sell it" }
     },
     "dispatch": { "type": "dispatch-signup", "settings": {} }
   },
-  "order": ["hero", "method", "assurances", "grades", "router", "lots", "freshness", "region", "dispatch"]
+  "order": ["hero", "assurances", "lots", "region", "grades", "router", "method", "freshness", "dispatch"]
 }

@@ -1,67 +1,129 @@
-<div class="wrap">
-  <section class="hero">
-    <div class="hero__grid">
-      <div>
-        <h1>{{ section.settings.heading }}</h1>
-        {%- if section.settings.lede != blank -%}
-          <div class="lede hero__lede">{{ section.settings.lede }}</div>
+{%- comment -%}
+  The banner. A photograph edge to edge, with the copy set on a label plaque
+  laid over it — cream, arched, double-ruled in brass, exactly as the label is
+  laid over the box. That is also what makes the type legible: text sitting
+  straight on a photograph has no contrast guarantee, text on the plaque has.
+
+  Use the 'bare' style when the artwork already carries the wordmark and the
+  product name, so the plaque would only repeat them.
+{%- endcomment -%}
+{%- liquid
+  assign h = section.settings
+  assign has_copy = false
+  if h.heading != blank or h.lede != blank or h.eyebrow != blank
+    assign has_copy = true
+  endif
+-%}
+<section class="hero-banner hero-banner--{{ h.height }}">
+  {%- if h.image -%}
+    {%- assign alt_text = h.image_alt | default: shop.name | escape -%}
+    {%- capture img_style -%}object-position:center {{ h.focal | default: 'center' }}{%- endcapture -%}
+    {{ h.image
+       | image_url: width: 2400
+       | image_tag:
+           widths: '640,900,1200,1600,2000,2400',
+           sizes: '100vw',
+           fetchpriority: 'high',
+           class: 'hero-banner__img',
+           alt: alt_text,
+           style: img_style }}
+  {%- else -%}
+    {%- comment -%} Composed before any photography exists. {%- endcomment -%}
+    <div class="hero-banner__img hero-banner__img--empty">
+      {% render 'botanical', variant: 'field' %}
+    </div>
+  {%- endif -%}
+
+  {%- if h.overlay_style != 'none' -%}
+    {%- if h.scrim > 0 -%}<div class="hero-banner__scrim" aria-hidden="true"></div>{%- endif -%}
+    <div class="hero-banner__inner hero-banner__inner--{{ h.align }}">
+      <div class="hero-banner__box hero-banner__box--{{ h.overlay_style }}">
+        {%- if h.overlay_style == 'plaque' and h.show_sprig -%}
+          <span class="hero-banner__sprig">{% render 'botanical', variant: 'sprig' %}</span>
+        {%- endif -%}
+        {%- if h.eyebrow != blank -%}
+          <div class="hero-banner__eyebrow">{{ h.eyebrow }}</div>
+        {%- endif -%}
+        {%- if h.heading != blank -%}
+          <h1 class="hero-banner__h">{{ h.heading }}</h1>
+        {%- endif -%}
+        {%- if h.attributes != blank -%}
+          <div class="pdp__attrs hero-banner__attrs"><span>{{ h.attributes }}</span></div>
+        {%- endif -%}
+        {%- if h.lede != blank -%}
+          <div class="hero-banner__lede">{{ h.lede }}</div>
+        {%- endif -%}
+        {%- if h.cta_label != blank or h.cta2_label != blank -%}
+          <div class="hero-banner__ctas">
+            {%- if h.cta_label != blank -%}
+              <a class="btn btn--primary" href="{{ h.cta_link | default: routes.all_products_collection_url }}">{{ h.cta_label }}</a>
+            {%- endif -%}
+            {%- if h.cta2_label != blank -%}
+              <a class="btn btn--ghost" href="{{ h.cta2_link | default: routes.root_url }}">{{ h.cta2_label }}</a>
+            {%- endif -%}
+          </div>
         {%- endif -%}
       </div>
-      {%- if section.blocks.size > 0 -%}
-        {%- comment -%} Ruled like the nutrition panel on the back of the label. {%- endcomment -%}
-        <dl class="readout" {% if section.settings.readout_title != blank %}data-title="{{ section.settings.readout_title | escape }}"{% endif %}>
-          {%- for block in section.blocks -%}
-            <div class="readout__row" {{ block.shopify_attributes }}>
-              <dt>{{ block.settings.key }}</dt>
-              <dd>{{ block.settings.value }}</dd>
-            </div>
-          {%- endfor -%}
-          {%- if section.settings.footnote != blank -%}
-            <p class="workings">{{ section.settings.footnote }}</p>
-          {%- endif -%}
-        </dl>
-      {%- endif -%}
     </div>
-    {%- if section.settings.image -%}
-      <div class="hero__media">
-        {%- assign alt_text = section.settings.heading | strip_html | escape -%}
-        {{ section.settings.image | image_url: width: 2000 | image_tag: widths: '760,1200,2000', alt: alt_text }}
-      </div>
-    {%- endif -%}
-  </section>
-</div>
+  {%- endif -%}
+</section>
 {% schema %}
 {
-  "name": "Hero",
+  "name": "Hero banner",
   "settings": [
-    { "type": "inline_richtext", "id": "heading", "label": "Headline", "default": "We went up until the air turned <em>cold</em>." },
-    { "type": "richtext", "id": "lede", "label": "Standfirst", "default": "<p>Green cardamom from the Cardamom Hills of Idukki — bought by aroma, graded by sieve, and sold whole, because the pod is the only packaging that actually keeps.</p>" },
-    { "type": "image_picker", "id": "image", "label": "Image" },
-    { "type": "text", "id": "readout_title", "label": "Record header", "default": "The Record", "info": "The green bar over the panel, as on the label's nutrition table. Leave empty to drop the bar." },
-    { "type": "text", "id": "footnote", "label": "Footnote", "default": "Figures describe the growing region, not a single farm." }
-  ],
-  "blocks": [
+    { "type": "header", "content": "Artwork" },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Landscape, at least 2000px wide. It is cropped to fill, so keep the subject off the very edges." },
+    { "type": "text", "id": "image_alt", "label": "Image description", "info": "For screen readers and when the image fails to load. Defaults to the shop name." },
     {
-      "type": "row",
-      "name": "Record row",
-      "settings": [
-        { "type": "text", "id": "key", "label": "Label", "default": "Region" },
-        { "type": "text", "id": "value", "label": "Value", "default": "Cardamom Hills, Idukki" }
-      ]
-    }
-  ],
-  "max_blocks": 10,
-  "presets": [
+      "type": "select", "id": "focal", "label": "Keep this part of the image in frame",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "center", "label": "Middle" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "center"
+    },
     {
-      "name": "Hero",
-      "blocks": [
-        { "type": "row", "settings": { "key": "Species", "value": "Elettaria cardamomum" } },
-        { "type": "row", "settings": { "key": "Region", "value": "Cardamom Hills, Idukki" } },
-        { "type": "row", "settings": { "key": "Elevation", "value": "900 – 1,400 m" } },
-        { "type": "row", "settings": { "key": "Harvest", "value": "Oct – Feb" } },
-        { "type": "row", "settings": { "key": "Grades held", "value": "6 mm · 7 mm · 8 mm+" } }
-      ]
-    }
-  ]
+      "type": "select", "id": "height", "label": "Height",
+      "options": [
+        { "value": "short", "label": "Short" },
+        { "value": "tall", "label": "Tall" },
+        { "value": "full", "label": "Full screen" }
+      ],
+      "default": "tall"
+    },
+    { "type": "range", "id": "scrim", "label": "Darken the image", "min": 0, "max": 60, "step": 5, "unit": "%", "default": 15, "info": "Only needed to settle a busy photograph. The plaque carries the contrast on its own." },
+    { "type": "header", "content": "The copy" },
+    {
+      "type": "select", "id": "overlay_style", "label": "How the copy sits",
+      "options": [
+        { "value": "plaque", "label": "On a label plaque" },
+        { "value": "bare", "label": "Straight on the image" },
+        { "value": "none", "label": "No copy — artwork only" }
+      ],
+      "default": "plaque",
+      "info": "Choose 'artwork only' when the image already carries the wordmark and product name."
+    },
+    {
+      "type": "select", "id": "align", "label": "Where it sits",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Centre" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    { "type": "checkbox", "id": "show_sprig", "label": "Leaf mark above the copy", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Idukki, Kerala · 900–1,400 m" },
+    { "type": "inline_richtext", "id": "heading", "label": "Headline", "default": "Idukki Green <em>Cardamom</em>" },
+    { "type": "text", "id": "attributes", "label": "Attribute line", "default": "Single-Origin · Hand Selected · Estate Fresh" },
+    { "type": "richtext", "id": "lede", "label": "Standfirst", "default": "<p>Bought by aroma, graded by sieve, and sold whole — because the pod is the only packaging that actually keeps.</p>" },
+    { "type": "header", "content": "Buttons" },
+    { "type": "text", "id": "cta_label", "label": "Primary button", "default": "Shop the harvest" },
+    { "type": "url", "id": "cta_link", "label": "Primary link" },
+    { "type": "text", "id": "cta2_label", "label": "Secondary button", "default": "How we grade" },
+    { "type": "url", "id": "cta2_link", "label": "Secondary link" }
+  ],
+  "presets": [{ "name": "Hero banner" }]
 }
 {% endschema %}
