@@ -17,6 +17,25 @@
         <p class="pdp__sub">{{ product.metafields.custom.subtitle.value }}</p>
       {%- endif -%}
 
+      {%- comment -%}
+        The label's attribute line — middots between rules — and the two claim
+        pills under it: one reversed out of green, one outlined in brass.
+      {%- endcomment -%}
+      {%- if section.settings.attributes != blank -%}
+        <div class="pdp__attrs"><span>{{ section.settings.attributes }}</span></div>
+      {%- endif -%}
+
+      {%- if section.settings.pill_green != blank or section.settings.pill_gold != blank -%}
+        <div class="pdp__pills">
+          {%- if section.settings.pill_green != blank -%}
+            <span class="pill pill--green">{{ section.settings.pill_green }}</span>
+          {%- endif -%}
+          {%- if section.settings.pill_gold != blank -%}
+            <span class="pill pill--gold">{{ section.settings.pill_gold }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
       <div style="margin-bottom:26px">
         {% render 'freshness-stamp', product: product %}
       </div>
@@ -34,8 +53,27 @@
         <div class="body-text" style="font-size:.9rem;margin-bottom:26px">{{ section.settings.reassurance }}</div>
       {%- endif -%}
 
+      {%- comment -%}
+        The ringed marks sit together in one panel, so they are pulled out of the
+        block order and laid out as a row rather than rendered in sequence.
+      {%- endcomment -%}
+      {%- assign mark_blocks = section.blocks | where: 'type', 'mark' -%}
+      {%- if mark_blocks.size > 0 -%}
+        <div class="assurance-panel" style="margin-bottom:26px">
+          <div class="assurances">
+            {%- for block in mark_blocks -%}
+              <div class="assurance" {{ block.shopify_attributes }}>
+                <span class="assurance__ring">{% render 'icon', icon: block.settings.icon %}</span>
+                <span class="assurance__cap">{{ block.settings.caption }}</span>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
       {%- for block in section.blocks -%}
         {%- case block.type -%}
+          {%- comment -%} 'mark' is handled above; it falls through here. {%- endcomment -%}
           {%- when 'accordion' -%}
             <details class="dossier" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
               <summary>{{ block.settings.title }}</summary>
@@ -83,10 +121,36 @@
   "name": "Product",
   "settings": [
     { "type": "text", "id": "region_line", "label": "Region line", "default": "Cardamom Hills, Idukki · 900–1,400 m" },
+    { "type": "header", "content": "The label lines" },
+    { "type": "paragraph", "content": "The attribute line and the two claim pills are printed on every label, so they are set here once rather than per product. Leave any of them empty to drop it." },
+    { "type": "text", "id": "attributes", "label": "Attribute line", "default": "Single-Origin · Hand Selected · Estate Fresh" },
+    { "type": "text", "id": "pill_green", "label": "Pill, reversed green", "default": "Premium Cardamom" },
+    { "type": "text", "id": "pill_gold", "label": "Pill, brass outline", "default": "Export Quality" },
+    { "type": "header", "content": "Media" },
     { "type": "range", "id": "specimen_mm", "label": "Placeholder specimen size", "min": 4, "max": 10, "step": 1, "unit": "mm", "default": 8, "info": "Only shown when the product has no image yet." },
     { "type": "richtext", "id": "reassurance", "label": "Under the buttons", "default": "<p>Filled the day it ships. Whole pods, never ground. Sent in a light-proof tin.</p>" }
   ],
   "blocks": [
+    {
+      "type": "mark",
+      "name": "Ringed mark",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Glyph",
+          "options": [
+            { "value": "caliper", "label": "Caliper — a size or grade" },
+            { "value": "leaf", "label": "Leaf — natural, unblended" },
+            { "value": "origin", "label": "Pin — an origin" },
+            { "value": "airtight", "label": "Tin — sealed, air-tight" },
+            { "value": "star", "label": "Star — a quality claim" }
+          ],
+          "default": "leaf"
+        },
+        { "type": "text", "id": "caption", "label": "Caption", "default": "100% Natural", "info": "Two or three words, set in tracked caps. Marks group into one row wherever they sit in the block order." }
+      ]
+    },
     {
       "type": "accordion",
       "name": "Accordion",
@@ -118,6 +182,10 @@
     {
       "name": "Product",
       "blocks": [
+        { "type": "mark", "settings": { "icon": "caliper", "caption": "Graded by sieve" } },
+        { "type": "mark", "settings": { "icon": "leaf", "caption": "Whole pods only" } },
+        { "type": "mark", "settings": { "icon": "origin", "caption": "Idukki, Kerala" } },
+        { "type": "mark", "settings": { "icon": "airtight", "caption": "Sealed light-proof" } },
         { "type": "accordion", "settings": { "title": "Aroma & use", "open": true, "body": "<p>Cool eucalyptic lift over a sweet, resinous base. Bruise two or three pods with the flat of a knife and drop them in whole for rice and braises; grind the seed only for desserts, and only just before you need it.</p>" } },
         { "type": "metafield", "settings": { "title": "Provenance", "key": "provenance" } },
         { "type": "accordion", "settings": { "title": "Grade, honestly", "body": "<p>The millimetre figure is a sieve size, not a quality score. You are paying for appearance and a thicker husk. If these are going into a grinder, buy the smaller grade from the same lot — same cure, same hills, less money.</p>" } },

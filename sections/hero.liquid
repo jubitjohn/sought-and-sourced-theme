@@ -8,7 +8,8 @@
         {%- endif -%}
       </div>
       {%- if section.blocks.size > 0 -%}
-        <dl class="readout">
+        {%- comment -%} Ruled like the nutrition panel on the back of the label. {%- endcomment -%}
+        <dl class="readout" {% if section.settings.readout_title != blank %}data-title="{{ section.settings.readout_title | escape }}"{% endif %}>
           {%- for block in section.blocks -%}
             <div class="readout__row" {{ block.shopify_attributes }}>
               <dt>{{ block.settings.key }}</dt>
@@ -16,7 +17,7 @@
             </div>
           {%- endfor -%}
           {%- if section.settings.footnote != blank -%}
-            <p class="workings" style="margin-top:12px">{{ section.settings.footnote }}</p>
+            <p class="workings">{{ section.settings.footnote }}</p>
           {%- endif -%}
         </dl>
       {%- endif -%}
@@ -36,6 +37,7 @@
     { "type": "inline_richtext", "id": "heading", "label": "Headline", "default": "We went up until the air turned <em>cold</em>." },
     { "type": "richtext", "id": "lede", "label": "Standfirst", "default": "<p>Green cardamom from the Cardamom Hills of Idukki — bought by aroma, graded by sieve, and sold whole, because the pod is the only packaging that actually keeps.</p>" },
     { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "readout_title", "label": "Record header", "default": "The Record", "info": "The green bar over the panel, as on the label's nutrition table. Leave empty to drop the bar." },
     { "type": "text", "id": "footnote", "label": "Footnote", "default": "Figures describe the growing region, not a single farm." }
   ],
   "blocks": [

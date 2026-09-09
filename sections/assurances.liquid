@@ -1,0 +1,70 @@
+{%- comment -%}
+  The row of ringed marks across the foot of the label's front panel.
+  Four is the printed count and what the grid is built for; it drops to two
+  columns on a narrow screen rather than shrinking the rings.
+{%- endcomment -%}
+<div class="wrap section-pad">
+  {%- if section.settings.label != blank -%}
+    <div class="speclabel">
+      <span class="speclabel__no">{{ section.settings.number }}</span>
+      <span class="speclabel__name">{{ section.settings.label }}</span>
+      <span class="speclabel__rule"></span>
+      <span class="speclabel__meta">{{ section.settings.meta }}</span>
+    </div>
+  {%- endif -%}
+  <div class="assurance-panel botanical-ground">
+    {% render 'botanical', variant: 'field' %}
+    <div class="assurances">
+      {%- for block in section.blocks -%}
+        <div class="assurance" {{ block.shopify_attributes }}>
+          <span class="assurance__ring">{% render 'icon', icon: block.settings.icon %}</span>
+          <span class="assurance__cap">{{ block.settings.caption }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Assurances",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Section mark" },
+    { "type": "text", "id": "label", "label": "Label", "info": "Leave empty to drop the section header and show the rings on their own." },
+    { "type": "text", "id": "meta", "label": "Right-hand note" }
+  ],
+  "blocks": [
+    {
+      "type": "mark",
+      "name": "Mark",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Glyph",
+          "options": [
+            { "value": "caliper", "label": "Caliper — a size or grade" },
+            { "value": "leaf", "label": "Leaf — natural, unblended" },
+            { "value": "origin", "label": "Pin — an origin" },
+            { "value": "airtight", "label": "Tin — sealed, air-tight" },
+            { "value": "star", "label": "Star — a quality claim" }
+          ],
+          "default": "leaf"
+        },
+        { "type": "text", "id": "caption", "label": "Caption", "default": "100% Natural", "info": "Two or three words. It is set in tracked caps." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Assurances",
+      "blocks": [
+        { "type": "mark", "settings": { "icon": "caliper", "caption": "Graded by sieve" } },
+        { "type": "mark", "settings": { "icon": "leaf", "caption": "100% Natural" } },
+        { "type": "mark", "settings": { "icon": "origin", "caption": "Product of India" } },
+        { "type": "mark", "settings": { "icon": "airtight", "caption": "Air-tight freshness" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

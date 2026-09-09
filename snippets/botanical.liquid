@@ -1,0 +1,44 @@
+{%- comment -%}
+  The label's tone-on-tone leaf art, redrawn as line work so it takes the
+  --botanical token and never has to be re-exported when the palette moves.
+
+  Accepts: variant — 'sprig' (the small mark inside the cartouche and seal)
+                     'field' (the sparse branch that sits behind a panel)
+{%- endcomment -%}
+{%- case variant -%}
+
+  {%- when 'field' -%}
+    <svg class="botanical botanical--field" viewBox="0 0 300 240" fill="none"
+         stroke="var(--botanical)" stroke-width="1.1" stroke-linecap="round"
+         stroke-linejoin="round" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
+      <path d="M18 232C48 176 78 138 132 108"/>
+      <path d="M56 178c-16-8-22-22-19-38 17 4 26 17 19 38Z"/>
+      <path d="M78 152c-14-11-17-26-10-41 15 8 20 23 10 41Z"/>
+      <path d="M104 128c-11-14-11-29-1-42 13 11 15 26 1 42Z"/>
+      <path d="M70 196c17-6 31-2 41 12-15 9-30 6-41-12Z"/>
+      <path d="M96 168c18-3 31 3 39 18-16 7-31 1-39-18Z"/>
+      <circle cx="134" cy="104" r="3.4"/>
+      <path d="M282 26c-26 50-52 84-98 108"/>
+      <path d="M248 74c14 9 18 24 13 40-16-6-23-19-13-40Z"/>
+      <path d="M226 100c12 13 13 28 4 42-14-10-17-25-4-42Z"/>
+      <path d="M258 42c15 5 22 18 20 35-16-3-25-15-20-35Z"/>
+      <path d="M212 132c-18 4-31-2-38-17 16-8 31-2 38 17Z"/>
+      <circle cx="181" cy="136" r="3.4"/>
+      <path d="M150 226c0-24 8-42 24-54"/>
+      <path d="M162 196c-13-5-19-16-17-30 14 3 21 14 17 30Z"/>
+      <path d="M172 208c14-4 25 0 32 12-13 6-25 2-32-12Z"/>
+    </svg>
+
+  {%- else -%}
+    <svg class="botanical botanical--sprig" viewBox="0 0 48 30" fill="none"
+         stroke="currentColor" stroke-width="1.1" stroke-linecap="round"
+         stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M24 27V11"/>
+      <path d="M24 17c-5.4 0-9.4-3.2-11-8.2C18.4 7.4 23 10.4 24 17Z"/>
+      <path d="M24 17c5.4 0 9.4-3.2 11-8.2C29.6 7.4 25 10.4 24 17Z"/>
+      <path d="M24 23.5c-3.8 0-6.7-2.3-8-6 4-.8 7.2 1.2 8 6Z"/>
+      <path d="M24 23.5c3.8 0 6.7-2.3 8-6-4-.8-7.2 1.2-8 6Z"/>
+      <circle cx="24" cy="6.6" r="2.2"/>
+    </svg>
+
+{%- endcase -%}

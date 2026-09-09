@@ -1,10 +1,26 @@
-<div class="wrap">
-  <footer class="foot">
+{%- comment -%}
+  The hang tag. Everything reverses out to bottle green, the wordmark sits under
+  the leaf mark, and the columns are ruled in lit brass.
+{%- endcomment -%}
+<footer class="foot">
+  {% render 'botanical', variant: 'field' %}
+  <div class="wrap">
+    <div class="foot__mark">
+      {% render 'wordmark', tagline: section.settings.tagline, sprig: true %}
+      <span class="leader foot__rule" aria-hidden="true"><span class="leader__node"></span></span>
+      {%- if section.settings.seal_middle != blank -%}
+        {% render 'seal',
+           top: section.settings.seal_top,
+           middle: section.settings.seal_middle,
+           bottom: section.settings.seal_bottom %}
+      {%- endif -%}
+    </div>
+
     <div class="foot__grid">
       <div class="foot__col">
         <strong>{{ shop.name }}</strong>
         {%- if section.settings.blurb != blank -%}
-          <span style="color:var(--ink-3)">{{ section.settings.blurb }}</span>
+          <span>{{ section.settings.blurb }}</span>
         {%- endif -%}
       </div>
       {%- for block in section.blocks -%}
@@ -22,17 +38,26 @@
         {%- if settings.social_email != blank -%}<a href="mailto:{{ settings.social_email }}">Email</a>{%- endif -%}
       </div>
     </div>
+
     <div class="foot__legal">
       <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+      {%- if section.settings.origin_line != blank -%}<span>{{ section.settings.origin_line }}</span>{%- endif -%}
       <span>{{ powered_by_link }}</span>
     </div>
-  </footer>
-</div>
+  </div>
+</footer>
 {% schema %}
 {
   "name": "Footer",
   "settings": [
-    { "type": "richtext", "id": "blurb", "label": "Standfirst", "default": "<p>Green cardamom<br/>Cardamom Hills, Idukki</p>" }
+    { "type": "text", "id": "tagline", "label": "Under the wordmark", "default": "Pure · Authentic · Responsible" },
+    { "type": "richtext", "id": "blurb", "label": "Standfirst", "default": "<p>Green cardamom<br/>Cardamom Hills, Idukki</p>" },
+    { "type": "text", "id": "origin_line", "label": "Origin line", "default": "From Idukki, Kerala" },
+    { "type": "header", "content": "Brass seal" },
+    { "type": "paragraph", "content": "The medallion off the back of the label. Leave the middle line empty to hide the seal entirely." },
+    { "type": "text", "id": "seal_top", "label": "Seal, top line", "default": "Sourced" },
+    { "type": "text", "id": "seal_middle", "label": "Seal, middle line", "default": "with" },
+    { "type": "text", "id": "seal_bottom", "label": "Seal, bottom line", "default": "Purpose" }
   ],
   "blocks": [
     {

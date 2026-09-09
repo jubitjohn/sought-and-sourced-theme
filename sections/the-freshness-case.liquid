@@ -10,7 +10,7 @@
       <div style="font-family:var(--f-display);font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.2">{{ section.settings.pull }}</div>
       <div class="rte" style="margin-top:20px">{{ section.settings.text }}</div>
     </div>
-    <dl class="readout">
+    <dl class="readout" {% if section.settings.readout_title != blank %}data-title="{{ section.settings.readout_title | escape }}"{% endif %}>
       {%- for block in section.blocks -%}
         <div class="readout__row" {{ block.shopify_attributes }}>
           <dt>{{ block.settings.key }}</dt>
@@ -30,6 +30,7 @@
     { "type": "text", "id": "number", "label": "Section mark", "default": "§ 05" },
     { "type": "text", "id": "label", "label": "Label", "default": "Why we print the date" },
     { "type": "text", "id": "meta", "label": "Right-hand note", "default": "freshness" },
+    { "type": "text", "id": "readout_title", "label": "Record header", "default": "How we sell it", "info": "The green bar over the panel. Leave empty to drop the bar." },
     { "type": "inline_richtext", "id": "pull", "label": "Pull quote", "default": "Everything cardamom is worth buying for is <em>volatile</em>. That is not a figure of speech — it is the chemistry." },
     { "type": "richtext", "id": "text", "label": "Text", "default": "<p>The aroma sits in an oil held inside the seed: mostly cineole, which gives the cool camphor lift, and terpinyl acetate, which gives the sweetness. Both evaporate. Grinding exposes them to air; light and warmth speed it up. An intact husk slows all of it down, which is why we sell pods and never powder.</p><p>So instead of calling it fresh, we print two dates and let you judge.</p>" }
   ],

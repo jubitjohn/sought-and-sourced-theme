@@ -10,26 +10,31 @@
   {
     "name": "Colours",
     "settings": [
-      { "type": "paragraph", "content": "The palette is a measured specimen sheet: oat paper, iron-gall ink, pod green for every action, and a stamp red kept for annotations only." },
-      { "type": "color", "id": "color_ground", "label": "Page ground", "default": "#E7DFC9" },
-      { "type": "color", "id": "color_sheet", "label": "Sheet / card", "default": "#F4EFE1" },
-      { "type": "color", "id": "color_sheet_2", "label": "Sheet, recessed", "default": "#EFE8D6" },
-      { "type": "color", "id": "color_ink", "label": "Ink", "default": "#1B2A30" },
-      { "type": "color", "id": "color_ink_2", "label": "Ink, secondary", "default": "#5A6B70" },
-      { "type": "color", "id": "color_ink_3", "label": "Ink, faint", "default": "#8A968F" },
-      { "type": "color", "id": "color_rule", "label": "Rules and borders", "default": "#C9BC9A" },
-      { "type": "color", "id": "color_rule_soft", "label": "Rules, soft", "default": "#D8CDB1" },
-      { "type": "color", "id": "color_pod", "label": "Pod green (actions)", "default": "#4F6E3E" },
-      { "type": "color", "id": "color_stamp", "label": "Stamp red (annotation only)", "default": "#A33B2B" },
-      { "type": "color", "id": "color_grid", "label": "Graph paper rule", "default": "#D5C9A8" },
-      { "type": "color", "id": "color_pod_fill", "label": "Pod illustration fill", "default": "#C7D3AE" },
-      { "type": "color", "id": "color_pod_line", "label": "Pod illustration line", "default": "#6E8656" }
+      { "type": "paragraph", "content": "Taken off the printed label: ivory stock, bottle green for every reversed band and action, and brass for every rule. Brass has two values because brass on ivory and brass on green are not the same colour — keep both." },
+      { "type": "color", "id": "color_ground", "label": "Page ground (label stock)", "default": "#F1EBD9" },
+      { "type": "color", "id": "color_sheet", "label": "Sheet / card", "default": "#F8F4E7" },
+      { "type": "color", "id": "color_sheet_2", "label": "Sheet, recessed", "default": "#F0EAD8" },
+      { "type": "color", "id": "color_ink", "label": "Ink", "default": "#123527" },
+      { "type": "color", "id": "color_ink_2", "label": "Ink, secondary", "default": "#4A6154" },
+      { "type": "color", "id": "color_ink_3", "label": "Ink, faint", "default": "#586A5F" },
+      { "type": "color", "id": "color_rule", "label": "Rules and borders", "default": "#C8B47A" },
+      { "type": "color", "id": "color_rule_soft", "label": "Rules, soft", "default": "#DFD3AE" },
+      { "type": "color", "id": "color_pod", "label": "Bottle green (actions, reversed bands)", "default": "#0B4531" },
+      { "type": "color", "id": "color_deep", "label": "Bottle green, deep (header and footer ground)", "default": "#07301F" },
+      { "type": "color", "id": "color_gold", "label": "Brass — rules and ornament", "default": "#B8912F", "info": "Ornament only. It is too light to read as body text on ivory." },
+      { "type": "color", "id": "color_gold_lit", "label": "Brass on green — type and rules over a dark band", "default": "#E0C67E" },
+      { "type": "color", "id": "color_stamp", "label": "Brass ink — small type on ivory", "default": "#7A5E14", "info": "Darkened brass, used where the ornament gold would fail contrast: grades, section marks, the days-on-shelf figure." },
+      { "type": "color", "id": "color_botanical", "label": "Botanical watermark", "default": "#DED2B2" },
+      { "type": "color", "id": "color_alert", "label": "Alert — form errors only", "default": "#8C3A24", "info": "The label prints no red, so nothing decorative uses this. It exists so a failed form still reads as a failure rather than as more brass." },
+      { "type": "color", "id": "color_grid", "label": "Graph paper rule", "default": "#DFD5B8" },
+      { "type": "color", "id": "color_pod_fill", "label": "Pod illustration fill", "default": "#BFD0A8" },
+      { "type": "color", "id": "color_pod_line", "label": "Pod illustration line", "default": "#5C7A4A" }
     ]
   },
   {
     "name": "Typography",
     "settings": [
-      { "type": "paragraph", "content": "Instrument Serif for display, Instrument Sans for text, IBM Plex Mono for every measurement, grade, date and price. Loaded from Google Fonts in layout/theme.liquid." },
+      { "type": "paragraph", "content": "Playfair Display for display — the label's high-contrast serif, set in caps with wide tracking for the wordmark and large for the product name. Instrument Sans for text and the small letterspaced caps. IBM Plex Mono for every measurement, grade, date and price. Loaded from Google Fonts in layout/theme.liquid." },
       { "type": "range", "id": "type_base_size", "label": "Base text size", "min": 14, "max": 20, "step": 1, "unit": "px", "default": 16 },
       { "type": "range", "id": "type_display_scale", "label": "Display scale", "min": 80, "max": 130, "step": 5, "unit": "%", "default": 100 }
     ]

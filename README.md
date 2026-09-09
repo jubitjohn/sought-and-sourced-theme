@@ -59,11 +59,55 @@ on the site moves with it. The arithmetic is printed under the price so customer
 - **"What are you cooking?"** — each of the four blocks has a *Where it goes* URL. Set these
   to the right collection or product, or the button falls back to all products.
 - **Region line** on the product page — Customize → Product → Region line.
-- **Logo** — Customize → Header. Falls back to your shop name as text.
+- **Logo** — Customize → Header. It sits *inside* the green cartouche rather than replacing
+  it. Leave it empty and the cartouche sets your shop name instead, split across the
+  ampersand the way the label does.
 
 ---
 
-## 5. Where the copy takes a position
+## 5. The design comes off the printed label
+
+The palette, type and ornament are lifted from the box label, so the site and the packet
+read as one object. Everything below is a Theme setting — none of it is hardcoded in CSS.
+
+**Colour** — *Theme settings → Colours.*
+
+| Token | Default | What it is |
+|---|---|---|
+| Page ground | `#F1EBD9` | the label stock |
+| Bottle green | `#0B4531` | every reversed band, cartouche and action |
+| Bottle green, deep | `#07301F` | announcement bar and footer ground |
+| Brass — rules | `#B8912F` | **ornament only**, every hairline |
+| Brass on green | `#E0C67E` | type and rules over a dark band |
+| Brass ink | `#7A5E14` | small type on ivory — grades, section marks |
+| Alert | `#8C3A24` | form errors only |
+
+Brass is split three ways on purpose. The ornament brass is a rule colour and only reaches
+2.5:1 on ivory, so it never sets type; brass ink is the darkened version that does. If you
+retune the palette, keep that separation or small text stops being legible.
+
+**Type** — Playfair Display for display (the label's high-contrast serif: caps and wide
+tracking for the wordmark, 700 for the product name), Instrument Sans for text and the
+tracked micro-caps, IBM Plex Mono for measurements, dates and prices.
+
+**Ornament** — the grammar is in `assets/base.css` under *The label's ornament*:
+
+- the **double hairline** — a brass line on the trim, a lighter one set 4px inside it, on
+  every framed panel;
+- the **arch** — the label's ogee silhouette, on picture panels only (`.plate`, `.card__art`),
+  never on a box of text, where a dome sized off the text height would fight the plate's;
+- the **cartouche** — `snippets/wordmark.liquid`, the roundel off the hang tag;
+- the **two pills** — reversed green for a statement, brass outline with ✦ bullets for a claim;
+- the **ringed marks** — `sections/assurances.liquid`, and a *Ringed mark* block on the
+  product page; four is the printed count and what the grid is built for;
+- the **nutrition panel** — `.readout` and `.table`, green header bar and zebra rows. Give a
+  `.readout` a *Record header* to get the bar;
+- the **seal** and the **botanical watermark** — `snippets/seal.liquid`,
+  `snippets/botanical.liquid`, drawn as line work so they take the palette.
+
+---
+
+## 6. Where the copy takes a position
 
 Three places argue the customer *down* the price ladder. That is the trust mechanic working,
 and it is your margin, so change it if you disagree:
@@ -78,24 +122,33 @@ detail goes in the `custom.provenance` metafield.
 
 ---
 
-## 6. Verification already run
+## 7. Verification
 
-- **Shopify Theme Check: 0 errors.** 9 warnings, all `RemoteAsset` — the Google Fonts links
-  for Instrument Serif / Instrument Sans / IBM Plex Mono. Deliberate: it keeps the approved
-  typography. To silence them, self-host the fonts in `assets/` and swap the `<link>` in
-  `layout/theme.liquid`.
-- **Cross-reference check: passed** — every JSON parses, every section/snippet/asset
-  reference resolves, every translation key exists, `settings_data.json` sets only real
-  settings, all Shopify-required files present.
-- **Zip hygiene: clean** — the 7 theme folders at the archive root, no `__MACOSX`, no
-  `.DS_Store`.
+Run since the label restyle:
+
+- **Cross-reference check: passed** — every JSON parses, every `{% schema %}` parses, every
+  section/snippet reference resolves, every block type and setting id used in a template
+  exists in its schema, `settings_data.json` sets only real settings, every translation key
+  exists, Liquid tags balance.
+- **Contrast audit: passed** — every text pair clears 4.5:1 on the label palette; focus
+  rings, the selected thumbnail and the accordion marker were moved off ornament brass onto
+  bottle green or brass ink to clear 3:1.
+- **Render check** — headless Chrome against the real stylesheet at 320 / 360 / 375 / 414 /
+  768 / 1280 px. No horizontal overflow at any width. The masthead wraps to two rows below
+  ~370px, which is why `.masthead` carries `flex-wrap:wrap`.
+
+**Not re-run:** Shopify Theme Check — the CLI isn't installed on this machine. The earlier
+pass reported 0 errors and 9 `RemoteAsset` warnings for the Google Fonts links (now
+Playfair Display / Instrument Sans / IBM Plex Mono; still deliberate, still silenceable by
+self-hosting the fonts and swapping the `<link>` in `layout/theme.liquid` **and**
+`layout/password.liquid`). Worth running again before you publish.
 
 **Not verified:** rendering against a live store. Cart, variant switching and checkout are
 proven only in your preview. Expect a round of fixes after the first walk-through.
 
 ---
 
-## 7. Notes for later
+## 8. Notes for later
 
 - **Grade scale calibration** is exact only after the viewer matches the outline to a bank
   card (ISO/IEC 7810 ID-1, 85.60 × 53.98 mm). Uncalibrated, CSS millimetres are nominal and

@@ -1,6 +1,7 @@
 {%- comment -%}
   Every colour in the theme resolves through these custom properties, so the whole
   palette is re-brandable from Theme settings without touching a stylesheet.
+  The defaults are lifted off the printed label: bottle green, brass, ivory stock.
 {%- endcomment -%}
 {%- assign display_scale = settings.type_display_scale | default: 100 | divided_by: 100.0 -%}
 <style>
@@ -19,7 +20,16 @@
     --pod-fill:{{ settings.color_pod_fill }};
     --pod-line:{{ settings.color_pod_line }};
 
-    --f-display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+    /* The label's own three: the bottle green it reverses out to, the brass every
+       rule is struck in, and the lighter brass that brass has to become once it
+       is sitting on the green. */
+    --deep:{{ settings.color_deep }};
+    --gold:{{ settings.color_gold }};
+    --gold-lit:{{ settings.color_gold_lit }};
+    --botanical:{{ settings.color_botanical }};
+    --alert:{{ settings.color_alert }};
+
+    --f-display:"Playfair Display","Iowan Old Style",Georgia,serif;
     --f-body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
     --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
 
@@ -27,6 +37,12 @@
     --display-scale:{{ display_scale }};
     --wrap:{{ settings.layout_width | default: 1120 }}px;
     --measure:66ch;
+
+    /* The label's silhouette. The arch belongs to the picture panel — the
+       plate on a product page, the art on a card — never to a box of text,
+       where a dome sized off the text height would fight the plate's. */
+    --arch:42% 42% 4px 4px / 18% 18% 4px 4px;
+    --arch-soft:34% 34% 0 0 / 15% 15% 0 0;
 
     /* replaced at runtime by the true-scale probe in theme.js */
     --pxmm:3.7795px;

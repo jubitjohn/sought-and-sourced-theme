@@ -1,0 +1,26 @@
+{%- comment -%}
+  The label's roundel lockup: the name broken across the ampersand, a rule either
+  side of it, and the three-word promise underneath in tracked caps.
+
+  The split is done on the shop name rather than hardcoded, so a shop called
+  anything else still gets a sane two-line — or one-line — mark.
+
+  Accepts: tagline (string, optional)
+           sprig   (boolean) — draw the leaf mark above the name
+{%- endcomment -%}
+{%- liquid
+  assign name_parts = shop.name | split: '&'
+  assign line_one = name_parts[0] | strip
+  assign line_two = name_parts[1] | strip
+-%}
+<span class="wordmark">
+  {%- if sprig -%}<span class="wordmark__sprig">{% render 'botanical', variant: 'sprig' %}</span>{%- endif -%}
+  <span class="wordmark__line">{{ line_one }}</span>
+  {%- if line_two != blank -%}
+    <span class="wordmark__amp" aria-hidden="true">&amp;</span>
+    <span class="wordmark__line">{{ line_two }}</span>
+  {%- endif -%}
+  {%- if tagline != blank -%}
+    <span class="wordmark__tag">{{ tagline }}</span>
+  {%- endif -%}
+</span>

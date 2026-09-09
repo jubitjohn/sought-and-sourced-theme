@@ -1,0 +1,13 @@
+{%- comment -%}
+  The brass medallion from the back of the label — two concentric rings, one of
+  them broken, with a short line of tracked caps inside.
+
+  Accepts: top, middle, bottom (strings)
+{%- endcomment -%}
+<span class="seal" aria-hidden="true">
+  <span class="seal__body">
+    {%- if top != blank -%}<span class="seal__t">{{ top }}</span>{%- endif -%}
+    {%- if middle != blank -%}<span class="seal__m">{{ middle }}</span>{%- endif -%}
+    {%- if bottom != blank -%}<span class="seal__t">{{ bottom }}</span>{%- endif -%}
+  </span>
+</span>

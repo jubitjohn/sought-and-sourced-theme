@@ -7,12 +7,17 @@
 {%- endif -%}
 <div class="wrap">
   <header class="masthead">
-    <a class="brandmark" href="{{ routes.root_url }}">
+    {%- comment -%}
+      The roundel off the hang tag: the name reversed out of bottle green in an
+      arched cartouche, ruled twice in brass. An uploaded logo goes inside the
+      same cartouche rather than replacing it.
+    {%- endcomment -%}
+    <a class="brandmark cartouche" href="{{ routes.root_url }}">
       {%- if section.settings.logo -%}
         {%- assign alt_text = shop.name | escape -%}
-        {{ section.settings.logo | image_url: width: 320 | image_tag: alt: alt_text, style: 'max-height:44px;width:auto' }}
+        {{ section.settings.logo | image_url: width: 320 | image_tag: alt: alt_text }}
       {%- else -%}
-        {{ shop.name }}
+        {% render 'wordmark', tagline: section.settings.tagline, sprig: section.settings.show_sprig %}
       {%- endif -%}
     </a>
 
@@ -39,7 +44,9 @@
 {
   "name": "Header",
   "settings": [
-    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Leave empty to use the shop name set in Settings." },
+    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Sits inside the green cartouche. Leave empty to set the shop name in it instead — it is split across the ampersand the way the label sets it." },
+    { "type": "text", "id": "tagline", "label": "Under the name", "default": "Pure · Authentic · Responsible", "info": "The three words printed under the roundel on the tag. Leave empty to drop the line." },
+    { "type": "checkbox", "id": "show_sprig", "label": "Show the leaf mark above the name", "default": true },
     { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
   ]
 }

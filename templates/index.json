@@ -26,6 +26,17 @@
       "block_order": ["m1", "m2", "m3"],
       "settings": { "number": "§ 01", "label": "Method", "meta": "how we buy" }
     },
+    "assurances": {
+      "type": "assurances",
+      "blocks": {
+        "a1": { "type": "mark", "settings": { "icon": "caliper", "caption": "Graded by sieve" } },
+        "a2": { "type": "mark", "settings": { "icon": "leaf", "caption": "Whole pods only" } },
+        "a3": { "type": "mark", "settings": { "icon": "origin", "caption": "Idukki, Kerala" } },
+        "a4": { "type": "mark", "settings": { "icon": "airtight", "caption": "Sealed light-proof" } }
+      },
+      "block_order": ["a1", "a2", "a3", "a4"],
+      "settings": { "number": "", "label": "", "meta": "" }
+    },
     "grades": {
       "type": "grade-scale",
       "blocks": {
@@ -67,5 +78,5 @@
     },
     "dispatch": { "type": "dispatch-signup", "settings": {} }
   },
-  "order": ["hero", "method", "grades", "router", "lots", "freshness", "region", "dispatch"]
+  "order": ["hero", "method", "assurances", "grades", "router", "lots", "freshness", "region", "dispatch"]
 }

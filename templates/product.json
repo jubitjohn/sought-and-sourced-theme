@@ -3,13 +3,23 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "m1": { "type": "mark", "settings": { "icon": "caliper", "caption": "Graded by sieve" } },
+        "m2": { "type": "mark", "settings": { "icon": "leaf", "caption": "Whole pods only" } },
+        "m3": { "type": "mark", "settings": { "icon": "origin", "caption": "Idukki, Kerala" } },
+        "m4": { "type": "mark", "settings": { "icon": "airtight", "caption": "Sealed light-proof" } },
         "aroma": { "type": "accordion", "settings": { "title": "Aroma & use", "open": true, "body": "<p>Cool eucalyptic lift over a sweet, resinous base. Bruise two or three pods with the flat of a knife and drop them in whole for rice and braises; grind the seed only for desserts, and only just before you need it.</p>" } },
         "provenance": { "type": "metafield", "settings": { "title": "Provenance", "key": "provenance" } },
         "grade": { "type": "accordion", "settings": { "title": "Grade, honestly", "body": "<p>The millimetre figure is a sieve size, not a quality score. You are paying for appearance and a thicker husk. If these are going into a grinder, buy the smaller grade from the same lot — same cure, same hills, less money.</p>" } },
         "storage": { "type": "accordion", "settings": { "title": "Storage", "body": "<p>Keep the pods whole and the tin shut, away from the hob and out of the light. Don't decant into a clear jar, however good it looks. Cold is unnecessary; dark is not.</p>" } }
       },
-      "block_order": ["aroma", "provenance", "grade", "storage"],
-      "settings": { "region_line": "Cardamom Hills, Idukki · 900–1,400 m", "specimen_mm": 8 }
+      "block_order": ["m1", "m2", "m3", "m4", "aroma", "provenance", "grade", "storage"],
+      "settings": {
+        "region_line": "Cardamom Hills, Idukki · 900–1,400 m",
+        "attributes": "Single-Origin · Hand Selected · Estate Fresh",
+        "pill_green": "Premium Cardamom",
+        "pill_gold": "Export Quality",
+        "specimen_mm": 8
+      }
     },
     "recommendations": { "type": "product-recommendations", "settings": { "heading": "The same lot, one sieve down", "count": 3 } }
   },
