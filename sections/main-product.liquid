@@ -1,0 +1,129 @@
+{%- assign current = product.selected_or_first_available_variant -%}
+{%- assign specimen_mm = section.settings.specimen_mm -%}
+<div class="wrap">
+  <section class="pdp">
+    <div>
+      {% render 'product-media-gallery', product: product, pod_mm: specimen_mm %}
+    </div>
+
+    <div>
+      {%- if section.settings.region_line != blank -%}
+        <div class="pdp__region">{{ section.settings.region_line }}</div>
+      {%- endif -%}
+
+      <h1>{{ product.title }}</h1>
+
+      {%- if product.metafields.custom.subtitle.value != blank -%}
+        <p class="pdp__sub">{{ product.metafields.custom.subtitle.value }}</p>
+      {%- endif -%}
+
+      <div style="margin-bottom:26px">
+        {% render 'freshness-stamp', product: product %}
+      </div>
+
+      {% render 'variant-picker', product: product %}
+
+      <div class="priceline" data-price-block>
+        {% render 'price', variant: current %}
+        {% render 'per-dish', variant: current %}
+      </div>
+
+      {% render 'buy-buttons', product: product %}
+
+      {%- if section.settings.reassurance != blank -%}
+        <div class="body-text" style="font-size:.9rem;margin-bottom:26px">{{ section.settings.reassurance }}</div>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'accordion' -%}
+            <details class="dossier" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+              <summary>{{ block.settings.title }}</summary>
+              <div class="dossier__body">{{ block.settings.body }}</div>
+            </details>
+          {%- when 'description' -%}
+            <details class="dossier" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+              <summary>{{ block.settings.title }}</summary>
+              <div class="dossier__body">{{ product.description }}</div>
+            </details>
+          {%- when 'metafield' -%}
+            {%- assign mf = product.metafields.custom[block.settings.key] -%}
+            {%- if mf.value != blank -%}
+              <details class="dossier" {{ block.shopify_attributes }}>
+                <summary>{{ block.settings.title }}</summary>
+                <div class="dossier__body">{{ mf.value }}</div>
+              </details>
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+<div class="sticky-buy" data-sticky-buy>
+  <span class="price" data-sticky-price>{{ current.price | money }}</span>
+  <button class="btn btn--primary" type="button" style="flex:1" data-sticky-add>{{ 'products.product.add_to_cart' | t }}</button>
+</div>
+
+<script type="application/json" data-product-json>
+  {{ product.variants | json }}
+</script>
+<script type="application/json" data-product-settings>
+  {
+    "gramsPerDish": {{ settings.grams_per_dish | times: 1.0 | json }},
+    "perDishLabel": {{ settings.per_dish_label | default: 'per dish' | json }},
+    "showPerDish": {% if settings.show_per_dish %}true{% else %}false{% endif %},
+    "showWorkings": {% if settings.show_workings %}true{% else %}false{% endif %},
+    "moneyFormat": {{ shop.money_format | json }}
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "text", "id": "region_line", "label": "Region line", "default": "Cardamom Hills, Idukki · 900–1,400 m" },
+    { "type": "range", "id": "specimen_mm", "label": "Placeholder specimen size", "min": 4, "max": 10, "step": 1, "unit": "mm", "default": 8, "info": "Only shown when the product has no image yet." },
+    { "type": "richtext", "id": "reassurance", "label": "Under the buttons", "default": "<p>Filled the day it ships. Whole pods, never ground. Sent in a light-proof tin.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Aroma & use" },
+        { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Cool eucalyptic lift over a sweet, resinous base.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Product description",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Description" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": true }
+      ]
+    },
+    {
+      "type": "metafield",
+      "name": "Metafield accordion",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Provenance" },
+        { "type": "text", "id": "key", "label": "Metafield key (under custom.)", "default": "provenance", "info": "Hides itself entirely when the metafield has no value." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product",
+      "blocks": [
+        { "type": "accordion", "settings": { "title": "Aroma & use", "open": true, "body": "<p>Cool eucalyptic lift over a sweet, resinous base. Bruise two or three pods with the flat of a knife and drop them in whole for rice and braises; grind the seed only for desserts, and only just before you need it.</p>" } },
+        { "type": "metafield", "settings": { "title": "Provenance", "key": "provenance" } },
+        { "type": "accordion", "settings": { "title": "Grade, honestly", "body": "<p>The millimetre figure is a sieve size, not a quality score. You are paying for appearance and a thicker husk. If these are going into a grinder, buy the smaller grade from the same lot — same cure, same hills, less money.</p>" } },
+        { "type": "accordion", "settings": { "title": "Storage", "body": "<p>Keep the pods whole and the tin shut, away from the hob and out of the light. Don't decant into a clear jar, however good it looks. Cold is unnecessary; dark is not.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,46 @@
+{%- assign cart_name = settings.cart_name | default: 'Consignment' -%}
+{%- if settings.show_mm_rule -%}
+  <div class="mm-rule" aria-hidden="true">
+    <div class="mm-rule__ticks"></div>
+    <div class="mm-rule__label">millimetres</div>
+  </div>
+{%- endif -%}
+<div class="wrap">
+  <header class="masthead">
+    <a class="brandmark" href="{{ routes.root_url }}">
+      {%- if section.settings.logo -%}
+        {%- assign alt_text = shop.name | escape -%}
+        {{ section.settings.logo | image_url: width: 320 | image_tag: alt: alt_text, style: 'max-height:44px;width:auto' }}
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+
+    <nav id="SiteNav" aria-label="Primary">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="masthead__actions">
+      <button class="cart-link nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="SiteNav">
+        {% render 'icon', icon: 'menu' %}
+      </button>
+      <a class="cart-link" href="{{ routes.search_url }}" aria-label="{{ 'general.search.title' | t }}">
+        {% render 'icon', icon: 'search' %}
+      </a>
+      <a class="cart-link" href="{{ routes.cart_url }}" data-cart-open>
+        {{ cart_name }} (<span data-cart-count>{{ cart.item_count }}</span>)
+      </a>
+    </div>
+  </header>
+</div>
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Leave empty to use the shop name set in Settings." },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

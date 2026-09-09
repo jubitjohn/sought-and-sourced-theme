@@ -1,0 +1,65 @@
+<div class="wrap">
+  <section class="hero">
+    <div class="hero__grid">
+      <div>
+        <h1>{{ section.settings.heading }}</h1>
+        {%- if section.settings.lede != blank -%}
+          <div class="lede hero__lede">{{ section.settings.lede }}</div>
+        {%- endif -%}
+      </div>
+      {%- if section.blocks.size > 0 -%}
+        <dl class="readout">
+          {%- for block in section.blocks -%}
+            <div class="readout__row" {{ block.shopify_attributes }}>
+              <dt>{{ block.settings.key }}</dt>
+              <dd>{{ block.settings.value }}</dd>
+            </div>
+          {%- endfor -%}
+          {%- if section.settings.footnote != blank -%}
+            <p class="workings" style="margin-top:12px">{{ section.settings.footnote }}</p>
+          {%- endif -%}
+        </dl>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.image -%}
+      <div class="hero__media">
+        {%- assign alt_text = section.settings.heading | strip_html | escape -%}
+        {{ section.settings.image | image_url: width: 2000 | image_tag: widths: '760,1200,2000', alt: alt_text }}
+      </div>
+    {%- endif -%}
+  </section>
+</div>
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Headline", "default": "We went up until the air turned <em>cold</em>." },
+    { "type": "richtext", "id": "lede", "label": "Standfirst", "default": "<p>Green cardamom from the Cardamom Hills of Idukki — bought by aroma, graded by sieve, and sold whole, because the pod is the only packaging that actually keeps.</p>" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "footnote", "label": "Footnote", "default": "Figures describe the growing region, not a single farm." }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Record row",
+      "settings": [
+        { "type": "text", "id": "key", "label": "Label", "default": "Region" },
+        { "type": "text", "id": "value", "label": "Value", "default": "Cardamom Hills, Idukki" }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "row", "settings": { "key": "Species", "value": "Elettaria cardamomum" } },
+        { "type": "row", "settings": { "key": "Region", "value": "Cardamom Hills, Idukki" } },
+        { "type": "row", "settings": { "key": "Elevation", "value": "900 – 1,400 m" } },
+        { "type": "row", "settings": { "key": "Harvest", "value": "Oct – Feb" } },
+        { "type": "row", "settings": { "key": "Grades held", "value": "6 mm · 7 mm · 8 mm+" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

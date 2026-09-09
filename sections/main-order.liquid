@@ -1,0 +1,27 @@
+<div class="wrap" style="padding-bottom:60px">
+  <div class="collection-head"><h1>{{ order.name }}</h1></div>
+  <p class="article-meta">{{ order.created_at | date: '%-d %B %Y' }} · {{ order.financial_status_label }} · {{ order.fulfillment_status_label }}</p>
+  <div class="table-scroll">
+    <table class="table">
+      <thead><tr><th>Item</th><th>Qty</th><th>Total</th></tr></thead>
+      <tbody>
+        {%- for line in order.line_items -%}
+          <tr>
+            <td>{{ line.title }}</td>
+            <td>{{ line.quantity }}</td>
+            <td>{{ line.final_line_price | money }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+      <tfoot>
+        <tr><th>Subtotal</th><td></td><td>{{ order.subtotal_price | money }}</td></tr>
+        <tr><th>Shipping</th><td></td><td>{{ order.shipping_price | money }}</td></tr>
+        <tr><th>Total</th><td></td><td>{{ order.total_price | money }}</td></tr>
+      </tfoot>
+    </table>
+  </div>
+  <p style="margin-top:26px"><a class="linkish" href="{{ routes.account_url }}">{{ 'customer.account.title' | t }}</a></p>
+</div>
+{% schema %}
+{ "name": "Order", "settings": [] }
+{% endschema %}

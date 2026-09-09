@@ -1,0 +1,34 @@
+{%- comment -%}
+  Every colour in the theme resolves through these custom properties, so the whole
+  palette is re-brandable from Theme settings without touching a stylesheet.
+{%- endcomment -%}
+{%- assign display_scale = settings.type_display_scale | default: 100 | divided_by: 100.0 -%}
+<style>
+  :root{
+    --ground:{{ settings.color_ground }};
+    --sheet:{{ settings.color_sheet }};
+    --sheet-2:{{ settings.color_sheet_2 }};
+    --ink:{{ settings.color_ink }};
+    --ink-2:{{ settings.color_ink_2 }};
+    --ink-3:{{ settings.color_ink_3 }};
+    --rule:{{ settings.color_rule }};
+    --rule-soft:{{ settings.color_rule_soft }};
+    --pod:{{ settings.color_pod }};
+    --stamp:{{ settings.color_stamp }};
+    --grid:{{ settings.color_grid }};
+    --pod-fill:{{ settings.color_pod_fill }};
+    --pod-line:{{ settings.color_pod_line }};
+
+    --f-display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+    --f-body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+    --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+
+    --base-size:{{ settings.type_base_size | default: 16 }}px;
+    --display-scale:{{ display_scale }};
+    --wrap:{{ settings.layout_width | default: 1120 }}px;
+    --measure:66ch;
+
+    /* replaced at runtime by the true-scale probe in theme.js */
+    --pxmm:3.7795px;
+  }
+</style>

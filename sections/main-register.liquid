@@ -1,0 +1,26 @@
+<div class="wrap wrap--narrow" style="padding:44px 28px 60px;max-width:520px">
+  <h1 style="margin-bottom:24px">{{ 'customer.register.title' | t }}</h1>
+  {%- form 'create_customer' -%}
+    {%- if form.errors -%}<div class="form-error">{{ form.errors | default_errors }}</div>{%- endif -%}
+    <div class="form-row">
+      <label for="RegFirst">{{ 'customer.register.first_name' | t }}</label>
+      <input class="input" type="text" id="RegFirst" name="customer[first_name]" autocomplete="given-name">
+    </div>
+    <div class="form-row">
+      <label for="RegLast">{{ 'customer.register.last_name' | t }}</label>
+      <input class="input" type="text" id="RegLast" name="customer[last_name]" autocomplete="family-name">
+    </div>
+    <div class="form-row">
+      <label for="RegEmail">{{ 'customer.login.email' | t }}</label>
+      <input class="input" type="email" id="RegEmail" name="customer[email]" autocomplete="email" required>
+    </div>
+    <div class="form-row">
+      <label for="RegPassword">{{ 'customer.login.password' | t }}</label>
+      <input class="input" type="password" id="RegPassword" name="customer[password]" autocomplete="new-password" required>
+    </div>
+    <button class="btn btn--primary btn--full" type="submit">{{ 'customer.register.submit' | t }}</button>
+  {%- endform -%}
+</div>
+{% schema %}
+{ "name": "Register", "settings": [] }
+{% endschema %}

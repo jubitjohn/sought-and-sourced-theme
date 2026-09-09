@@ -1,0 +1,9 @@
+# Build artefact — regenerate with the zip command in README.md
+*.zip
+
+# macOS
+.DS_Store
+
+# Shopify CLI
+.shopify/
+node_modules/

@@ -1,0 +1,43 @@
+<div class="wrap section-pad">
+  <div class="speclabel">
+    <span class="speclabel__no">{{ section.settings.number }}</span>
+    <span class="speclabel__name">{{ section.settings.label }}</span>
+    <span class="speclabel__rule"></span>
+  </div>
+  <div class="case" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center">
+    <div>
+      {%- if section.settings.image -%}
+        <div style="border:1px solid var(--rule)">
+          {%- assign alt_text = section.settings.heading | escape -%}
+          {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480,760,1200', alt: alt_text }}
+        </div>
+      {%- else -%}
+        <div class="gridpaper" style="border:1px solid var(--rule);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;gap:10px">
+          {% render 'pod', mm: 8 %}{% render 'pod', mm: 7 %}{% render 'pod', mm: 6 %}
+        </div>
+      {%- endif -%}
+    </div>
+    <div>
+      <h2 style="margin-bottom:16px">{{ section.settings.heading }}</h2>
+      <div class="rte">{{ section.settings.text }}</div>
+      {%- if section.settings.link_label != blank -%}
+        <p style="margin-top:22px"><a class="btn btn--ghost btn--small" href="{{ section.settings.link }}">{{ section.settings.link_label }}</a></p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Image with text",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Section mark", "default": "§ —" },
+    { "type": "text", "id": "label", "label": "Label", "default": "The region" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Cardamom Hills" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Cardamom grows here between roughly 900 and 1,400 metres, under shade, on the western slopes of the Ghats. Harvest runs October to February and the pods are picked green, several passes to a plant, because they do not ripen together.</p>" },
+    { "type": "text", "id": "link_label", "label": "Button label" },
+    { "type": "url", "id": "link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Image with text" }]
+}
+{% endschema %}

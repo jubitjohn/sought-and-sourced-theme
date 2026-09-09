@@ -1,0 +1,27 @@
+<div class="wrap">
+  <div class="collection-head"><h1>{{ blog.title }}</h1></div>
+  {%- paginate blog.articles by 12 -%}
+    <div class="cards" style="padding-bottom:40px">
+      {%- for article in blog.articles -%}
+        <article class="card">
+          {%- if article.image -%}
+            <a class="card__art" href="{{ article.url }}">
+              {%- assign alt_text = article.title | escape -%}
+              {{ article.image | image_url: width: 640 | image_tag: loading: 'lazy', alt: alt_text }}
+            </a>
+          {%- endif -%}
+          <div class="card__body">
+            <div class="card__grade">{{ article.published_at | date: '%-d %b %Y' }}</div>
+            <h3 class="card__name"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+            <p class="card__note">{{ article.excerpt_or_content | strip_html | truncate: 130 }}</p>
+            <div class="card__foot"><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }}</a></div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+    {% render 'pagination', paginate: paginate %}
+  {%- endpaginate -%}
+</div>
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

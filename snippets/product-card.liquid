@@ -1,0 +1,23 @@
+{%- comment -%} Accepts: product, pod_mm (optional, for the placeholder specimen). {%- endcomment -%}
+<article class="card">
+  <a class="card__art{% unless product.featured_media %} gridpaper{% endunless %}" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+    {%- if product.featured_media -%}
+      {%- assign alt_text = product.featured_media.alt | escape -%}
+      {{ product.featured_media | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320,480,640', alt: alt_text }}
+    {%- else -%}
+      {% render 'pod', mm: pod_mm %}
+      {% render 'pod', mm: pod_mm %}
+    {%- endif -%}
+  </a>
+  <div class="card__body">
+    {% render 'grade-badge', product: product %}
+    <h3 class="card__name"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    {%- if product.description != blank -%}
+      <p class="card__note">{{ product.description | strip_html | truncate: 110 }}</p>
+    {%- endif -%}
+    <div class="card__foot">
+      <span>{% render 'price', product: product %}</span>
+      {% render 'freshness-stamp', product: product, compact: true %}
+    </div>
+  </div>
+</article>

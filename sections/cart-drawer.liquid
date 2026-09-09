@@ -1,0 +1,28 @@
+{%- if settings.cart_type == 'drawer' -%}
+  {%- assign cart_name = settings.cart_name | default: 'Consignment' -%}
+  <div class="cart-overlay" data-cart-overlay></div>
+  <aside class="cart-drawer" id="CartDrawer" aria-label="{{ cart_name }}" aria-hidden="true">
+    <div class="cart-drawer__head">
+      <span class="cart-drawer__title">{{ cart_name }}</span>
+      <button class="linkish" type="button" data-cart-close aria-label="{{ 'accessibility.close' | t }}">{% render 'icon', icon: 'close' %}</button>
+    </div>
+    <div class="cart-drawer__body" data-cart-body>
+      {% render 'cart-line-items' %}
+    </div>
+    <div class="cart-drawer__foot">
+      <div class="cart-total">
+        <span>{{ 'cart.subtotal' | t }}</span>
+        <span data-cart-total>{{ cart.total_price | money }}</span>
+      </div>
+      <p class="workings" style="margin:0">{{ 'cart.taxes_note' | t }}</p>
+      <form action="{{ routes.cart_url }}" method="post">
+        <button type="submit" name="checkout" class="btn btn--primary btn--full" {% if cart.item_count == 0 %}disabled{% endif %}>
+          {{ 'cart.checkout' | t }}
+        </button>
+      </form>
+    </div>
+  </aside>
+{%- endif -%}
+{% schema %}
+{ "name": "Consignment drawer", "settings": [] }
+{% endschema %}

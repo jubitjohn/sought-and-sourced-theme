@@ -1,0 +1,41 @@
+<div class="wrap section-pad">
+  <div class="speclabel">
+    <span class="speclabel__no">{{ section.settings.number }}</span>
+    <span class="speclabel__name">{{ section.settings.label }}</span>
+    <span class="speclabel__rule"></span>
+  </div>
+  <div class="cards">
+    {%- for block in section.blocks -%}
+      {%- assign coll = collections[block.settings.collection] -%}
+      <article class="card" {{ block.shopify_attributes }}>
+        <a class="card__art{% unless coll.featured_image %} gridpaper{% endunless %}" href="{{ coll.url | default: '#' }}">
+          {%- if coll.featured_image -%}
+            {%- assign alt_text = coll.title | escape -%}
+            {{ coll.featured_image | image_url: width: 640 | image_tag: loading: 'lazy', alt: alt_text }}
+          {%- else -%}
+            {% render 'pod', mm: 7 %}
+          {%- endif -%}
+        </a>
+        <div class="card__body">
+          <h3 class="card__name"><a href="{{ coll.url | default: '#' }}">{{ coll.title | default: 'Collection' }}</a></h3>
+          {%- if coll.description != blank -%}
+            <p class="card__note">{{ coll.description | strip_html | truncate: 110 }}</p>
+          {%- endif -%}
+        </div>
+      </article>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Collection list",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Section mark", "default": "§ —" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Collections" }
+  ],
+  "blocks": [
+    { "type": "collection", "name": "Collection", "settings": [ { "type": "collection", "id": "collection", "label": "Collection" } ] }
+  ],
+  "presets": [{ "name": "Collection list" }]
+}
+{% endschema %}

@@ -1,0 +1,19 @@
+<div class="wrap wrap--narrow" style="padding:44px 28px 60px;max-width:520px">
+  <h1 style="margin-bottom:24px">{{ 'customer.login.title' | t }}</h1>
+  {%- form 'customer_login' -%}
+    {%- if form.errors -%}<div class="form-error">{{ form.errors | default_errors }}</div>{%- endif -%}
+    <div class="form-row">
+      <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
+      <input class="input" type="email" id="CustomerEmail" name="customer[email]" autocomplete="email" required>
+    </div>
+    <div class="form-row">
+      <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
+      <input class="input" type="password" id="CustomerPassword" name="customer[password]" autocomplete="current-password">
+    </div>
+    <button class="btn btn--primary btn--full" type="submit">{{ 'customer.login.submit' | t }}</button>
+    <p style="margin-top:16px"><a class="linkish" href="{{ routes.account_register_url }}">{{ 'customer.register.title' | t }}</a></p>
+  {%- endform -%}
+</div>
+{% schema %}
+{ "name": "Login", "settings": [] }
+{% endschema %}

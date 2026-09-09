@@ -1,0 +1,57 @@
+<div class="wrap section-pad">
+  <div class="speclabel">
+    <span class="speclabel__no">{{ section.settings.number }}</span>
+    <span class="speclabel__name">{{ section.settings.label }}</span>
+    <span class="speclabel__rule"></span>
+    <span class="speclabel__meta">{{ section.settings.meta }}</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:52px;align-items:start" class="freshness-case">
+    <div>
+      <div style="font-family:var(--f-display);font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.2">{{ section.settings.pull }}</div>
+      <div class="rte" style="margin-top:20px">{{ section.settings.text }}</div>
+    </div>
+    <dl class="readout">
+      {%- for block in section.blocks -%}
+        <div class="readout__row" {{ block.shopify_attributes }}>
+          <dt>{{ block.settings.key }}</dt>
+          <dd>{{ block.settings.value }}</dd>
+        </div>
+      {%- endfor -%}
+    </dl>
+  </div>
+</div>
+<style>
+  @media (max-width:860px){ .freshness-case{grid-template-columns:1fr!important;gap:30px!important;} }
+</style>
+{% schema %}
+{
+  "name": "Why we print the date",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Section mark", "default": "§ 05" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Why we print the date" },
+    { "type": "text", "id": "meta", "label": "Right-hand note", "default": "freshness" },
+    { "type": "inline_richtext", "id": "pull", "label": "Pull quote", "default": "Everything cardamom is worth buying for is <em>volatile</em>. That is not a figure of speech — it is the chemistry." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>The aroma sits in an oil held inside the seed: mostly cineole, which gives the cool camphor lift, and terpinyl acetate, which gives the sweetness. Both evaporate. Grinding exposes them to air; light and warmth speed it up. An intact husk slows all of it down, which is why we sell pods and never powder.</p><p>So instead of calling it fresh, we print two dates and let you judge.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Ledger row",
+      "settings": [
+        { "type": "text", "id": "key", "label": "Label", "default": "Harvest window" },
+        { "type": "text", "id": "value", "label": "Value", "default": "Oct – Feb" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why we print the date",
+      "blocks": [
+        { "type": "row", "settings": { "key": "Harvest window", "value": "Oct – Feb" } },
+        { "type": "row", "settings": { "key": "Sold as", "value": "Whole pods" } },
+        { "type": "row", "settings": { "key": "Ground on site", "value": "Never" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

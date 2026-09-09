@@ -1,0 +1,45 @@
+<div class="wrap">
+  <div class="collection-head">
+    <div>
+      <div class="eyebrow">{{ collection.products_count }} lots</div>
+      <h1>{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="rte" style="margin-top:14px">{{ collection.description }}</div>
+      {%- endif -%}
+    </div>
+    <form class="facets" method="get">
+      {%- for f in collection.filters -%}
+        {%- if f.type == 'list' -%}
+          <select name="{{ f.param_name }}" onchange="this.form.submit()">
+            <option value="">{{ f.label }}</option>
+            {%- for v in f.values -%}
+              <option value="{{ v.value }}" {% if v.active %}selected{% endif %}>{{ v.label }} ({{ v.count }})</option>
+            {%- endfor -%}
+          </select>
+        {%- endif -%}
+      {%- endfor -%}
+      <select name="sort_by" onchange="this.form.submit()" aria-label="{{ 'collections.sorting.title' | t }}">
+        {%- for option in collection.sort_options -%}
+          <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+        {%- endfor -%}
+      </select>
+      <noscript><button class="btn btn--small btn--ghost" type="submit">{{ 'collections.filtering.apply' | t }}</button></noscript>
+    </form>
+  </div>
+
+  {%- paginate collection.products by 24 -%}
+    {%- if collection.products.size > 0 -%}
+      <div class="cards">
+        {%- for product in collection.products -%}
+          {% render 'product-card', product: product, pod_mm: 7 %}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="empty-state">{{ 'collections.empty' | t }}</p>
+    {%- endif -%}
+    {% render 'pagination', paginate: paginate %}
+  {%- endpaginate -%}
+</div>
+{% schema %}
+{ "name": "Collection", "settings": [] }
+{% endschema %}

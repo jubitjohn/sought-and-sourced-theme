@@ -1,0 +1,35 @@
+{%- comment -%}
+  Generic over product.options_with_values, so a Grade option (AGEB / AGB / AGS)
+  or Whole-vs-Ground gets the same pill treatment as tin size, with no hardcoded names.
+  Accepts: product.
+{%- endcomment -%}
+{%- unless product.has_only_default_variant -%}
+  <variant-picker data-url="{{ product.url }}" data-section="{{ section.id }}">
+    {%- for option in product.options_with_values -%}
+      <div class="eyebrow" style="margin-bottom:4px">{{ option.name }}</div>
+      <div class="sizes" role="group" aria-label="{{ option.name | escape }}">
+        {%- for value in option.values -%}
+          {%- assign is_selected = false -%}
+          {%- if option.selected_value == value -%}{%- assign is_selected = true -%}{%- endif -%}
+          <button
+            type="button"
+            class="size"
+            data-option-position="{{ option.position }}"
+            data-value="{{ value | escape }}"
+            aria-pressed="{{ is_selected }}">
+            <b>{{ value }}</b>
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+    <noscript>
+      <select name="id" class="input" form="product-form-{{ section.id }}">
+        {%- for v in product.variants -%}
+          <option value="{{ v.id }}" {% if v == product.selected_or_first_available_variant %}selected{% endif %} {% unless v.available %}disabled{% endunless %}>
+            {{ v.title }} — {{ v.price | money }}
+          </option>
+        {%- endfor -%}
+      </select>
+    </noscript>
+  </variant-picker>
+{%- endunless -%}

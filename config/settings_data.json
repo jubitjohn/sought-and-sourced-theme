@@ -1,0 +1,28 @@
+{
+  "current": {
+    "color_ground": "#E7DFC9",
+    "color_sheet": "#F4EFE1",
+    "color_sheet_2": "#EFE8D6",
+    "color_ink": "#1B2A30",
+    "color_ink_2": "#5A6B70",
+    "color_ink_3": "#8A968F",
+    "color_rule": "#C9BC9A",
+    "color_rule_soft": "#D8CDB1",
+    "color_pod": "#4F6E3E",
+    "color_stamp": "#A33B2B",
+    "color_grid": "#D5C9A8",
+    "color_pod_fill": "#C7D3AE",
+    "color_pod_line": "#6E8656",
+    "type_base_size": 16,
+    "type_display_scale": 100,
+    "layout_width": 1120,
+    "show_mm_rule": true,
+    "show_per_dish": true,
+    "grams_per_dish": "0.6",
+    "per_dish_label": "per dish",
+    "show_workings": true,
+    "show_freshness": true,
+    "cart_name": "Consignment",
+    "cart_type": "drawer"
+  }
+}

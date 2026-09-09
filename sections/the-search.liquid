@@ -1,0 +1,48 @@
+<div class="wrap section-pad">
+  <div class="speclabel">
+    <span class="speclabel__no">{{ section.settings.number }}</span>
+    <span class="speclabel__name">{{ section.settings.label }}</span>
+    <span class="speclabel__rule"></span>
+    <span class="speclabel__meta">{{ section.settings.meta }}</span>
+  </div>
+  <div class="method">
+    {%- for block in section.blocks -%}
+      <div class="method__item" {{ block.shopify_attributes }}>
+        <div class="method__n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+        <div class="method__claim">{{ block.settings.claim }}</div>
+        <p class="method__body">{{ block.settings.body }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Method",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Section mark", "default": "§ 01" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Method" },
+    { "type": "text", "id": "meta", "label": "Right-hand note", "default": "how we buy" }
+  ],
+  "blocks": [
+    {
+      "type": "claim",
+      "name": "Claim",
+      "settings": [
+        { "type": "inline_richtext", "id": "claim", "label": "Claim", "default": "We buy by nose, not by size." },
+        { "type": "text", "id": "body", "label": "Body", "default": "A sieve sorts pods by width. It says nothing about how much volatile oil is inside." }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Method",
+      "blocks": [
+        { "type": "claim", "settings": { "claim": "We buy by nose, not by size.", "body": "A sieve sorts pods by width. It says nothing about how much volatile oil is inside. We open a pod before we agree a price." } },
+        { "type": "claim", "settings": { "claim": "A grade is a measurement, not a verdict.", "body": "8 mm pods cost more because they look impressive whole. For anything you crush, a 7 mm pod is frequently the better buy — and we'll say so." } },
+        { "type": "claim", "settings": { "claim": "Whole pods only. The pod is the packaging.", "body": "Ground cardamom begins losing aroma the moment it is ground. The husk is a sealed container evolved for exactly this job." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

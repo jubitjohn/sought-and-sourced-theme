@@ -1,0 +1,75 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Sought & Sourced",
+    "theme_version": "1.0.0",
+    "theme_author": "Sought & Sourced",
+    "theme_documentation_url": "https://shopify.dev/themes",
+    "theme_support_url": "https://shopify.dev/themes"
+  },
+  {
+    "name": "Colours",
+    "settings": [
+      { "type": "paragraph", "content": "The palette is a measured specimen sheet: oat paper, iron-gall ink, pod green for every action, and a stamp red kept for annotations only." },
+      { "type": "color", "id": "color_ground", "label": "Page ground", "default": "#E7DFC9" },
+      { "type": "color", "id": "color_sheet", "label": "Sheet / card", "default": "#F4EFE1" },
+      { "type": "color", "id": "color_sheet_2", "label": "Sheet, recessed", "default": "#EFE8D6" },
+      { "type": "color", "id": "color_ink", "label": "Ink", "default": "#1B2A30" },
+      { "type": "color", "id": "color_ink_2", "label": "Ink, secondary", "default": "#5A6B70" },
+      { "type": "color", "id": "color_ink_3", "label": "Ink, faint", "default": "#8A968F" },
+      { "type": "color", "id": "color_rule", "label": "Rules and borders", "default": "#C9BC9A" },
+      { "type": "color", "id": "color_rule_soft", "label": "Rules, soft", "default": "#D8CDB1" },
+      { "type": "color", "id": "color_pod", "label": "Pod green (actions)", "default": "#4F6E3E" },
+      { "type": "color", "id": "color_stamp", "label": "Stamp red (annotation only)", "default": "#A33B2B" },
+      { "type": "color", "id": "color_grid", "label": "Graph paper rule", "default": "#D5C9A8" },
+      { "type": "color", "id": "color_pod_fill", "label": "Pod illustration fill", "default": "#C7D3AE" },
+      { "type": "color", "id": "color_pod_line", "label": "Pod illustration line", "default": "#6E8656" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "paragraph", "content": "Instrument Serif for display, Instrument Sans for text, IBM Plex Mono for every measurement, grade, date and price. Loaded from Google Fonts in layout/theme.liquid." },
+      { "type": "range", "id": "type_base_size", "label": "Base text size", "min": 14, "max": 20, "step": 1, "unit": "px", "default": 16 },
+      { "type": "range", "id": "type_display_scale", "label": "Display scale", "min": 80, "max": 130, "step": 5, "unit": "%", "default": 100 }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      { "type": "range", "id": "layout_width", "label": "Content width", "min": 960, "max": 1400, "step": 20, "unit": "px", "default": 1120 },
+      { "type": "checkbox", "id": "show_mm_rule", "label": "Show the millimetre rule down the page edge", "default": true }
+    ]
+  },
+  {
+    "name": "Product",
+    "settings": [
+      { "type": "header", "content": "Price per dish" },
+      { "type": "paragraph", "content": "Computed from each variant's shipping weight, so no metafield is needed. Set the grams a single dish uses — the default assumes 4 pods at roughly 0.15 g each." },
+      { "type": "checkbox", "id": "show_per_dish", "label": "Show price per dish", "default": true },
+      { "type": "text", "id": "grams_per_dish", "label": "Grams per dish", "default": "0.6" },
+      { "type": "text", "id": "per_dish_label", "label": "Label", "default": "per dish" },
+      { "type": "checkbox", "id": "show_workings", "label": "Show the arithmetic underneath", "default": true },
+      { "type": "header", "content": "Freshness stamp" },
+      { "type": "paragraph", "content": "Reads the product metafields custom.harvest_month (single line text) and custom.packed_on (date). Any row with no value hides itself — the stamp never shows an empty or future date." },
+      { "type": "checkbox", "id": "show_freshness", "label": "Show the freshness stamp", "default": true }
+    ]
+  },
+  {
+    "name": "Consignment",
+    "settings": [
+      { "type": "text", "id": "cart_name", "label": "What the cart is called", "default": "Consignment", "info": "Used in the header, the drawer and the buttons." },
+      { "type": "select", "id": "cart_type", "label": "Cart behaviour", "options": [ { "value": "drawer", "label": "Slide-out drawer" }, { "value": "page", "label": "Go to the cart page" } ], "default": "drawer" }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      { "type": "text", "id": "social_instagram", "label": "Instagram URL" },
+      { "type": "text", "id": "social_whatsapp", "label": "WhatsApp URL" },
+      { "type": "text", "id": "social_email", "label": "Contact email" },
+      { "type": "image_picker", "id": "share_image", "label": "Default sharing image" },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" }
+    ]
+  }
+]

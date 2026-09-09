@@ -1,0 +1,43 @@
+<div class="wrap section-pad">
+  <div class="speclabel">
+    <span class="speclabel__no">{{ section.settings.number }}</span>
+    <span class="speclabel__name">{{ section.settings.label }}</span>
+    <span class="speclabel__rule"></span>
+    <span class="speclabel__meta">{{ section.settings.meta }}</span>
+  </div>
+  {%- assign coll = collections[section.settings.collection] -%}
+  <div class="cards">
+    {%- if coll.products.size > 0 -%}
+      {%- for product in coll.products limit: section.settings.count -%}
+        {%- assign fallback_mm = forloop.index | plus: 5 -%}
+        {% render 'product-card', product: product, pod_mm: fallback_mm %}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for i in (1..3) -%}
+        {%- assign fallback_mm = i | plus: 5 -%}
+        <article class="card">
+          <div class="card__art gridpaper">{% render 'pod', mm: fallback_mm %}{% render 'pod', mm: fallback_mm %}</div>
+          <div class="card__body">
+            <div class="card__grade">{{ fallback_mm }} mm</div>
+            <h3 class="card__name">{{ 'onboarding.product_title' | t }}</h3>
+            <p class="card__note">Pick a collection in the theme editor to show real lots here.</p>
+            <div class="card__foot"><span>&mdash;</span></div>
+          </div>
+        </article>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Section mark", "default": "§ 04" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Current lots" },
+    { "type": "text", "id": "meta", "label": "Right-hand note", "default": "packed to order" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "count", "label": "Products shown", "min": 2, "max": 12, "step": 1, "default": 3 }
+  ],
+  "presets": [{ "name": "Featured collection" }]
+}
+{% endschema %}

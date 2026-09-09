@@ -1,0 +1,90 @@
+{
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next",
+    "menu": "Menu"
+  },
+  "general": {
+    "pagination": {
+      "page": "Page {{ number }}",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "search": {
+      "title": "Search",
+      "placeholder": "Search the shop",
+      "submit": "Search",
+      "results_for": "Results for “{{ terms }}”",
+      "no_results": "No results for “{{ terms }}”. Try a grade, a size, or a use."
+    },
+    "newsletter": {
+      "email": "you@example.com",
+      "submit": "Join",
+      "success": "You are on the list."
+    },
+    "continue_shopping": "Keep looking",
+    "on_sale": "Reduced"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to consignment",
+      "buy_now": "Buy now",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "size": "Tin size",
+      "per_dish": "per dish",
+      "price_from": "From",
+      "harvested": "Harvested",
+      "filled": "Filled",
+      "on_shelf": "On the shelf",
+      "filled_today": "filled today",
+      "days_ago": "{{ count }} days ago",
+      "one_day_ago": "1 day ago",
+      "weeks_ago": "{{ count }} weeks ago",
+      "months_ago": "{{ count }} months ago",
+      "actual_size": "Actual size",
+      "ruled_to": "ruled to 5 mm",
+      "view_details": "View this lot"
+    }
+  },
+  "cart": {
+    "title": "Your consignment",
+    "empty": "Nothing in the consignment yet.",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "remove": "Remove",
+    "note": "Add a note",
+    "taxes_note": "Taxes and shipping calculated at checkout.",
+    "item_count": {
+      "one": "{{ count }} item",
+      "other": "{{ count }} items"
+    }
+  },
+  "collections": {
+    "sorting": { "title": "Sort by" },
+    "filtering": { "title": "Filter", "clear": "Clear all", "apply": "Apply" },
+    "empty": "No lots in this collection yet."
+  },
+  "blogs": {
+    "article": { "back": "All field notes", "read_more": "Read the note" }
+  },
+  "customer": {
+    "account": { "title": "Account", "orders": "Orders", "addresses": "Addresses", "logout": "Log out" },
+    "login": { "title": "Log in", "email": "Email", "password": "Password", "submit": "Log in", "forgot": "Forgot password?", "guest": "Continue as guest" },
+    "register": { "title": "Create account", "first_name": "First name", "last_name": "Last name", "submit": "Create" },
+    "orders": { "none": "No orders yet.", "order_number": "Order", "date": "Date", "payment": "Payment", "fulfillment": "Fulfilment", "total": "Total" },
+    "addresses": { "title": "Addresses", "add": "Add address", "edit": "Edit", "delete": "Delete", "default": "Default address" },
+    "reset_password": { "title": "Reset password", "submit": "Reset" },
+    "activate_account": { "title": "Activate account", "submit": "Activate", "decline": "Decline" }
+  },
+  "sections": {
+    "header": { "cart": "Consignment", "menu": "Menu", "search": "Search" }
+  },
+  "onboarding": {
+    "product_title": "Example lot",
+    "collection_title": "Example collection"
+  }
+}

@@ -1,0 +1,107 @@
+{%- comment -%}
+  Two questions — use, then frequency — resolving to a grade and a tin size with a reason.
+  Every destination and every line is a block setting, so it retunes without code.
+{%- endcomment -%}
+<div class="wrap section-pad">
+  <div class="speclabel">
+    <span class="speclabel__no">{{ section.settings.number }}</span>
+    <span class="speclabel__name">{{ section.settings.label }}</span>
+    <span class="speclabel__rule"></span>
+    <span class="speclabel__meta">{{ section.settings.meta }}</span>
+  </div>
+
+  <use-router class="router">
+    <div class="router__step">
+      <div class="router__q"><span class="n">Q1</span>{{ section.settings.q1 }}</div>
+      <div class="chips" data-router-use>
+        {%- for block in section.blocks -%}
+          <button
+            class="chip"
+            type="button"
+            aria-pressed="false"
+            data-index="{{ forloop.index0 }}"
+            data-grade="{{ block.settings.grade | escape }}"
+            data-trade="{{ block.settings.trade | escape }}"
+            data-mm="{{ block.settings.mm }}"
+            data-why="{{ block.settings.why | escape }}"
+            data-size-rare="{{ block.settings.size_rare | escape }}"
+            data-size-weekly="{{ block.settings.size_weekly | escape }}"
+            data-size-daily="{{ block.settings.size_daily | escape }}"
+            data-url="{{ block.settings.url | default: routes.all_products_collection_url }}"
+            {{ block.shopify_attributes }}>{{ block.settings.label }}</button>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="router__step">
+      <div class="router__q"><span class="n">Q2</span>{{ section.settings.q2 }}</div>
+      <div class="chips" data-router-freq>
+        <button class="chip" type="button" aria-pressed="false" data-freq="rare" data-note="{{ section.settings.note_rare | escape }}">{{ section.settings.freq_rare }}</button>
+        <button class="chip" type="button" aria-pressed="false" data-freq="weekly" data-note="{{ section.settings.note_weekly | escape }}">{{ section.settings.freq_weekly }}</button>
+        <button class="chip" type="button" aria-pressed="false" data-freq="daily" data-note="{{ section.settings.note_daily | escape }}">{{ section.settings.freq_daily }}</button>
+      </div>
+    </div>
+
+    <div class="router__out">
+      <div class="router__art" data-router-art aria-hidden="true"></div>
+      <div>
+        <p class="router__idle" data-router-idle>{{ section.settings.idle }}</p>
+        <div data-router-result hidden>
+          <div class="router__verdict" data-router-verdict></div>
+          <p class="router__why" data-router-why></p>
+          <p class="router__cta"><a class="btn btn--ghost btn--small" href="#" data-router-cta>{{ section.settings.cta }}</a></p>
+        </div>
+      </div>
+    </div>
+  </use-router>
+</div>
+{% schema %}
+{
+  "name": "What are you cooking?",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Section mark", "default": "§ 03" },
+    { "type": "text", "id": "label", "label": "Label", "default": "What are you cooking?" },
+    { "type": "text", "id": "meta", "label": "Right-hand note", "default": "two questions" },
+    { "type": "text", "id": "q1", "label": "Question 1", "default": "What is it mostly for?" },
+    { "type": "text", "id": "q2", "label": "Question 2", "default": "How often do you cook it?" },
+    { "type": "text", "id": "idle", "label": "Before answering", "default": "Answer both to get a grade and a tin size." },
+    { "type": "text", "id": "cta", "label": "Result button", "default": "Take me to it" },
+    { "type": "header", "content": "Frequency labels" },
+    { "type": "text", "id": "freq_rare", "label": "Low", "default": "Now and then" },
+    { "type": "text", "id": "note_rare", "label": "Low — note", "default": "A small tin finishes before the aroma fades." },
+    { "type": "text", "id": "freq_weekly", "label": "Medium", "default": "Most weeks" },
+    { "type": "text", "id": "note_weekly", "label": "Medium — note", "default": "About three months of most weeks — the sweet spot." },
+    { "type": "text", "id": "freq_daily", "label": "High", "default": "Daily" },
+    { "type": "text", "id": "note_daily", "label": "High — note", "default": "At daily use the big tin is gone while it's still fresh." }
+  ],
+  "blocks": [
+    {
+      "type": "use",
+      "name": "Use",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Biryani & pulao" },
+        { "type": "text", "id": "grade", "label": "Grade", "default": "8 mm+" },
+        { "type": "text", "id": "trade", "label": "Trade grade", "default": "AGEB" },
+        { "type": "range", "id": "mm", "label": "Pod size drawn", "min": 4, "max": 10, "step": 1, "unit": "mm", "default": 8 },
+        { "type": "textarea", "id": "why", "label": "Reason", "default": "Whole pods go into the pot whole and arrive on the plate whole, so size is the one thing a guest actually sees." },
+        { "type": "text", "id": "size_rare", "label": "Tin — low use", "default": "50 g" },
+        { "type": "text", "id": "size_weekly", "label": "Tin — medium use", "default": "100 g" },
+        { "type": "text", "id": "size_daily", "label": "Tin — high use", "default": "250 g" },
+        { "type": "url", "id": "url", "label": "Where it goes" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "What are you cooking?",
+      "blocks": [
+        { "type": "use", "settings": { "label": "Biryani & pulao", "grade": "8 mm+", "trade": "AGEB", "mm": 8, "why": "Whole pods go into the pot whole and arrive on the plate whole, so size is the one thing a guest actually sees. This is the grade worth paying up for." } },
+        { "type": "use", "settings": { "label": "Chai & coffee", "grade": "6 mm", "trade": "AGS", "mm": 6, "why": "The pod gets crushed into the pan, so appearance buys you nothing. Same hills, same cure, roughly a third less." } },
+        { "type": "use", "settings": { "label": "Desserts & baking", "grade": "7 mm", "trade": "AGB", "mm": 7, "why": "You want seed, not husk. 7 mm gives a full seed core without the premium for a showy pod, and grinds down clean." } },
+        { "type": "use", "settings": { "label": "A gift", "grade": "8 mm+", "trade": "AGEB", "mm": 8, "why": "The only occasion where buying for the eye is the correct call. Big pods, tin sealed, harvest and fill dates printed on the label.", "size_rare": "100 g", "size_weekly": "250 g", "size_daily": "250 g" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

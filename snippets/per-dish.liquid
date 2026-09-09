@@ -1,0 +1,22 @@
+{%- comment -%}
+  Price per dish, computed from the variant's shipping weight — no metafield needed.
+  Accepts: variant. Renders nothing when the weight is unset, so the claim never lies.
+{%- endcomment -%}
+{%- liquid
+  assign gpd = settings.grams_per_dish | times: 1.0
+  if gpd <= 0
+    assign gpd = 0.6
+  endif
+  assign grams = variant.weight | times: 1.0
+  assign dishes = 0
+  if grams > 0
+    assign dishes = grams | divided_by: gpd | floor
+  endif
+-%}
+{%- if settings.show_per_dish and dishes > 0 -%}
+  {%- assign per_dish_price = variant.price | divided_by: dishes -%}
+  <span class="perdish">&asymp; <b>{{ per_dish_price | money }}</b> {{ settings.per_dish_label | default: 'per dish' }}</span>
+  {%- if settings.show_workings -%}
+    <p class="workings">{{ grams | round }} g &divide; {{ gpd }} g = {{ dishes }} dishes</p>
+  {%- endif -%}
+{%- endif -%}

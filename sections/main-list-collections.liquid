@@ -1,0 +1,24 @@
+<div class="wrap">
+  <div class="collection-head"><h1>{{ page_title }}</h1></div>
+  <div class="cards" style="padding-bottom:56px">
+    {%- for coll in collections -%}
+      <article class="card">
+        <a class="card__art{% unless coll.featured_image %} gridpaper{% endunless %}" href="{{ coll.url }}">
+          {%- if coll.featured_image -%}
+            {%- assign alt_text = coll.title | escape -%}
+            {{ coll.featured_image | image_url: width: 640 | image_tag: loading: 'lazy', alt: alt_text }}
+          {%- else -%}
+            {% render 'pod', mm: 7 %}
+          {%- endif -%}
+        </a>
+        <div class="card__body">
+          <h3 class="card__name"><a href="{{ coll.url }}">{{ coll.title }}</a></h3>
+          <div class="card__foot"><span>{{ coll.products_count }} lots</span></div>
+        </div>
+      </article>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+{ "name": "Collections list", "settings": [] }
+{% endschema %}

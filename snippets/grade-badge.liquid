@@ -1,0 +1,13 @@
+{%- comment -%} Accepts: product. Uses custom.grade, else a "Grade" option, else nothing. {%- endcomment -%}
+{%- liquid
+  assign grade = product.metafields.custom.grade.value
+  if grade == blank
+    for opt in product.options_with_values
+      assign name_down = opt.name | downcase
+      if name_down contains 'grade'
+        assign grade = opt.values | join: ' · '
+      endif
+    endfor
+  endif
+-%}
+{%- if grade != blank -%}<div class="card__grade">{{ grade }}</div>{%- endif -%}

@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "aroma": { "type": "accordion", "settings": { "title": "Aroma & use", "open": true, "body": "<p>Cool eucalyptic lift over a sweet, resinous base. Bruise two or three pods with the flat of a knife and drop them in whole for rice and braises; grind the seed only for desserts, and only just before you need it.</p>" } },
+        "provenance": { "type": "metafield", "settings": { "title": "Provenance", "key": "provenance" } },
+        "grade": { "type": "accordion", "settings": { "title": "Grade, honestly", "body": "<p>The millimetre figure is a sieve size, not a quality score. You are paying for appearance and a thicker husk. If these are going into a grinder, buy the smaller grade from the same lot — same cure, same hills, less money.</p>" } },
+        "storage": { "type": "accordion", "settings": { "title": "Storage", "body": "<p>Keep the pods whole and the tin shut, away from the hob and out of the light. Don't decant into a clear jar, however good it looks. Cold is unnecessary; dark is not.</p>" } }
+      },
+      "block_order": ["aroma", "provenance", "grade", "storage"],
+      "settings": { "region_line": "Cardamom Hills, Idukki · 900–1,400 m", "specimen_mm": 8 }
+    },
+    "recommendations": { "type": "product-recommendations", "settings": { "heading": "The same lot, one sieve down", "count": 3 } }
+  },
+  "order": ["main", "recommendations"]
+}

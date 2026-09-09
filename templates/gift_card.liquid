@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Gift card &ndash; {{ shop.name }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap">
+    {{ content_for_header }}
+    {% render 'css-variables' %}
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+  </head>
+  <body class="template--gift-card">
+    <main class="wrap wrap--narrow" style="padding:60px 28px">
+      <div class="eyebrow" style="margin-bottom:12px">{{ shop.name }}</div>
+      <h1 style="margin-bottom:22px">Gift card</h1>
+      <p class="price" style="font-size:2.4rem">{{ gift_card.balance | money }}</p>
+      <div style="border:1px solid var(--rule);background:var(--sheet-2);padding:22px;margin:26px 0">
+        <div class="stamp__k">Code</div>
+        <div class="data" style="font-size:1.2rem;letter-spacing:.1em">{{ gift_card.code | format_code }}</div>
+      </div>
+      {%- if gift_card.expires_on -%}
+        <p class="workings">Expires {{ gift_card.expires_on | date: '%-d %B %Y' }}</p>
+      {%- endif -%}
+      <p style="margin-top:26px"><a class="btn btn--primary" href="{{ shop.url }}">Spend it</a></p>
+    </main>
+  </body>
+</html>

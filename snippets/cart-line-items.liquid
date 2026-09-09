@@ -1,0 +1,25 @@
+{%- for item in cart.items -%}
+  <div class="line" data-line="{{ forloop.index }}">
+    <div class="line__art{% unless item.image %} gridpaper{% endunless %}">
+      {%- if item.image -%}
+        {%- assign alt_text = item.title | escape -%}
+        {{ item.image | image_url: width: 128 | image_tag: loading: 'lazy', alt: alt_text }}
+      {%- else -%}
+        {% render 'pod', mm: 7 %}
+      {%- endif -%}
+    </div>
+    <div>
+      <a class="line__name" href="{{ item.url }}">{{ item.product.title }}</a>
+      {%- unless item.product.has_only_default_variant -%}
+        <div class="line__meta">{{ item.variant.title }}</div>
+      {%- endunless -%}
+      <div class="line__meta">
+        {{ 'products.product.quantity' | t }} {{ item.quantity }} ·
+        <a href="{{ item.url_to_remove }}" data-remove-line>{{ 'cart.remove' | t }}</a>
+      </div>
+    </div>
+    <div class="line__price">{{ item.final_line_price | money }}</div>
+  </div>
+{%- else -%}
+  <p class="body-text" style="padding:26px 0">{{ 'cart.empty' | t }}</p>
+{%- endfor -%}

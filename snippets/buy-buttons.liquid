@@ -1,0 +1,23 @@
+{%- comment -%} Accepts: product, section_id. Degrades to a plain POST form without JS. {%- endcomment -%}
+{%- assign current = product.selected_or_first_available_variant -%}
+<product-form>
+  {%- form 'product', product, id: product-form-, class: 'product-form', novalidate: 'novalidate' -%}
+    <input type="hidden" name="id" value="{{ current.id }}" data-variant-input>
+    <div class="buys">
+      {% render 'quantity-input' %}
+      <button
+        type="submit"
+        name="add"
+        class="btn btn--primary"
+        {% unless current.available %}disabled{% endunless %}
+        data-add-button>
+        {%- if current.available -%}
+          {{ 'products.product.add_to_cart' | t }}
+        {%- else -%}
+          {{ 'products.product.sold_out' | t }}
+        {%- endif -%}
+      </button>
+    </div>
+    {{ form | payment_button }}
+  {%- endform -%}
+</product-form>

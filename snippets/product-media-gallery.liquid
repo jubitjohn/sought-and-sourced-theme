@@ -1,0 +1,33 @@
+{%- comment -%}
+  Falls back to a specimen sheet — pods at true scale on 5 mm graph paper —
+  so the page is composed before any photography exists.
+  Accepts: product, pod_mm.
+{%- endcomment -%}
+{%- assign specimen_mm = pod_mm | default: 8 -%}
+<div class="plate{% unless product.featured_media %} gridpaper{% endunless %}" data-gallery-main>
+  {%- if product.featured_media -%}
+    {%- assign alt_text = product.featured_media.alt | escape -%}
+    {{ product.featured_media | image_url: width: 1200 | image_tag: widths: '480,760,1200', alt: alt_text }}
+  {%- else -%}
+    <span class="plate__stampmark">{{ 'products.product.actual_size' | t }}</span>
+    <div class="plate__specimen">
+      <div class="plate__pods">
+        {% render 'pod', mm: specimen_mm %}
+        {% render 'pod', mm: specimen_mm %}
+        {% render 'pod', mm: specimen_mm %}
+      </div>
+      <div class="scalebar">10 mm</div>
+    </div>
+    <span class="plate__cap">{{ 'products.product.ruled_to' | t }}</span>
+  {%- endif -%}
+</div>
+{%- if product.media.size > 1 -%}
+  <div class="thumbs">
+    {%- for media in product.media -%}
+      <button class="thumb" type="button" data-thumb data-full="{{ media | image_url: width: 1200 }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+        {%- assign alt_text = media.alt | escape -%}
+        {{ media | image_url: width: 176 | image_tag: loading: 'lazy', alt: alt_text }}
+      </button>
+    {%- endfor -%}
+  </div>
+{%- endif -%}

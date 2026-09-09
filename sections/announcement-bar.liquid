@@ -1,0 +1,12 @@
+{%- if section.settings.text != blank -%}
+  <div class="announce">{{ section.settings.text }}</div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Announcement",
+  "settings": [
+    { "type": "paragraph", "content": "Keep this factual — a harvest, a region, a dispatch note. No countdowns." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Harvest Dec 2025 · Cardamom Hills, Idukki · packed to order</p>" }
+  ]
+}
+{% endschema %}

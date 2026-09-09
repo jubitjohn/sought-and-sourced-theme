@@ -1,0 +1,33 @@
+<div class="wrap wrap--narrow section-pad">
+  <div class="speclabel">
+    <span class="speclabel__no">{{ section.settings.number }}</span>
+    <span class="speclabel__name">{{ section.settings.label }}</span>
+    <span class="speclabel__rule"></span>
+  </div>
+  {%- for block in section.blocks -%}
+    <details class="dossier" {{ block.shopify_attributes }}>
+      <summary>{{ block.settings.q }}</summary>
+      <div class="dossier__body">{{ block.settings.a }}</div>
+    </details>
+  {%- endfor -%}
+</div>
+{% schema %}
+{
+  "name": "Questions",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Section mark", "default": "§ —" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Questions" }
+  ],
+  "blocks": [
+    {
+      "type": "qa",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "q", "label": "Question", "default": "Why whole pods and not ground?" },
+        { "type": "richtext", "id": "a", "label": "Answer", "default": "<p>Because the husk is a sealed container. Ground cardamom starts losing volatile oil immediately; a whole pod holds it until you crush it.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Questions" }]
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+{%- comment -%} Accepts: product (for a range) or variant (for one price). {%- endcomment -%}
+{%- if variant -%}
+  {%- if variant.compare_at_price > variant.price -%}
+    <span class="price">{{ variant.price | money }}</span>
+    <span class="price--was">{{ variant.compare_at_price | money }}</span>
+  {%- else -%}
+    <span class="price">{{ variant.price | money }}</span>
+  {%- endif -%}
+{%- elsif product -%}
+  {%- if product.price_varies -%}
+    <span>{{ 'products.product.price_from' | t }} {{ product.price_min | money }}</span>
+  {%- else -%}
+    <span>{{ product.price | money }}</span>
+  {%- endif -%}
+{%- endif -%}

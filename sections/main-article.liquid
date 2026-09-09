@@ -1,0 +1,17 @@
+<div class="wrap wrap--narrow">
+  <div class="article-head">
+    <div class="article-meta">{{ article.published_at | date: '%-d %B %Y' }}{% if article.author != blank %} · {{ article.author }}{% endif %}</div>
+    <h1>{{ article.title }}</h1>
+  </div>
+  {%- if article.image -%}
+    <div style="border:1px solid var(--rule);margin-bottom:30px">
+      {%- assign alt_text = article.title | escape -%}
+      {{ article.image | image_url: width: 1400 | image_tag: widths: '760,1100,1400', alt: alt_text }}
+    </div>
+  {%- endif -%}
+  <div class="article-body rte">{{ article.content }}</div>
+  <p style="padding-bottom:60px"><a class="btn btn--ghost btn--small" href="{{ blog.url }}">{{ 'blogs.article.back' | t }}</a></p>
+</div>
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

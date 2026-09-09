@@ -1,0 +1,110 @@
+# Sought & Sourced — setup
+
+Theme source: `~/Projects/sought-and-sourced-theme/`
+Upload file: `~/Projects/sought-and-sourced-theme.zip`
+
+---
+
+## 1. Upload — nothing goes live
+
+**Online Store → Themes → Add theme → Upload zip.**
+
+It lands in your theme library **unpublished**. Your live theme is untouched and customers
+see nothing. Hit **Preview** to walk it against your real catalogue. **Publish** is a
+separate button, and your current theme stays in the library to revert to in one click.
+
+Walk this order in preview: home → collection → a product (switch tin sizes) → add to cart →
+consignment drawer → checkout button → search → a 404 → Customize.
+
+---
+
+## 2. Metafields — the freshness stamp needs these
+
+**Settings → Custom data → Products → Add definition.** All optional: every field hides
+itself when empty, so the theme is correct on day one and gets richer as you fill them in.
+
+| Namespace & key | Type | Example | Used by |
+|---|---|---|---|
+| `custom.harvest_month` | Single line text | `Dec 2025` | Freshness stamp |
+| `custom.packed_on` | **Date** | `2026-08-14` | Freshness stamp — drives "26 days ago" |
+| `custom.grade` | Single line text | `8 mm+ · AGEB` | Grade badge on cards |
+| `custom.subtitle` | Single line text | `8 mm+ green cardamom · AGEB` | Under the product title |
+| `custom.provenance` | Multi-line text | Region, elevation, harvest window | Provenance accordion |
+
+`packed_on` must be type **Date**, not text, or the day count won't compute. A future date
+hides the whole stamp rather than printing a negative number.
+
+**This commits you to upkeep.** The stamp hides when empty, but it cannot detect a *wrong*
+date. If you stop updating `packed_on` per batch, turn the stamp off in
+*Theme settings → Product* rather than letting it drift.
+
+---
+
+## 3. Variant weights — these drive the per-dish price
+
+The `₹2.65 per dish` line is computed from each variant's **shipping weight in grams**, so
+there's no metafield for it. Set a real weight on every variant (50 g, 100 g, 250 g) or the
+line hides itself.
+
+The assumption is in *Theme settings → Product → Grams per dish*, default **0.6 g**
+(4 pods at roughly 0.15 g each). **Check this against your own pods** — every per-dish figure
+on the site moves with it. The arithmetic is printed under the price so customers can see it.
+
+---
+
+## 4. Things to point at your own content
+
+- **Navigation** — the header uses your `main-menu`. *Content → Menus.*
+- **Featured collection** — Customize → Current lots → pick a collection.
+- **"What are you cooking?"** — each of the four blocks has a *Where it goes* URL. Set these
+  to the right collection or product, or the button falls back to all products.
+- **Region line** on the product page — Customize → Product → Region line.
+- **Logo** — Customize → Header. Falls back to your shop name as text.
+
+---
+
+## 5. Where the copy takes a position
+
+Three places argue the customer *down* the price ladder. That is the trust mechanic working,
+and it is your margin, so change it if you disagree:
+
+- Homepage → Method → *"A grade is a measurement, not a verdict."*
+- Homepage → Grades → *"Bigger is not better."*
+- Product → *"Grade, honestly"* accordion.
+
+The provenance copy stays at region level — Cardamom Hills, Idukki, 900–1,400 m, Oct–Feb
+harvest. **No estate or farmer name is invented anywhere.** When you fix sourcing, that
+detail goes in the `custom.provenance` metafield.
+
+---
+
+## 6. Verification already run
+
+- **Shopify Theme Check: 0 errors.** 9 warnings, all `RemoteAsset` — the Google Fonts links
+  for Instrument Serif / Instrument Sans / IBM Plex Mono. Deliberate: it keeps the approved
+  typography. To silence them, self-host the fonts in `assets/` and swap the `<link>` in
+  `layout/theme.liquid`.
+- **Cross-reference check: passed** — every JSON parses, every section/snippet/asset
+  reference resolves, every translation key exists, `settings_data.json` sets only real
+  settings, all Shopify-required files present.
+- **Zip hygiene: clean** — the 7 theme folders at the archive root, no `__MACOSX`, no
+  `.DS_Store`.
+
+**Not verified:** rendering against a live store. Cart, variant switching and checkout are
+proven only in your preview. Expect a round of fixes after the first walk-through.
+
+---
+
+## 7. Notes for later
+
+- **Grade scale calibration** is exact only after the viewer matches the outline to a bank
+  card (ISO/IEC 7810 ID-1, 85.60 × 53.98 mm). Uncalibrated, CSS millimetres are nominal and
+  close but not exact — the section says so on screen. The setting is remembered per browser
+  in `localStorage`.
+- **Pods size themselves in CSS** from `--pxmm`, so true scale still works with JavaScript
+  disabled.
+- **The pack-ladder table** (50/100/250 g side by side with cost-per-dish and a POPULAR flag)
+  was scoped out. The per-dish figure it needs is already computed, so it is a section away
+  if you want it.
+- Checkout isn't themeable outside Shopify Plus. Subscriptions and tiered wholesale pricing
+  need apps, not theme code.

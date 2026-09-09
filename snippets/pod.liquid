@@ -1,0 +1,6 @@
+{%- comment -%}
+  Draws a cardamom pod at its true sieve width.
+  Accepts: mm (number). Length runs ~2.2x the width.
+{%- endcomment -%}
+{%- assign pod_mm = mm | default: 7 -%}
+<svg class="pod" style="--mm:{{ pod_mm }}" viewBox="0 0 100 220" aria-hidden="true" focusable="false"><use href="#pod"/></svg>

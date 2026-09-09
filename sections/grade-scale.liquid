@@ -1,0 +1,85 @@
+{%- comment -%}
+  Grades printed at true physical size. CSS mm is nominal, so the calibration
+  control below is what makes it exact; see assets/theme.js.
+{%- endcomment -%}
+<div class="wrap section-pad">
+  <div class="speclabel">
+    <span class="speclabel__no">{{ section.settings.number }}</span>
+    <span class="speclabel__name">{{ section.settings.label }}</span>
+    <span class="speclabel__rule"></span>
+    <span class="speclabel__meta">{{ section.settings.meta }}</span>
+  </div>
+
+  {%- if section.settings.intro != blank -%}
+    <div class="lede" style="margin-bottom:32px">{{ section.settings.intro }}</div>
+  {%- endif -%}
+
+  <div class="grades">
+    {%- for block in section.blocks -%}
+      <div class="grade" {{ block.shopify_attributes }}>
+        <div class="grade__stage gridpaper">{% render 'pod', mm: block.settings.mm %}</div>
+        <div class="grade__bar"></div>
+        <div class="grade__mm">{{ block.settings.title }}</div>
+        {%- if block.settings.trade != blank -%}<div class="grade__trade">{{ block.settings.trade }}</div>{%- endif -%}
+        {%- if block.settings.use != blank -%}<p class="grade__use">{{ block.settings.use }}</p>{%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- if section.settings.show_caliper -%}
+    <grade-scale class="caliper">
+      <div class="caliper__card">85.60 &times; 53.98 mm</div>
+      <div class="caliper__ctrl">
+        <label for="Caliper-{{ section.id }}">{{ section.settings.caliper_label }}</label>
+        <input id="Caliper-{{ section.id }}" type="range" min="0.55" max="1.75" step="0.005" value="1" data-caliper>
+        <p class="caliper__hint">{{ section.settings.caliper_hint }}</p>
+        <p class="caliper__state" data-caliper-state>Uncalibrated — showing your browser's nominal millimetre.</p>
+        <button class="linkish" type="button" data-caliper-reset>Reset calibration</button>
+      </div>
+    </grade-scale>
+  {%- endif -%}
+
+  {%- if section.settings.warning != blank -%}
+    <div class="warn">{{ section.settings.warning }}</div>
+  {%- endif -%}
+</div>
+{% schema %}
+{
+  "name": "Grades at true size",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Section mark", "default": "§ 02" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Grades at true size" },
+    { "type": "text", "id": "meta", "label": "Right-hand note", "default": "shown actual size" },
+    { "type": "richtext", "id": "intro", "label": "Intro", "default": "<p>Cardamom is graded by the sieve a pod will pass through. Every seller quotes these numbers; almost none show you what they mean. These are printed on your screen at their real physical size.</p>" },
+    { "type": "header", "content": "Calibration" },
+    { "type": "paragraph", "content": "CSS millimetres are nominal, so sizes are close but not exact until the viewer matches the outline to a bank card (85.60 × 53.98 mm worldwide). The setting is remembered in their browser." },
+    { "type": "checkbox", "id": "show_caliper", "label": "Show the calibration control", "default": true },
+    { "type": "text", "id": "caliper_label", "label": "Calibration label", "default": "Calibrate to your screen" },
+    { "type": "text", "id": "caliper_hint", "label": "Calibration hint", "default": "Hold any bank card flat against the dashed rectangle and drag until they match." },
+    { "type": "richtext", "id": "warning", "label": "Honest note", "default": "<p><b>Bigger is not better.</b> Size grade tracks appearance and yield, not aroma. If you're grinding it, buy the smaller grade and spend the difference on freshness.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "grade",
+      "name": "Grade",
+      "settings": [
+        { "type": "range", "id": "mm", "label": "Sieve size (mm)", "min": 4, "max": 10, "step": 1, "unit": "mm", "default": 7 },
+        { "type": "text", "id": "title", "label": "Title", "default": "7 mm" },
+        { "type": "text", "id": "trade", "label": "Trade grade", "default": "AGB · Bold" },
+        { "type": "text", "id": "use", "label": "Best for", "default": "The workhorse." }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Grades at true size",
+      "blocks": [
+        { "type": "grade", "settings": { "mm": 6, "title": "6 mm", "trade": "AGS", "use": "Everyday chai and stocks. Crushed, indistinguishable from bold." } },
+        { "type": "grade", "settings": { "mm": 7, "title": "7 mm", "trade": "AGB · Bold", "use": "The workhorse. Enough presence to serve whole, priced to use freely." } },
+        { "type": "grade", "settings": { "mm": 8, "title": "8 mm+", "trade": "AGEB · Extra Bold", "use": "Biryani, pulao, gifting — anywhere the pod is seen on the plate." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,73 @@
+{%- comment -%}
+  Freshness as a checkable fact rather than an adjective.
+  Reads custom.harvest_month (text) and custom.packed_on (date).
+  Any row without a value hides itself; a future pack date hides the whole stamp.
+  Accepts: product, compact (boolean).
+{%- endcomment -%}
+{%- liquid
+  assign harvest = product.metafields.custom.harvest_month.value
+  assign packed = product.metafields.custom.packed_on.value
+  assign days = -1
+  if packed
+    assign packed_seconds = packed | date: '%s' | times: 1
+    assign now_seconds = 'now' | date: '%s' | times: 1
+    assign elapsed = now_seconds | minus: packed_seconds
+    if elapsed >= 0
+      assign days = elapsed | divided_by: 86400
+    endif
+  endif
+  comment
+    Liquid has no parentheses and evaluates and/or right-to-left, so the
+    "is there anything to show" test is built up explicitly instead.
+  endcomment
+  assign has_stamp = false
+  if harvest != blank
+    assign has_stamp = true
+  endif
+  if days >= 0
+    assign has_stamp = true
+  endif
+  unless settings.show_freshness
+    assign has_stamp = false
+  endunless
+-%}
+{%- if has_stamp -%}
+  {%- if compact -%}
+    {%- if days >= 0 -%}
+      <span class="card__sub">
+        {%- if days == 0 -%}{{ 'products.product.filled_today' | t }}
+        {%- elsif days == 1 -%}{{ 'products.product.one_day_ago' | t }}
+        {%- elsif days < 45 -%}{{ 'products.product.days_ago' | t: count: days }}
+        {%- elsif days < 120 -%}{%- assign w = days | divided_by: 7 -%}{{ 'products.product.weeks_ago' | t: count: w }}
+        {%- else -%}{%- assign m = days | divided_by: 30 -%}{{ 'products.product.months_ago' | t: count: m }}
+        {%- endif -%}
+      </span>
+    {%- endif -%}
+  {%- else -%}
+    <div class="stamp">
+      {%- if harvest != blank -%}
+        <div class="stamp__cell">
+          <span class="stamp__k">{{ 'products.product.harvested' | t }}</span>
+          <span class="stamp__v">{{ harvest }}</span>
+        </div>
+      {%- endif -%}
+      {%- if days >= 0 -%}
+        <div class="stamp__cell">
+          <span class="stamp__k">{{ 'products.product.filled' | t }}</span>
+          <span class="stamp__v">{{ packed | date: '%-d %b %Y' }}</span>
+        </div>
+        <div class="stamp__cell">
+          <span class="stamp__k">{{ 'products.product.on_shelf' | t }}</span>
+          <span class="stamp__v stamp__v--live">
+            {%- if days == 0 -%}{{ 'products.product.filled_today' | t }}
+            {%- elsif days == 1 -%}{{ 'products.product.one_day_ago' | t }}
+            {%- elsif days < 45 -%}{{ 'products.product.days_ago' | t: count: days }}
+            {%- elsif days < 120 -%}{%- assign w = days | divided_by: 7 -%}{{ 'products.product.weeks_ago' | t: count: w }}
+            {%- else -%}{%- assign m = days | divided_by: 30 -%}{{ 'products.product.months_ago' | t: count: m }}
+            {%- endif -%}
+          </span>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endif -%}

@@ -1,0 +1,22 @@
+<div class="wrap wrap--narrow" style="padding-bottom:60px">
+  <div class="collection-head"><h1>{{ settings.cart_name | default: 'Consignment' }}</h1></div>
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post" novalidate>
+      {% render 'cart-line-items' %}
+      <div class="cart-total" style="padding:22px 0">
+        <span>{{ 'cart.subtotal' | t }}</span>
+        <span>{{ cart.total_price | money }}</span>
+      </div>
+      <p class="workings">{{ 'cart.taxes_note' | t }}</p>
+      <button type="submit" name="checkout" class="btn btn--primary btn--full" style="margin-top:14px">{{ 'cart.checkout' | t }}</button>
+    </form>
+  {%- else -%}
+    <div class="empty-state">
+      <p class="lede" style="margin:0 auto 22px">{{ 'cart.empty' | t }}</p>
+      <a class="btn btn--ghost" href="{{ routes.all_products_collection_url }}">{{ 'general.continue_shopping' | t }}</a>
+    </div>
+  {%- endif -%}
+</div>
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

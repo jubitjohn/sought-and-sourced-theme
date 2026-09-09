@@ -1,0 +1,9 @@
+{
+  "settings_schema": {
+    "colors": { "name": "Colours" },
+    "typography": { "name": "Typography" },
+    "product": { "name": "Product" },
+    "cart": { "name": "Consignment" },
+    "social": { "name": "Social" }
+  }
+}
