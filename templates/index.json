@@ -1,8 +1,19 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_56_54_PM.png",
+        "image_alt": "",
         "focal": "center",
         "height": "tall",
         "scrim": 15,
@@ -14,88 +25,348 @@
         "attributes": "Single-Origin · Hand Selected · Estate Fresh",
         "lede": "<p>Bought by aroma, graded by sieve, and sold whole — because the pod is the only packaging that actually keeps.</p>",
         "cta_label": "Shop the harvest",
-        "cta2_label": "How we grade"
+        "cta_link": "",
+        "cta2_label": "How we grade",
+        "cta2_link": ""
       }
     },
     "assurances": {
       "type": "assurances",
       "blocks": {
-        "a1": { "type": "mark", "settings": { "icon": "caliper", "caption": "Graded by sieve" } },
-        "a2": { "type": "mark", "settings": { "icon": "leaf", "caption": "Whole pods only" } },
-        "a3": { "type": "mark", "settings": { "icon": "origin", "caption": "Idukki, Kerala" } },
-        "a4": { "type": "mark", "settings": { "icon": "airtight", "caption": "Sealed light-proof" } }
+        "a1": {
+          "type": "mark",
+          "settings": {
+            "icon": "caliper",
+            "caption": "Graded by sieve"
+          }
+        },
+        "a2": {
+          "type": "mark",
+          "settings": {
+            "icon": "leaf",
+            "caption": "Whole pods only"
+          }
+        },
+        "a3": {
+          "type": "mark",
+          "settings": {
+            "icon": "origin",
+            "caption": "Idukki, Kerala"
+          }
+        },
+        "a4": {
+          "type": "mark",
+          "settings": {
+            "icon": "airtight",
+            "caption": "Sealed light-proof"
+          }
+        }
       },
-      "block_order": ["a1", "a2", "a3", "a4"],
-      "settings": { "number": "", "label": "", "meta": "" }
+      "block_order": [
+        "a1",
+        "a2",
+        "a3",
+        "a4"
+      ],
+      "settings": {
+        "number": "",
+        "label": "",
+        "meta": ""
+      }
     },
     "lots": {
       "type": "featured-collection",
-      "settings": { "number": "§ 01", "label": "Current lots", "meta": "packed to order", "count": 3, "link_label": "See every lot" }
+      "settings": {
+        "number": "§ 01",
+        "label": "Current lots",
+        "meta": "packed to order",
+        "collection": "",
+        "count": 3,
+        "link_label": "See every lot"
+      }
     },
     "region": {
       "type": "image-with-text",
       "blocks": {
-        "r1": { "type": "row", "settings": { "key": "Species", "value": "Elettaria cardamomum" } },
-        "r2": { "type": "row", "settings": { "key": "Region", "value": "Cardamom Hills, Idukki" } },
-        "r3": { "type": "row", "settings": { "key": "Elevation", "value": "900 – 1,400 m" } },
-        "r4": { "type": "row", "settings": { "key": "Harvest", "value": "Oct – Feb" } },
-        "r5": { "type": "row", "settings": { "key": "Grades held", "value": "6 mm · 7 mm · 8 mm+" } }
+        "r1": {
+          "type": "row",
+          "settings": {
+            "key": "Species",
+            "value": "Elettaria cardamomum"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "key": "Region",
+            "value": "Cardamom Hills, Idukki"
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "key": "Elevation",
+            "value": "900 – 1,400 m"
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "key": "Harvest",
+            "value": "Oct – Feb"
+          }
+        },
+        "r5": {
+          "type": "row",
+          "settings": {
+            "key": "Grades held",
+            "value": "6 mm · 7 mm · 8 mm+"
+          }
+        }
       },
-      "block_order": ["r1", "r2", "r3", "r4", "r5"],
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
       "settings": {
         "number": "§ 02",
         "label": "The region",
         "meta": "where it grows",
+        "image_alt": "",
+        "flip": false,
         "kicker": "Where it grows",
         "heading": "We went up until the air turned cold.",
         "text": "<p>Cardamom grows here between roughly 900 and 1,400 metres, under shade, on the western slopes of the Ghats. Harvest runs October to February and the pods are picked green, several passes to a plant, because they do not ripen together.</p><p>We buy at the estate, open a pod before agreeing a price, and pack whole.</p>",
+        "link_label": "Shop the harvest",
+        "link": "",
         "readout_title": "The Record",
-        "footnote": "Figures describe the growing region, not a single farm.",
-        "link_label": "Shop the harvest"
+        "footnote": "Figures describe the growing region, not a single farm."
       }
     },
     "grades": {
       "type": "grade-scale",
       "blocks": {
-        "g1": { "type": "grade", "settings": { "mm": 6, "title": "6 mm", "trade": "AGS", "use": "Everyday chai and stocks. Crushed, indistinguishable from bold." } },
-        "g2": { "type": "grade", "settings": { "mm": 7, "title": "7 mm", "trade": "AGB · Bold", "use": "The workhorse. Enough presence to serve whole, priced to use freely." } },
-        "g3": { "type": "grade", "settings": { "mm": 8, "title": "8 mm+", "trade": "AGEB · Extra Bold", "use": "Biryani, pulao, gifting — anywhere the pod is seen on the plate." } }
+        "g1": {
+          "type": "grade",
+          "settings": {
+            "mm": 6,
+            "title": "6 mm",
+            "trade": "AGS",
+            "use": "Everyday chai and stocks. Crushed, indistinguishable from bold."
+          }
+        },
+        "g2": {
+          "type": "grade",
+          "settings": {
+            "mm": 7,
+            "title": "7 mm",
+            "trade": "AGB · Bold",
+            "use": "The workhorse. Enough presence to serve whole, priced to use freely."
+          }
+        },
+        "g3": {
+          "type": "grade",
+          "settings": {
+            "mm": 8,
+            "title": "8 mm+",
+            "trade": "AGEB · Extra Bold",
+            "use": "Biryani, pulao, gifting — anywhere the pod is seen on the plate."
+          }
+        }
       },
-      "block_order": ["g1", "g2", "g3"],
-      "settings": { "number": "§ 03", "label": "Grades at true size", "meta": "shown actual size", "show_caliper": true }
+      "block_order": [
+        "g1",
+        "g2",
+        "g3"
+      ],
+      "settings": {
+        "number": "§ 03",
+        "label": "Grades at true size",
+        "meta": "shown actual size",
+        "intro": "<p>Cardamom is graded by the sieve a pod will pass through. Every seller quotes these numbers; almost none show you what they mean. These are printed on your screen at their real physical size.</p>",
+        "show_caliper": true,
+        "caliper_label": "Calibrate to your screen",
+        "caliper_hint": "Hold any bank card flat against the dashed rectangle and drag until they match.",
+        "warning": "<p><b>Bigger is not better.</b> Size grade tracks appearance and yield, not aroma. If you're grinding it, buy the smaller grade and spend the difference on freshness.</p>"
+      }
     },
     "router": {
       "type": "use-router",
       "blocks": {
-        "u1": { "type": "use", "settings": { "label": "Biryani & pulao", "grade": "8 mm+", "trade": "AGEB", "mm": 8, "why": "Whole pods go into the pot whole and arrive on the plate whole, so size is the one thing a guest actually sees. This is the grade worth paying up for.", "size_rare": "50 g", "size_weekly": "100 g", "size_daily": "250 g" } },
-        "u2": { "type": "use", "settings": { "label": "Chai & coffee", "grade": "6 mm", "trade": "AGS", "mm": 6, "why": "The pod gets crushed into the pan, so appearance buys you nothing. Same hills, same cure, roughly a third less — spend the difference on buying more often.", "size_rare": "50 g", "size_weekly": "100 g", "size_daily": "250 g" } },
-        "u3": { "type": "use", "settings": { "label": "Desserts & baking", "grade": "7 mm", "trade": "AGB", "mm": 7, "why": "You want seed, not husk. 7 mm gives a full seed core without the premium for a showy pod, and grinds down clean.", "size_rare": "50 g", "size_weekly": "100 g", "size_daily": "250 g" } },
-        "u4": { "type": "use", "settings": { "label": "A gift", "grade": "8 mm+", "trade": "AGEB", "mm": 8, "why": "The only occasion where buying for the eye is the correct call. Big pods, tin sealed, harvest and fill dates printed on the label.", "size_rare": "100 g", "size_weekly": "250 g", "size_daily": "250 g" } }
+        "u1": {
+          "type": "use",
+          "settings": {
+            "label": "Biryani & pulao",
+            "grade": "8 mm+",
+            "trade": "AGEB",
+            "mm": 8,
+            "why": "Whole pods go into the pot whole and arrive on the plate whole, so size is the one thing a guest actually sees. This is the grade worth paying up for.",
+            "size_rare": "50 g",
+            "size_weekly": "100 g",
+            "size_daily": "250 g",
+            "url": ""
+          }
+        },
+        "u2": {
+          "type": "use",
+          "settings": {
+            "label": "Chai & coffee",
+            "grade": "6 mm",
+            "trade": "AGS",
+            "mm": 6,
+            "why": "The pod gets crushed into the pan, so appearance buys you nothing. Same hills, same cure, roughly a third less — spend the difference on buying more often.",
+            "size_rare": "50 g",
+            "size_weekly": "100 g",
+            "size_daily": "250 g",
+            "url": ""
+          }
+        },
+        "u3": {
+          "type": "use",
+          "settings": {
+            "label": "Desserts & baking",
+            "grade": "7 mm",
+            "trade": "AGB",
+            "mm": 7,
+            "why": "You want seed, not husk. 7 mm gives a full seed core without the premium for a showy pod, and grinds down clean.",
+            "size_rare": "50 g",
+            "size_weekly": "100 g",
+            "size_daily": "250 g",
+            "url": ""
+          }
+        },
+        "u4": {
+          "type": "use",
+          "settings": {
+            "label": "A gift",
+            "grade": "8 mm+",
+            "trade": "AGEB",
+            "mm": 8,
+            "why": "The only occasion where buying for the eye is the correct call. Big pods, tin sealed, harvest and fill dates printed on the label.",
+            "size_rare": "100 g",
+            "size_weekly": "250 g",
+            "size_daily": "250 g",
+            "url": ""
+          }
+        }
       },
-      "block_order": ["u1", "u2", "u3", "u4"],
-      "settings": { "number": "§ 04", "label": "What are you cooking?", "meta": "two questions" }
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4"
+      ],
+      "settings": {
+        "number": "§ 04",
+        "label": "What are you cooking?",
+        "meta": "two questions",
+        "q1": "What is it mostly for?",
+        "q2": "How often do you cook it?",
+        "idle": "Answer both to get a grade and a tin size.",
+        "cta": "Take me to it",
+        "freq_rare": "Now and then",
+        "note_rare": "A small tin finishes before the aroma fades.",
+        "freq_weekly": "Most weeks",
+        "note_weekly": "About three months of most weeks — the sweet spot.",
+        "freq_daily": "Daily",
+        "note_daily": "At daily use the big tin is gone while it's still fresh."
+      }
     },
     "method": {
       "type": "the-search",
       "blocks": {
-        "m1": { "type": "claim", "settings": { "claim": "We buy by nose, not by size.", "body": "A sieve sorts pods by width. It says nothing about how much volatile oil is inside. We open a pod before we agree a price." } },
-        "m2": { "type": "claim", "settings": { "claim": "A grade is a measurement, not a verdict.", "body": "8 mm pods cost more because they look impressive whole. For anything you crush, a 7 mm pod is frequently the better buy — and we'll say so." } },
-        "m3": { "type": "claim", "settings": { "claim": "Whole pods only. The pod is the packaging.", "body": "Ground cardamom begins losing aroma the moment it is ground. The husk is a sealed container evolved for exactly this job. We don't improve on it." } }
+        "m1": {
+          "type": "claim",
+          "settings": {
+            "claim": "We buy by nose, not by size.",
+            "body": "A sieve sorts pods by width. It says nothing about how much volatile oil is inside. We open a pod before we agree a price."
+          }
+        },
+        "m2": {
+          "type": "claim",
+          "settings": {
+            "claim": "A grade is a measurement, not a verdict.",
+            "body": "8 mm pods cost more because they look impressive whole. For anything you crush, a 7 mm pod is frequently the better buy — and we'll say so."
+          }
+        },
+        "m3": {
+          "type": "claim",
+          "settings": {
+            "claim": "Whole pods only. The pod is the packaging.",
+            "body": "Ground cardamom begins losing aroma the moment it is ground. The husk is a sealed container evolved for exactly this job. We don't improve on it."
+          }
+        }
       },
-      "block_order": ["m1", "m2", "m3"],
-      "settings": { "number": "§ 05", "label": "Method", "meta": "how we buy" }
+      "block_order": [
+        "m1",
+        "m2",
+        "m3"
+      ],
+      "settings": {
+        "number": "§ 05",
+        "label": "Method",
+        "meta": "how we buy"
+      }
     },
     "freshness": {
       "type": "the-freshness-case",
       "blocks": {
-        "f1": { "type": "row", "settings": { "key": "Harvest window", "value": "Oct – Feb" } },
-        "f2": { "type": "row", "settings": { "key": "Sold as", "value": "Whole pods" } },
-        "f3": { "type": "row", "settings": { "key": "Ground on site", "value": "Never" } }
+        "f1": {
+          "type": "row",
+          "settings": {
+            "key": "Harvest window",
+            "value": "Oct – Feb"
+          }
+        },
+        "f2": {
+          "type": "row",
+          "settings": {
+            "key": "Sold as",
+            "value": "Whole pods"
+          }
+        },
+        "f3": {
+          "type": "row",
+          "settings": {
+            "key": "Ground on site",
+            "value": "Never"
+          }
+        }
       },
-      "block_order": ["f1", "f2", "f3"],
-      "settings": { "number": "§ 06", "label": "Why we print the date", "meta": "freshness", "readout_title": "How we sell it" }
+      "block_order": [
+        "f1",
+        "f2",
+        "f3"
+      ],
+      "settings": {
+        "number": "§ 06",
+        "label": "Why we print the date",
+        "meta": "freshness",
+        "readout_title": "How we sell it",
+        "pull": "Everything cardamom is worth buying for is <em>volatile</em>. That is not a figure of speech — it is the chemistry.",
+        "text": "<p>The aroma sits in an oil held inside the seed: mostly cineole, which gives the cool camphor lift, and terpinyl acetate, which gives the sweetness. Both evaporate. Grinding exposes them to air; light and warmth speed it up. An intact husk slows all of it down, which is why we sell pods and never powder.</p><p>So instead of calling it fresh, we print two dates and let you judge.</p>"
+      }
     },
-    "dispatch": { "type": "dispatch-signup", "settings": {} }
+    "dispatch": {
+      "type": "dispatch-signup",
+      "settings": {
+        "heading": "The Dispatch",
+        "text": "<p>A note when a new lot is cured and tinned — a few times a year, not a few times a week. Harvest reports, what we passed on, and why.</p>"
+      }
+    }
   },
-  "order": ["hero", "assurances", "lots", "region", "grades", "router", "method", "freshness", "dispatch"]
+  "order": [
+    "hero",
+    "assurances",
+    "lots",
+    "region",
+    "grades",
+    "router",
+    "method",
+    "freshness",
+    "dispatch"
+  ]
 }
