@@ -11,13 +11,22 @@
       The roundel off the hang tag: the name reversed out of bottle green in an
       arched cartouche, ruled twice in brass. An uploaded logo goes inside the
       same cartouche rather than replacing it.
+
+      The tagline sits under the cartouche, the way it is printed under the
+      roundel on the tag. Inside, it is twice the width of the name and would
+      set the cartouche's width, stretching the mark flat.
     {%- endcomment -%}
-    <a class="brandmark cartouche" href="{{ routes.root_url }}">
-      {%- if section.settings.logo -%}
-        {%- assign alt_text = shop.name | escape -%}
-        {{ section.settings.logo | image_url: width: 320 | image_tag: alt: alt_text }}
-      {%- else -%}
-        {% render 'wordmark', tagline: section.settings.tagline, sprig: section.settings.show_sprig %}
+    <a class="brandmark" href="{{ routes.root_url }}">
+      <span class="cartouche">
+        {%- if section.settings.logo -%}
+          {%- assign alt_text = shop.name | escape -%}
+          {{ section.settings.logo | image_url: width: 320 | image_tag: alt: alt_text }}
+        {%- else -%}
+          {% render 'wordmark', sprig: section.settings.show_sprig %}
+        {%- endif -%}
+      </span>
+      {%- if section.settings.tagline != blank -%}
+        <span class="brandmark__tag">{{ section.settings.tagline }}</span>
       {%- endif -%}
     </a>
 

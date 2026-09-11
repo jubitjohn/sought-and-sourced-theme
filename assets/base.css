@@ -95,11 +95,11 @@ em{font-family:var(--f-display);font-style:italic;}
 .cartouche{
   display:inline-flex;align-items:center;justify-content:center;
   background:var(--pod);color:var(--gold-lit);
-  padding:11px 26px 10px;border:1px solid var(--gold);
+  padding:11px 20px 10px;border:1px solid var(--gold);
   border-radius:var(--arch);position:relative;text-decoration:none;flex:none;
 }
 .cartouche::after{content:"";position:absolute;inset:3px;border:1px solid var(--gold-lit);border-radius:inherit;opacity:.5;pointer-events:none;}
-.cartouche img{max-height:46px;width:auto;}
+.cartouche img{max-height:46px;width:auto;height:auto;}
 
 .wordmark{display:flex;flex-direction:column;align-items:center;line-height:1;text-align:center;}
 .wordmark__sprig{display:block;margin-bottom:4px;}
@@ -186,10 +186,10 @@ em{font-family:var(--f-display);font-style:italic;}
 
 .masthead{display:flex;align-items:center;gap:30px;padding:18px 0;border-bottom:1px solid var(--gold);position:relative;}
 .masthead::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--rule-soft);}
-/* No colour here: the brandmark is a cartouche, and the cartouche reverses it
-   out to lit brass. Setting --ink again would win on source order and put dark
-   green type on the dark green block. */
-.brandmark{text-decoration:none;}
+/* No colour on the brandmark itself: the cartouche inside it reverses out to
+   lit brass, and only the tagline under it sits on the ivory. */
+.brandmark{display:inline-flex;flex-direction:column;align-items:center;gap:6px;flex:none;text-decoration:none;}
+.brandmark__tag{font-family:var(--f-body);font-weight:500;font-size:8px;letter-spacing:.24em;text-transform:uppercase;text-indent:.24em;color:var(--stamp);white-space:nowrap;}
 .masthead nav{display:flex;gap:26px;flex:1;justify-content:center;}
 .masthead nav a{font-family:var(--f-body);font-weight:500;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;text-indent:.18em;color:var(--ink-2);text-decoration:none;padding-bottom:3px;border-bottom:1px solid transparent;}
 .masthead nav a:hover{color:var(--pod);border-bottom-color:var(--gold);}
@@ -213,7 +213,7 @@ em{font-family:var(--f-display);font-style:italic;}
   .cartouche{padding:8px 15px 7px;}
   .wordmark__line{font-size:.78rem;letter-spacing:.12em;text-indent:.12em;}
   .wordmark__amp{font-size:.62rem;margin:1px 0;}
-  .wordmark__tag{display:none;}
+  .wordmark__tag,.brandmark__tag{display:none;}
   .cart-link{padding:8px 12px;font-size:9px;letter-spacing:.1em;text-indent:.1em;}
 }
 
