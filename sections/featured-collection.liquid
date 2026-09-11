@@ -5,7 +5,16 @@
     <span class="speclabel__rule"></span>
     <span class="speclabel__meta">{{ section.settings.meta }}</span>
   </div>
-  {%- assign coll = collections[section.settings.collection] -%}
+  {%- liquid
+    comment
+      With no collection picked (or an empty one), show the whole catalogue
+      rather than placeholders, so products are on the home page from day one.
+    endcomment
+    assign coll = section.settings.collection
+    if coll == blank or coll.products.size == 0
+      assign coll = collections.all
+    endif
+  -%}
   <div class="cards">
     {%- if coll.products.size > 0 -%}
       {%- for product in coll.products limit: section.settings.count -%}
@@ -20,7 +29,7 @@
           <div class="card__body">
             <div class="card__grade">{{ fallback_mm }} mm</div>
             <h3 class="card__name">{{ 'onboarding.product_title' | t }}</h3>
-            <p class="card__note">Pick a collection in the theme editor to show real lots here.</p>
+            <p class="card__note">Add products in Shopify admin and they will show here.</p>
             <div class="card__foot"><span>&mdash;</span></div>
           </div>
         </article>
@@ -39,7 +48,7 @@
     { "type": "text", "id": "number", "label": "Section mark", "default": "§ 04" },
     { "type": "text", "id": "label", "label": "Label", "default": "Current lots" },
     { "type": "text", "id": "meta", "label": "Right-hand note", "default": "packed to order" },
-    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "collection", "id": "collection", "label": "Collection", "info": "Leave empty to show every product in the store." },
     { "type": "range", "id": "count", "label": "Products shown", "min": 2, "max": 12, "step": 1, "default": 3 },
     { "type": "text", "id": "link_label", "label": "Button under the grid", "default": "See every lot", "info": "Goes to the chosen collection, or to all products when none is set. Leave empty to drop the button." }
   ],

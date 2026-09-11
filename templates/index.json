@@ -81,8 +81,69 @@
         "label": "Current lots",
         "meta": "packed to order",
         "collection": "",
-        "count": 3,
+        "count": 6,
         "link_label": "See every lot"
+      }
+    },
+    "process": {
+      "type": "photo-columns",
+      "blocks": {
+        "p1": {
+          "type": "column",
+          "settings": {
+            "image_alt": "",
+            "title": "Picked green",
+            "text": "<p>By hand, several passes to a plant, because the pods on one stem do not ripen together.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "p2": {
+          "type": "column",
+          "settings": {
+            "image_alt": "",
+            "title": "Dried slow",
+            "text": "<p>Cured until the pod is dry enough to keep, while it still holds its green and the oil inside.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "p3": {
+          "type": "column",
+          "settings": {
+            "image_alt": "",
+            "title": "Graded by sieve",
+            "text": "<p>Sorted by the mesh a pod will pass through: 6 mm, 7 mm and 8 mm+.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "p4": {
+          "type": "column",
+          "settings": {
+            "image_alt": "",
+            "title": "Packed whole",
+            "text": "<p>Sealed light-proof, with the harvest and packing dates printed on the tin.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "settings": {
+        "number": "§ 02",
+        "label": "From the hills to the tin",
+        "meta": "four steps",
+        "heading": "",
+        "text": "",
+        "columns": "4",
+        "ratio": "portrait",
+        "numbered": true
       }
     },
     "region": {
@@ -140,7 +201,7 @@
         "r5"
       ],
       "settings": {
-        "number": "§ 02",
+        "number": "§ 03",
         "label": "The region",
         "meta": "where it grows",
         "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_53_50_PM.png",
@@ -153,6 +214,96 @@
         "link": "",
         "readout_title": "The Record",
         "footnote": "Figures describe the growing region, not a single farm."
+      }
+    },
+    "gallery": {
+      "type": "photo-gallery",
+      "blocks": {
+        "g1": {
+          "type": "photo",
+          "settings": {
+            "image_alt": "",
+            "caption": "The Cardamom Hills",
+            "link": ""
+          }
+        },
+        "g2": {
+          "type": "photo",
+          "settings": {
+            "image_alt": "",
+            "caption": "Under the shade canopy",
+            "link": ""
+          }
+        },
+        "g3": {
+          "type": "photo",
+          "settings": {
+            "image_alt": "",
+            "caption": "Picking",
+            "link": ""
+          }
+        },
+        "g4": {
+          "type": "photo",
+          "settings": {
+            "image_alt": "",
+            "caption": "Drying",
+            "link": ""
+          }
+        },
+        "g5": {
+          "type": "photo",
+          "settings": {
+            "image_alt": "",
+            "caption": "Sorting",
+            "link": ""
+          }
+        },
+        "g6": {
+          "type": "photo",
+          "settings": {
+            "image_alt": "",
+            "caption": "The pods",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6"
+      ],
+      "settings": {
+        "number": "§ 04",
+        "label": "From the farm",
+        "meta": "photographs",
+        "heading": "",
+        "text": "",
+        "columns": "3",
+        "ratio": "landscape",
+        "feature_first": true
+      }
+    },
+    "pods": {
+      "type": "image-with-text",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "number": "§ 05",
+        "label": "The pod",
+        "meta": "up close",
+        "image_alt": "",
+        "flip": true,
+        "kicker": "Up close",
+        "heading": "The husk is the packaging.",
+        "text": "<p>A whole pod keeps its seeds sealed away from air and light until the moment you crack it. That is where the aroma lives, and why we never sell it ground.</p>",
+        "link_label": "Shop the harvest",
+        "link": "",
+        "readout_title": "",
+        "footnote": ""
       }
     },
     "grades": {
@@ -193,7 +344,7 @@
       ],
       "disabled": true,
       "settings": {
-        "number": "§ 03",
+        "number": "§ 06",
         "label": "Grades at true size",
         "meta": "shown actual size",
         "intro": "<p>Cardamom is graded by the sieve a pod will pass through. Every seller quotes these numbers; almost none show you what they mean. These are printed on your screen at their real physical size.</p>",
@@ -270,7 +421,7 @@
         "u4"
       ],
       "settings": {
-        "number": "§ 04",
+        "number": "§ 07",
         "label": "What are you cooking?",
         "meta": "two questions",
         "q1": "What is it mostly for?",
@@ -316,7 +467,7 @@
         "m3"
       ],
       "settings": {
-        "number": "§ 05",
+        "number": "§ 08",
         "label": "Method",
         "meta": "how we buy"
       }
@@ -352,7 +503,7 @@
         "f3"
       ],
       "settings": {
-        "number": "§ 06",
+        "number": "§ 09",
         "label": "Why we print the date",
         "meta": "freshness",
         "readout_title": "How we sell it",
@@ -372,7 +523,10 @@
     "hero",
     "assurances",
     "lots",
+    "process",
     "region",
+    "gallery",
+    "pods",
     "grades",
     "router",
     "method",

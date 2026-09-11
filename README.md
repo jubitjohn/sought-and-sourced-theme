@@ -55,7 +55,13 @@ on the site moves with it. The arithmetic is printed under the price so customer
 ## 4. Things to point at your own content
 
 - **Navigation** — the header uses your `main-menu`. *Content → Menus.*
-- **Featured collection** — Customize → Current lots → pick a collection.
+- **Products on the home page** — *Current lots* shows every product in the store until you
+  pick a collection for it in Customize, up to the number set in *Products shown*.
+- **Photographs** — three home-page sections take your own pictures: *From the hills to the
+  tin* (a photo above each step), *From the farm* (a gallery; the first photo runs double
+  size) and *The pod* (one large picture beside the copy). Empty frames hold their place with
+  the leaf line work and say "Add a photograph" only inside the theme editor. More can be
+  added from **Add section** — *Photo gallery*, *Photo columns* or *Story*.
 - **"What are you cooking?"** — each of the four blocks has a *Where it goes* URL. Set these
   to the right collection or product, or the button falls back to all products.
 - **Region line** on the product page — Customize → Product → Region line.
