@@ -12,7 +12,7 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_56_54_PM.png",
+        "image": "shopify://shop_images/IMG_3191.jpg",
         "image_alt": "",
         "focal": "center",
         "height": "tall",
@@ -76,34 +76,6 @@
     },
     "lots": {
       "type": "featured-collection",
-      "blocks": {
-        "t1": {
-          "type": "trust",
-          "settings": {
-            "icon": "lock",
-            "caption": "Secure checkout"
-          }
-        },
-        "t2": {
-          "type": "trust",
-          "settings": {
-            "icon": "airtight",
-            "caption": "Packed to order"
-          }
-        },
-        "t3": {
-          "type": "trust",
-          "settings": {
-            "icon": "calendar",
-            "caption": "Dated on every tin"
-          }
-        }
-      },
-      "block_order": [
-        "t1",
-        "t2",
-        "t3"
-      ],
       "settings": {
         "number": "§ 01",
         "label": "Current lots",
@@ -119,6 +91,7 @@
         "p1": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/4F2451DB-A74E-4C00-A786-E206F2E4411E.png",
             "image_alt": "",
             "title": "Picked green",
             "text": "<p>By hand, several passes to a plant, because the pods on one stem do not ripen together.</p>",
@@ -129,6 +102,7 @@
         "p2": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_u6j6f1u6j6f1u6j6.png",
             "image_alt": "",
             "title": "Dried slow",
             "text": "<p>Cured until the pod is dry enough to keep, while it still holds its green and the oil inside.</p>",
@@ -139,6 +113,7 @@
         "p3": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_e5vwx3e5vwx3e5vw.png",
             "image_alt": "",
             "title": "Graded by sieve",
             "text": "<p>Sorted by the mesh a pod will pass through: 6 mm, 7 mm and 8 mm+.</p>",
@@ -149,6 +124,7 @@
         "p4": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/A1213E5A-E27D-4C6E-B4BB-B2E6BF4BD5D4.png",
             "image_alt": "",
             "title": "Packed whole",
             "text": "<p>Sealed light-proof, with the harvest and packing dates printed on the tin.</p>",
@@ -232,7 +208,7 @@
         "number": "§ 03",
         "label": "The region",
         "meta": "where it grows",
-        "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_11_53_50_PM.png",
+        "image": "shopify://shop_images/Gemini_Generated_Image_dcn8eedcn8eedcn8.png",
         "image_alt": "",
         "flip": false,
         "kicker": "Where it grows",
@@ -250,6 +226,7 @@
         "g1": {
           "type": "photo",
           "settings": {
+            "image": "shopify://shop_images/Cardamom-Plantation-Munnar-2-of-6.jpg",
             "image_alt": "",
             "caption": "The Cardamom Hills",
             "link": ""
@@ -258,6 +235,7 @@
         "g2": {
           "type": "photo",
           "settings": {
+            "image": "shopify://shop_images/Guatemala_AltaVerapaz-FarmerDonAmilcar_Cardamom.webp",
             "image_alt": "",
             "caption": "Under the shade canopy",
             "link": ""
@@ -266,6 +244,7 @@
         "g3": {
           "type": "photo",
           "settings": {
+            "image": "shopify://shop_images/images_2.jpg",
             "image_alt": "",
             "caption": "Picking",
             "link": ""
@@ -274,6 +253,7 @@
         "g4": {
           "type": "photo",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_d9qwc8d9qwc8d9qw.png",
             "image_alt": "",
             "caption": "Drying",
             "link": ""
@@ -282,6 +262,7 @@
         "g5": {
           "type": "photo",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_dhynmadhynmadhyn.png",
             "image_alt": "",
             "caption": "Sorting",
             "link": ""
@@ -290,6 +271,7 @@
         "g6": {
           "type": "photo",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_ntw9x9ntw9x9ntw9.png",
             "image_alt": "",
             "caption": "The pods",
             "link": ""
@@ -317,12 +299,11 @@
     },
     "pods": {
       "type": "image-with-text",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "number": "§ 05",
         "label": "The pod",
         "meta": "up close",
+        "image": "shopify://shop_images/Gemini_Generated_Image_7rmdi07rmdi07rmd.png",
         "image_alt": "",
         "flip": true,
         "kicker": "Up close",
