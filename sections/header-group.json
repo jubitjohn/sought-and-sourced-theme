@@ -20,7 +20,6 @@
     "header": {
       "type": "header",
       "settings": {
-        "logo": "shopify://shop_images/cardamom_logo1.jpg",
         "tagline": "Pure · Authentic · Responsible",
         "show_sprig": true,
         "menu": "main-menu"
