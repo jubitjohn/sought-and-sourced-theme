@@ -109,6 +109,13 @@
             "value": "900 – 1,400 m"
           }
         },
+        "row_rBB4dW": {
+          "type": "row",
+          "settings": {
+            "key": "Region",
+            "value": "Cardamom Hills, Idukki"
+          }
+        },
         "r4": {
           "type": "row",
           "settings": {
@@ -128,6 +135,7 @@
         "r1",
         "r2",
         "r3",
+        "row_rBB4dW",
         "r4",
         "r5"
       ],
@@ -183,6 +191,7 @@
         "g2",
         "g3"
       ],
+      "disabled": true,
       "settings": {
         "number": "§ 03",
         "label": "Grades at true size",
@@ -191,7 +200,7 @@
         "show_caliper": true,
         "caliper_label": "Calibrate to your screen",
         "caliper_hint": "Hold any bank card flat against the dashed rectangle and drag until they match.",
-        "warning": "<p><b>Bigger is not better.</b> Size grade tracks appearance and yield, not aroma. If you're grinding it, buy the smaller grade and spend the difference on freshness.</p>"
+        "warning": "<p><strong>Bigger is not better.</strong> Size grade tracks appearance and yield, not aroma. If you're grinding it, buy the smaller grade and spend the difference on freshness.</p>"
       }
     },
     "router": {
