@@ -1,19 +1,70 @@
-{%- comment -%} Accepts: product, pod_mm (optional, for the placeholder specimen). {%- endcomment -%}
+{%- comment -%}
+  Accepts: product, pod_mm (optional, for the placeholder specimen),
+  trust (optional, comma-separated claims ticked off on the card).
+  Badges come from product tags — "Bestseller" and "Organic", with case, spaces
+  and hyphens ignored — so they are set per product in admin and never guessed.
+  The star line reads Shopify's standard reviews.rating / reviews.rating_count
+  metafields, which review apps fill, and hides itself without them.
+{%- endcomment -%}
+{%- liquid
+  assign is_bestseller = false
+  assign is_organic = false
+  for tag in product.tags
+    assign tag_key = tag | downcase | remove: ' ' | remove: '-' | remove: '_'
+    case tag_key
+      when 'bestseller', 'bestsellers', 'bestselling'
+        assign is_bestseller = true
+      when 'organic', 'certifiedorganic'
+        assign is_organic = true
+    endcase
+  endfor
+
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count.value | default: 0
+-%}
 <article class="card">
-  <a class="card__art{% unless product.featured_media %} gridpaper{% endunless %}" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
-    {%- if product.featured_media -%}
-      {%- assign alt_text = product.featured_media.alt | escape -%}
-      {{ product.featured_media | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320,480,640', alt: alt_text }}
-    {%- else -%}
-      {% render 'pod', mm: pod_mm %}
-      {% render 'pod', mm: pod_mm %}
+  <div class="card__media">
+    <a class="card__art{% unless product.featured_media %} gridpaper{% endunless %}" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+      {%- if product.featured_media -%}
+        {%- assign alt_text = product.featured_media.alt | escape -%}
+        {{ product.featured_media | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320,480,640', alt: alt_text }}
+      {%- else -%}
+        {% render 'pod', mm: pod_mm %}
+        {% render 'pod', mm: pod_mm %}
+      {%- endif -%}
+    </a>
+    {%- if is_bestseller or is_organic -%}
+      <div class="card__badges">
+        {%- if is_bestseller -%}<span class="badge badge--green">{{ 'products.product.badge_bestseller' | t }}</span>{%- endif -%}
+        {%- if is_organic -%}<span class="badge badge--gold">{% render 'icon', icon: 'leaf' %}{{ 'products.product.badge_organic' | t }}</span>{%- endif -%}
+      </div>
     {%- endif -%}
-  </a>
+  </div>
   <div class="card__body">
     {% render 'grade-badge', product: product %}
     <h3 class="card__name"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    {%- if rating != blank and rating_count > 0 -%}
+      {%- assign rating_pct = rating.rating | divided_by: rating.scale_max | times: 100 -%}
+      {%- assign rating_shown = rating.rating | round: 1 -%}
+      {%- assign rating_max = rating.scale_max | round -%}
+      <p class="card__rating">
+        <span class="card__stars" style="--rating:{{ rating_pct }}%" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="visually-hidden">{{ 'products.product.rating' | t: rating: rating_shown, max: rating_max }}</span>
+        <span aria-hidden="true">{{ rating_shown }}</span>
+        <span class="card__rating-n">({{ 'products.product.reviews' | t: count: rating_count }})</span>
+      </p>
+    {%- endif -%}
     {%- if product.description != blank -%}
       <p class="card__note">{{ product.description | strip_html | truncate: 110 }}</p>
+    {%- endif -%}
+    {%- if trust != blank -%}
+      <ul class="card__trust">
+        {%- assign claims = trust | split: ',' -%}
+        {%- for claim in claims -%}
+          {%- assign claim_text = claim | strip -%}
+          {%- if claim_text != blank -%}<li>{% render 'icon', icon: 'check' %}{{ claim_text }}</li>{%- endif -%}
+        {%- endfor -%}
+      </ul>
     {%- endif -%}
     <div class="card__foot">
       <span>{% render 'price', product: product %}</span>

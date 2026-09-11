@@ -76,6 +76,34 @@
     },
     "lots": {
       "type": "featured-collection",
+      "blocks": {
+        "t1": {
+          "type": "trust",
+          "settings": {
+            "icon": "lock",
+            "caption": "Secure checkout"
+          }
+        },
+        "t2": {
+          "type": "trust",
+          "settings": {
+            "icon": "airtight",
+            "caption": "Packed to order"
+          }
+        },
+        "t3": {
+          "type": "trust",
+          "settings": {
+            "icon": "calendar",
+            "caption": "Dated on every tin"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
       "settings": {
         "number": "§ 01",
         "label": "Current lots",

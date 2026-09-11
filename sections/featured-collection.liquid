@@ -19,7 +19,7 @@
     {%- if coll.products.size > 0 -%}
       {%- for product in coll.products limit: section.settings.count -%}
         {%- assign fallback_mm = forloop.index | plus: 5 -%}
-        {% render 'product-card', product: product, pod_mm: fallback_mm %}
+        {% render 'product-card', product: product, pod_mm: fallback_mm, trust: section.settings.card_trust %}
       {%- endfor -%}
     {%- else -%}
       {%- for i in (1..3) -%}
@@ -36,6 +36,16 @@
       {%- endfor -%}
     {%- endif -%}
   </div>
+  {%- if section.blocks.size > 0 -%}
+    <ul class="trustbar">
+      {%- for block in section.blocks -%}
+        <li class="trustbar__item" {{ block.shopify_attributes }}>
+          <span class="trustbar__ring">{% render 'icon', icon: block.settings.icon %}</span>
+          <span class="trustbar__cap">{{ block.settings.caption }}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
   {%- if section.settings.link_label != blank -%}
     {%- assign all_url = coll.url | default: routes.all_products_collection_url -%}
     <p class="cards__cta"><a class="btn btn--ghost" href="{{ all_url }}">{{ section.settings.link_label }}</a></p>
@@ -48,10 +58,49 @@
     { "type": "text", "id": "number", "label": "Section mark", "default": "§ 04" },
     { "type": "text", "id": "label", "label": "Label", "default": "Current lots" },
     { "type": "text", "id": "meta", "label": "Right-hand note", "default": "packed to order" },
-    { "type": "collection", "id": "collection", "label": "Collection", "info": "Leave empty to show every product in the store." },
+    { "type": "collection", "id": "collection", "label": "Collection", "info": "Leave empty to show every product in the store. Set the collection's sort to Best selling to lead with what sells." },
     { "type": "range", "id": "count", "label": "Products shown", "min": 2, "max": 12, "step": 1, "default": 3 },
-    { "type": "text", "id": "link_label", "label": "Button under the grid", "default": "See every lot", "info": "Goes to the chosen collection, or to all products when none is set. Leave empty to drop the button." }
+    { "type": "text", "id": "link_label", "label": "Button under the grid", "default": "See every lot", "info": "Goes to the chosen collection, or to all products when none is set. Leave empty to drop the button." },
+    { "type": "header", "content": "Badges and trust" },
+    { "type": "paragraph", "content": "Tag a product Bestseller or Organic in admin to badge its card. Star ratings appear on their own once a reviews app fills Shopify's product rating fields." },
+    { "type": "text", "id": "card_trust", "label": "Ticked claims on every card", "default": "Single origin, Graded by sieve, Sealed light-proof", "info": "Separate with commas. These print on every card in this grid, so keep to what is true of all of them. Leave empty to drop the line." }
   ],
-  "presets": [{ "name": "Featured collection" }]
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Trust mark",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Glyph",
+          "options": [
+            { "value": "lock", "label": "Padlock — secure checkout" },
+            { "value": "truck", "label": "Van — delivery" },
+            { "value": "return", "label": "Arrow — returns" },
+            { "value": "calendar", "label": "Calendar — dated" },
+            { "value": "airtight", "label": "Tin — sealed, air-tight" },
+            { "value": "leaf", "label": "Leaf — natural, unblended" },
+            { "value": "caliper", "label": "Caliper — a size or grade" },
+            { "value": "origin", "label": "Pin — an origin" },
+            { "value": "star", "label": "Star — a quality claim" }
+          ],
+          "default": "lock"
+        },
+        { "type": "text", "id": "caption", "label": "Caption", "default": "Secure checkout", "info": "Two to four words, set in tracked caps. Only promise what your shipping and refund policies actually say." }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Featured collection",
+      "blocks": [
+        { "type": "trust", "settings": { "icon": "lock", "caption": "Secure checkout" } },
+        { "type": "trust", "settings": { "icon": "airtight", "caption": "Packed to order" } },
+        { "type": "trust", "settings": { "icon": "calendar", "caption": "Dated on every tin" } }
+      ]
+    }
+  ]
 }
 {% endschema %}

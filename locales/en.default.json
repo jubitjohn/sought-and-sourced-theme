@@ -47,7 +47,14 @@
       "months_ago": "{{ count }} months ago",
       "actual_size": "Actual size",
       "ruled_to": "ruled to 5 mm",
-      "view_details": "View this lot"
+      "view_details": "View this lot",
+      "badge_bestseller": "Bestseller",
+      "badge_organic": "Organic",
+      "rating": "Rated {{ rating }} out of {{ max }}",
+      "reviews": {
+        "one": "{{ count }} review",
+        "other": "{{ count }} reviews"
+      }
     }
   },
   "cart": {

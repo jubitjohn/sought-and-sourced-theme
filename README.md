@@ -34,6 +34,22 @@ itself when empty, so the theme is correct on day one and gets richer as you fil
 `packed_on` must be type **Date**, not text, or the day count won't compute. A future date
 hides the whole stamp rather than printing a negative number.
 
+**Card badges come from product tags**, not metafields. Tag a product `Bestseller` or
+`Organic` in admin (case, spaces and hyphens don't matter) and every product card —
+home page, collection, search, recommendations — badges it along the foot of the photo.
+Only tag `Organic` on lots that are certified: in India, selling food as organic needs
+NPOP or PGS-India certification and the Jaivik Bharat mark under FSSAI rules.
+
+**Star ratings** read Shopify's standard `reviews.rating` and `reviews.rating_count`
+product metafields. Judge.me, Shopify Product Reviews and most other review apps fill
+these. With no reviews the line hides itself.
+
+**Trust marks** on the home-page grid are set in Customize → *Current lots*: a ticked
+claims line printed on every card, and a strip of up to five marks under the grid
+(padlock, delivery van, returns arrow, calendar and the four label glyphs). The defaults
+repeat claims the site already makes. Add delivery or returns marks only once your
+shipping and refund policies say so.
+
 **This commits you to upkeep.** The stamp hides when empty, but it cannot detect a *wrong*
 date. If you stop updating `packed_on` per batch, turn the stamp off in
 *Theme settings → Product* rather than letting it drift.
