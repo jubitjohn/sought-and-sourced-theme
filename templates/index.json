@@ -477,58 +477,6 @@
         "text": "<p>The aroma sits in an oil held inside the seed: mostly cineole, which gives the cool camphor lift, and terpinyl acetate, which gives the sweetness. Both evaporate. Grinding exposes them to air; light and warmth speed it up. An intact husk slows all of it down, which is why we sell pods and never powder.</p><p>So instead of calling it fresh, we print two dates and let you judge.</p>"
       }
     },
-    "order_path": {
-      "type": "order-path",
-      "blocks": {
-        "s1": {
-          "type": "step",
-          "settings": {
-            "icon": "lock",
-            "title": "You order",
-            "text": "Checkout is secure, and your order goes straight to our packing table."
-          }
-        },
-        "s2": {
-          "type": "step",
-          "settings": {
-            "icon": "airtight",
-            "title": "Filled & sealed",
-            "text": "Whole pods from the current lot are weighed into a light-proof tin, sealed and dated."
-          }
-        },
-        "s3": {
-          "type": "step",
-          "settings": {
-            "icon": "truck",
-            "title": "Dispatched",
-            "text": "Your parcel is handed to the courier, and you are sent the details to follow it."
-          }
-        },
-        "s4": {
-          "type": "step",
-          "settings": {
-            "icon": "home",
-            "title": "In your hands",
-            "text": "Open the tin, crack a pod, and check the dates on the label for yourself."
-          }
-        }
-      },
-      "block_order": [
-        "s1",
-        "s2",
-        "s3",
-        "s4"
-      ],
-      "settings": {
-        "number": "07",
-        "label": "After you order",
-        "meta": "from our hands to yours",
-        "tone": "sheet",
-        "heading": "From our hands to yours.",
-        "text": "<p>What happens between the moment you order and the moment you open the tin.</p>",
-        "note": ""
-      }
-    },
     "gallery": {
       "type": "photo-gallery",
       "blocks": {
@@ -606,6 +554,58 @@
         "feature_first": true
       }
     },
+    "order_path": {
+      "type": "order-path",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "icon": "lock",
+            "title": "You order",
+            "text": "Checkout is secure, and your order goes straight to our packing table."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "icon": "airtight",
+            "title": "Filled & sealed",
+            "text": "Whole pods from the current lot are weighed into a light-proof tin, sealed and dated."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "icon": "truck",
+            "title": "Dispatched",
+            "text": "Your parcel is handed to the courier, and you are sent the details to follow it."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "icon": "home",
+            "title": "In your hands",
+            "text": "Open the tin, crack a pod, and check the dates on the label for yourself."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "number": "07",
+        "label": "After you order",
+        "meta": "from our hands to yours",
+        "tone": "sheet",
+        "heading": "From our hands to yours.",
+        "text": "<p>What happens between the moment you order and the moment you open the tin.</p>",
+        "note": ""
+      }
+    },
     "grades": {
       "type": "grade-scale",
       "blocks": {
@@ -672,8 +672,8 @@
     "router",
     "method",
     "freshness",
-    "order_path",
     "gallery",
+    "order_path",
     "grades",
     "dispatch"
   ]
