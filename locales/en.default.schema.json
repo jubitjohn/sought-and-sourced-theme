@@ -3,7 +3,7 @@
     "colors": { "name": "Colours" },
     "typography": { "name": "Typography" },
     "product": { "name": "Product" },
-    "cart": { "name": "Consignment" },
+    "cart": { "name": "Cart" },
     "social": { "name": "Social" }
   }
 }

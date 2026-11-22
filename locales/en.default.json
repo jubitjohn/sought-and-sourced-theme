@@ -29,7 +29,7 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "Add to consignment",
+      "add_to_cart": "Add to cart",
       "buy_now": "Buy now",
       "sold_out": "Sold out",
       "unavailable": "Unavailable",
@@ -58,8 +58,8 @@
     }
   },
   "cart": {
-    "title": "Your consignment",
-    "empty": "Nothing in the consignment yet.",
+    "title": "Your cart",
+    "empty": "Your cart is empty.",
     "subtotal": "Subtotal",
     "checkout": "Checkout",
     "remove": "Remove",
@@ -88,7 +88,7 @@
     "activate_account": { "title": "Activate account", "submit": "Activate", "decline": "Decline" }
   },
   "sections": {
-    "header": { "cart": "Consignment", "menu": "Menu", "search": "Search" }
+    "header": { "cart": "Cart", "menu": "Menu", "search": "Search" }
   },
   "onboarding": {
     "product_title": "Example lot",

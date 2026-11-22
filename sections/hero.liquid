@@ -35,7 +35,7 @@
   {%- endif -%}
 
   {%- if h.overlay_style != 'none' -%}
-    {%- if h.scrim > 0 -%}<div class="hero-banner__scrim" aria-hidden="true"></div>{%- endif -%}
+    {%- if h.scrim > 0 -%}<div class="hero-banner__scrim" style="--scrim:{{ h.scrim | divided_by: 100.0 }}" aria-hidden="true"></div>{%- endif -%}
     <div class="hero-banner__inner hero-banner__inner--{{ h.align }}">
       <div class="hero-banner__box hero-banner__box--{{ h.overlay_style }}">
         {%- if h.overlay_style == 'plaque' and h.show_sprig -%}
@@ -59,7 +59,7 @@
               <a class="btn btn--primary" href="{{ h.cta_link | default: routes.all_products_collection_url }}">{{ h.cta_label }}</a>
             {%- endif -%}
             {%- if h.cta2_label != blank -%}
-              <a class="btn btn--ghost" href="{{ h.cta2_link | default: routes.root_url }}">{{ h.cta2_label }}</a>
+              <a class="btn btn--ghost" href="{{ h.cta2_link | default: '#journey' }}">{{ h.cta2_label }}</a>
             {%- endif -%}
           </div>
         {%- endif -%}
@@ -114,15 +114,15 @@
       "default": "left"
     },
     { "type": "checkbox", "id": "show_sprig", "label": "Leaf mark above the copy", "default": true },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Idukki, Kerala · 900–1,400 m" },
-    { "type": "inline_richtext", "id": "heading", "label": "Headline", "default": "Idukki Green <em>Cardamom</em>" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Single origin · Idukki, Kerala" },
+    { "type": "inline_richtext", "id": "heading", "label": "Headline", "default": "From the Cardamom Hills, <em>by hand</em>, to yours." },
     { "type": "text", "id": "attributes", "label": "Attribute line", "default": "Single-Origin · Hand Selected · Estate Fresh" },
     { "type": "richtext", "id": "lede", "label": "Standfirst", "default": "<p>Bought by aroma, graded by sieve, and sold whole — because the pod is the only packaging that actually keeps.</p>" },
     { "type": "header", "content": "Buttons" },
     { "type": "text", "id": "cta_label", "label": "Primary button", "default": "Shop the harvest" },
     { "type": "url", "id": "cta_link", "label": "Primary link" },
-    { "type": "text", "id": "cta2_label", "label": "Secondary button", "default": "How we grade" },
-    { "type": "url", "id": "cta2_link", "label": "Secondary link" }
+    { "type": "text", "id": "cta2_label", "label": "Secondary button", "default": "Follow the journey" },
+    { "type": "url", "id": "cta2_link", "label": "Secondary link", "info": "Leave empty to scroll down to the Journey section on the same page." }
   ],
   "presets": [{ "name": "Hero banner" }]
 }

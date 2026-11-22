@@ -115,10 +115,63 @@
         "judge_me_reviews_review_widget_b73pxz"
       ],
       "settings": {}
+    },
+    "order_path": {
+      "type": "order-path",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "icon": "lock",
+            "title": "You order",
+            "text": "Checkout is secure, and your order goes straight to our packing table."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "icon": "airtight",
+            "title": "Filled & sealed",
+            "text": "Whole pods from the current lot are weighed into a light-proof tin, sealed and dated."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "icon": "truck",
+            "title": "Dispatched",
+            "text": "Your parcel is handed to the courier, and you are sent the details to follow it."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "icon": "home",
+            "title": "In your hands",
+            "text": "Open the tin, crack a pod, and check the dates on the label for yourself."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "number": "",
+        "label": "",
+        "meta": "from our hands to yours",
+        "tone": "sheet",
+        "heading": "From our hands to yours.",
+        "text": "<p>Packed to order, so your tin is filled from the current lot only once you have bought it.</p>",
+        "note": ""
+      }
     }
   },
   "order": [
     "main",
+    "order_path",
     "recommendations",
     "17891582245541c465"
   ]

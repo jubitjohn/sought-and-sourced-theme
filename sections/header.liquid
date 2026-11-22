@@ -1,10 +1,15 @@
-{%- assign cart_name = settings.cart_name | default: 'Consignment' -%}
+{%- assign cart_name = settings.cart_name | default: 'Cart' -%}
 {%- if settings.show_mm_rule -%}
   <div class="mm-rule" aria-hidden="true">
     <div class="mm-rule__ticks"></div>
     <div class="mm-rule__label">millimetres</div>
   </div>
 {%- endif -%}
+<style>
+  {%- comment -%} Sticky on the section wrapper itself, so it holds across the whole page. {%- endcomment -%}
+  #shopify-section-{{ section.id }}{position:sticky;top:0;z-index:40;}
+</style>
+<div class="site-header">
 <div class="wrap">
   <header class="masthead">
     {%- comment -%}
@@ -32,7 +37,7 @@
 
     <nav id="SiteNav" aria-label="Primary">
       {%- for link in section.settings.menu.links -%}
-        <a href="{{ link.url }}">{{ link.title }}</a>
+        <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
       {%- endfor -%}
     </nav>
 
@@ -48,6 +53,7 @@
       </a>
     </div>
   </header>
+</div>
 </div>
 {% schema %}
 {

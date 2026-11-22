@@ -15,18 +15,18 @@
         "image": "shopify://shop_images/IMG_3191.jpg",
         "image_alt": "",
         "focal": "center",
-        "height": "tall",
-        "scrim": 15,
-        "overlay_style": "plaque",
+        "height": "full",
+        "scrim": 35,
+        "overlay_style": "bare",
         "align": "left",
         "show_sprig": true,
-        "eyebrow": "Idukki, Kerala · 900–1,400 m",
-        "heading": "Idukki Green <em>Cardamom</em>",
-        "attributes": "Single-Origin · Hand Selected · Estate Fresh",
-        "lede": "<p>Bought by aroma, graded by sieve, and sold whole — because the pod is the only packaging that actually keeps.</p>",
-        "cta_label": "Shop the harvest",
+        "eyebrow": "Single origin · Idukki, Kerala",
+        "heading": "From the Cardamom Hills, <em>by hand</em>, to yours.",
+        "attributes": "Hand-picked · Slow-cured · Sieve-graded · Packed to order",
+        "lede": "<p>Every tin follows a single harvest: picked green on the slopes of the Western Ghats, cured slowly, sorted by hand, graded by sieve — and sealed the day your order ships.</p>",
+        "cta_label": "Shop the collection",
         "cta_link": "",
-        "cta2_label": "How we grade",
+        "cta2_label": "Follow the journey",
         "cta2_link": ""
       }
     },
@@ -105,77 +105,12 @@
         "t3"
       ],
       "settings": {
-        "number": "§ 01",
-        "label": "Current lots",
-        "meta": "packed to order",
+        "number": "01",
+        "label": "The collection",
+        "meta": "current harvest",
         "collection": "",
         "count": 6,
-        "link_label": "See every lot"
-      }
-    },
-    "process": {
-      "type": "photo-columns",
-      "blocks": {
-        "p1": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/4F2451DB-A74E-4C00-A786-E206F2E4411E.png",
-            "image_alt": "",
-            "title": "Picked green",
-            "text": "<p>By hand, several passes to a plant, because the pods on one stem do not ripen together.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "p2": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_u6j6f1u6j6f1u6j6.png",
-            "image_alt": "",
-            "title": "Dried slow",
-            "text": "<p>Cured until the pod is dry enough to keep, while it still holds its green and the oil inside.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "p3": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_e5vwx3e5vwx3e5vw.png",
-            "image_alt": "",
-            "title": "Graded by sieve",
-            "text": "<p>Sorted by the mesh a pod will pass through: 6 mm, 7 mm and 8 mm+.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "p4": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/A1213E5A-E27D-4C6E-B4BB-B2E6BF4BD5D4.png",
-            "image_alt": "",
-            "title": "Packed whole",
-            "text": "<p>Sealed light-proof, with the harvest and packing dates printed on the tin.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "p1",
-        "p2",
-        "p3",
-        "p4"
-      ],
-      "settings": {
-        "number": "§ 02",
-        "label": "From the hills to the tin",
-        "meta": "four steps",
-        "heading": "",
-        "text": "",
-        "columns": "4",
-        "ratio": "portrait",
-        "numbered": true
+        "link_label": "View the full collection"
       }
     },
     "region": {
@@ -202,13 +137,6 @@
             "value": "900 – 1,400 m"
           }
         },
-        "row_rBB4dW": {
-          "type": "row",
-          "settings": {
-            "key": "Region",
-            "value": "Cardamom Hills, Idukki"
-          }
-        },
         "r4": {
           "type": "row",
           "settings": {
@@ -228,13 +156,12 @@
         "r1",
         "r2",
         "r3",
-        "row_rBB4dW",
         "r4",
         "r5"
       ],
       "settings": {
-        "number": "§ 03",
-        "label": "The region",
+        "number": "03",
+        "label": "The origin",
         "meta": "where it grows",
         "image": "shopify://shop_images/Gemini_Generated_Image_dcn8eedcn8eedcn8.png",
         "image_alt": "",
@@ -315,32 +242,14 @@
         "g6"
       ],
       "settings": {
-        "number": "§ 04",
+        "number": "08",
         "label": "From the farm",
-        "meta": "photographs",
+        "meta": "field notes",
         "heading": "",
         "text": "",
         "columns": "3",
         "ratio": "landscape",
         "feature_first": true
-      }
-    },
-    "pods": {
-      "type": "image-with-text",
-      "settings": {
-        "number": "§ 05",
-        "label": "The pod",
-        "meta": "up close",
-        "image": "shopify://shop_images/Gemini_Generated_Image_7rmdi07rmdi07rmd.png",
-        "image_alt": "",
-        "flip": true,
-        "kicker": "Up close",
-        "heading": "The husk is the packaging.",
-        "text": "<p>A whole pod keeps its seeds sealed away from air and light until the moment you crack it. That is where the aroma lives, and why we never sell it ground.</p>",
-        "link_label": "Shop the harvest",
-        "link": "",
-        "readout_title": "",
-        "footnote": ""
       }
     },
     "grades": {
@@ -381,7 +290,7 @@
       ],
       "disabled": true,
       "settings": {
-        "number": "§ 06",
+        "number": "",
         "label": "Grades at true size",
         "meta": "shown actual size",
         "intro": "<p>Cardamom is graded by the sieve a pod will pass through. Every seller quotes these numbers; almost none show you what they mean. These are printed on your screen at their real physical size.</p>",
@@ -458,8 +367,8 @@
         "u4"
       ],
       "settings": {
-        "number": "§ 07",
-        "label": "What are you cooking?",
+        "number": "04",
+        "label": "Find your grade",
         "meta": "two questions",
         "q1": "What is it mostly for?",
         "q2": "How often do you cook it?",
@@ -504,9 +413,9 @@
         "m3"
       ],
       "settings": {
-        "number": "§ 08",
-        "label": "Method",
-        "meta": "how we buy"
+        "number": "05",
+        "label": "How we buy",
+        "meta": "three principles"
       }
     },
     "freshness": {
@@ -540,7 +449,7 @@
         "f3"
       ],
       "settings": {
-        "number": "§ 09",
+        "number": "06",
         "label": "Why we print the date",
         "meta": "freshness",
         "readout_title": "How we sell it",
@@ -554,20 +463,217 @@
         "heading": "The Dispatch",
         "text": "<p>A note when a new lot is cured and tinned — a few times a year, not a few times a week. Harvest reports, what we passed on, and why.</p>"
       }
+    },
+    "statement": {
+      "type": "statement",
+      "settings": {
+        "tone": "deep",
+        "show_sprig": true,
+        "kicker": "Our approach",
+        "quote": "We don't ask you to take <em>fresh</em> on trust. We print the dates, show the grade, and tell you where it grew.",
+        "text": "",
+        "signature": "— Sought & Sourced",
+        "link_label": "",
+        "link": ""
+      }
+    },
+    "journey": {
+      "type": "journey",
+      "blocks": {
+        "c1": {
+          "type": "chapter",
+          "settings": {
+            "image": "shopify://shop_images/4F2451DB-A74E-4C00-A786-E206F2E4411E.png",
+            "image_alt": "",
+            "icon": "harvest",
+            "stage": "The harvest",
+            "title": "Picked green, by hand.",
+            "text": "<p>Cardamom grows in the shade of the forest canopy on the western slopes of the Ghats. Its pods do not ripen together, so each plant is picked over by hand, again and again through the season, taking only the pods that are full-sized and still green.</p>",
+            "detail_key": "Season",
+            "detail_value": "October – February"
+          }
+        },
+        "c2": {
+          "type": "chapter",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_u6j6f1u6j6f1u6j6.png",
+            "image_alt": "",
+            "icon": "sun",
+            "stage": "The cure",
+            "title": "Dried slowly, kept green.",
+            "text": "<p>Freshly picked pods are heavy with moisture. They are cured slowly over gentle, steady heat — dry enough to keep, but slowly enough that the husk holds its green and the aromatic oil stays sealed inside the seed.</p>",
+            "detail_key": "Aim",
+            "detail_value": "Green husk, oil intact"
+          }
+        },
+        "c3": {
+          "type": "chapter",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_dhynmadhynmadhyn.png",
+            "image_alt": "",
+            "icon": "hand",
+            "stage": "Sorting",
+            "title": "Sorted by hand.",
+            "text": "<p>Once cured, the pods are spread out and picked over. Split, pale, shrivelled and empty pods come out, along with stalks and dust, so that only sound, whole pods go on to be graded.</p>",
+            "detail_key": "Taken out",
+            "detail_value": "Splits, empties, stalks"
+          }
+        },
+        "c4": {
+          "type": "chapter",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_e5vwx3e5vwx3e5vw.png",
+            "image_alt": "",
+            "icon": "sieve",
+            "stage": "Grading",
+            "title": "Graded by sieve.",
+            "text": "<p>Each lot is passed through graded meshes and divided by the hole a pod will pass through: 6 mm, 7 mm and 8 mm+. It is a measurement of size, not a verdict on flavour — which is why we will tell you when the smaller grade is the better buy.</p>",
+            "detail_key": "Grades",
+            "detail_value": "6 mm · 7 mm · 8 mm+"
+          }
+        },
+        "c5": {
+          "type": "chapter",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_7rmdi07rmdi07rmd.png",
+            "image_alt": "",
+            "icon": "aroma",
+            "stage": "The nose test",
+            "title": "Bought by aroma.",
+            "text": "<p>A sieve says nothing about how much volatile oil is inside a pod. So before a price is agreed, we open pods and judge the seed itself: dark, slightly sticky and sharply fragrant. If the aroma isn't there, neither is the deal.</p>",
+            "detail_key": "Before we buy",
+            "detail_value": "Pods opened & smelled"
+          }
+        },
+        "c6": {
+          "type": "chapter",
+          "settings": {
+            "image": "shopify://shop_images/A1213E5A-E27D-4C6E-B4BB-B2E6BF4BD5D4.png",
+            "image_alt": "",
+            "icon": "airtight",
+            "stage": "Packing",
+            "title": "Sealed whole, and dated.",
+            "text": "<p>We never grind. Pods are packed whole into a light-proof tin — the husk is the best packaging cardamom has — and the label carries the harvest month and the date it was filled, so freshness is something you can check.</p>",
+            "detail_key": "On every tin",
+            "detail_value": "Harvest & fill dates"
+          }
+        },
+        "c7": {
+          "type": "chapter",
+          "settings": {
+            "image_alt": "",
+            "icon": "truck",
+            "stage": "Dispatch",
+            "title": "Filled the day it ships.",
+            "text": "<p>We pack to order, not to stock. Your tin is filled, sealed and handed to the courier, so it spends its shelf life in your kitchen rather than in a warehouse.</p>",
+            "detail_key": "Packed",
+            "detail_value": "To order"
+          }
+        },
+        "c8": {
+          "type": "chapter",
+          "settings": {
+            "image_alt": "",
+            "icon": "cup",
+            "stage": "Your kitchen",
+            "title": "Crack it open.",
+            "text": "<p>Bruise a pod with the flat of a knife and the cool, sweet lift arrives at once. Drop it whole into rice or chai, or grind the seed just before you need it. That moment is what the whole journey is for.</p>",
+            "detail_key": "Keep it",
+            "detail_value": "Whole, sealed, out of the light"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8"
+      ],
+      "settings": {
+        "number": "02",
+        "label": "The journey",
+        "meta": "from the hills to your hands",
+        "anchor": "journey",
+        "tone": "ground",
+        "kicker": "How a pod reaches you",
+        "heading": "Eight steps between the plant and your kitchen.",
+        "intro": "<p>Nothing about good cardamom is fast. Here is everything that happens to a pod before you open the tin — and why each step matters to what you taste.</p>",
+        "chapter_word": "Chapter",
+        "closing": "One harvest. One lot. Sealed the day it ships.",
+        "cta_label": "Shop the collection",
+        "cta_link": ""
+      }
+    },
+    "order_path": {
+      "type": "order-path",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "icon": "lock",
+            "title": "You order",
+            "text": "Checkout is secure, and your order goes straight to our packing table."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "icon": "airtight",
+            "title": "Filled & sealed",
+            "text": "Whole pods from the current lot are weighed into a light-proof tin, sealed and dated."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "icon": "truck",
+            "title": "Dispatched",
+            "text": "Your parcel is handed to the courier, and you are sent the details to follow it."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "icon": "home",
+            "title": "In your hands",
+            "text": "Open the tin, crack a pod, and check the dates on the label for yourself."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "number": "07",
+        "label": "After you order",
+        "meta": "from our hands to yours",
+        "tone": "sheet",
+        "heading": "From our hands to yours.",
+        "text": "<p>What happens between the moment you order and the moment you open the tin.</p>",
+        "note": ""
+      }
     }
   },
   "order": [
     "hero",
     "assurances",
     "lots",
-    "process",
+    "statement",
+    "journey",
     "region",
-    "gallery",
-    "pods",
-    "grades",
     "router",
     "method",
     "freshness",
+    "order_path",
+    "gallery",
+    "grades",
     "dispatch"
   ]
 }

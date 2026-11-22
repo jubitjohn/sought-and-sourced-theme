@@ -3,7 +3,7 @@
   Four is the printed count and what the grid is built for; it drops to two
   columns on a narrow screen rather than shrinking the rings.
 {%- endcomment -%}
-<div class="wrap section-pad">
+<div class="wrap section-pad{% if section.settings.label == blank %} assurances-wrap{% endif %}">
   {%- if section.settings.label != blank -%}
     <div class="speclabel">
       <span class="speclabel__no">{{ section.settings.number }}</span>
@@ -28,7 +28,7 @@
 {
   "name": "Assurances",
   "settings": [
-    { "type": "text", "id": "number", "label": "Section mark" },
+    { "type": "text", "id": "number", "label": "Section number" },
     { "type": "text", "id": "label", "label": "Label", "info": "Leave empty to drop the section header and show the rings on their own." },
     { "type": "text", "id": "meta", "label": "Right-hand note" }
   ],

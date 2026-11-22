@@ -14,7 +14,7 @@ see nothing. Hit **Preview** to walk it against your real catalogue. **Publish**
 separate button, and your current theme stays in the library to revert to in one click.
 
 Walk this order in preview: home → collection → a product (switch tin sizes) → add to cart →
-consignment drawer → checkout button → search → a 404 → Customize.
+cart drawer → checkout button → search → a 404 → Customize.
 
 ---
 
@@ -73,11 +73,25 @@ on the site moves with it. The arithmetic is printed under the price so customer
 - **Navigation** — the header uses your `main-menu`. *Content → Menus.*
 - **Products on the home page** — *Current lots* shows every product in the store until you
   pick a collection for it in Customize, up to the number set in *Products shown*.
-- **Photographs** — three home-page sections take your own pictures: *From the hills to the
-  tin* (a photo above each step), *From the farm* (a gallery; the first photo runs double
-  size) and *The pod* (one large picture beside the copy). Empty frames hold their place with
-  the leaf line work and say "Add a photograph" only inside the theme editor. More can be
-  added from **Add section** — *Photo gallery*, *Photo columns* or *Story*.
+- **The Journey** — the home page's centrepiece: eight chapters from harvest to the
+  customer's kitchen (harvest → cure → sorting → grading → the nose test → packing →
+  dispatch → your kitchen). Each chapter is a block with its own photograph, glyph, story and
+  one-line detail; reorder, rewrite or add up to twelve in Customize. A chapter with no
+  photograph is set as a green plate carrying its glyph, which is how *Dispatch* and *Your
+  kitchen* ship. The spine fills in brass as the reader scrolls. The hero's second button
+  scrolls to it (`#journey`) when its link is left empty.
+- **Statement** and **Order path** — a single brand statement on a bottle-green band, and a
+  four-step "from our hands to yours" strip (order → filled & sealed → dispatched → in your
+  hands). The order path also sits under the buy box on every product page. **Check the
+  *Dispatched* step against your shipping policy** — it says customers are sent details to
+  follow their parcel.
+- **Photographs** — the Journey reuses the process photos; *From the farm* is a gallery (the
+  first photo runs double size) and *The origin* takes one large picture beside the record.
+  Empty frames hold their place with the leaf line work and say "Add a photograph" only inside
+  the theme editor. More can be added from **Add section** — *Photo gallery*, *Photo columns*,
+  *Story*, *Journey*, *Statement* or *Order path*.
+- **Footer menus** — a footer column only appears once a menu with links is chosen for it
+  (Customize → Footer), and *Elsewhere* only once a social link is set in Theme settings.
 - **"What are you cooking?"** — each of the four blocks has a *Where it goes* URL. Set these
   to the right collection or product, or the button falls back to all products.
 - **Region line** on the product page — Customize → Product → Region line.
@@ -108,16 +122,22 @@ Brass is split three ways on purpose. The ornament brass is a rule colour and on
 2.5:1 on ivory, so it never sets type; brass ink is the darkened version that does. If you
 retune the palette, keep that separation or small text stops being legible.
 
-**Type** — Playfair Display for display (the label's high-contrast serif: caps and wide
-tracking for the wordmark, 700 for the product name), Instrument Sans for text and the
-tracked micro-caps, IBM Plex Mono for measurements, dates and prices.
+**Type** — Cormorant Garamond for display (a high-contrast garamond, set in sentence case
+with italics for emphasis; caps and wide tracking are kept for the wordmark only), Instrument
+Sans for text and the tracked micro-caps, IBM Plex Mono for measurements, dates and prices.
+
+**Editorial edition (v2)** — the ornament is held back so photography and the story lead:
+panels take one quiet rule instead of two, buttons and frames take a 2px corner, the arch is
+kept only on the brand cartouche (`--arch-mark`), section headers are a chapter number in
+italic with the name in tracked caps, the header sticks, and the millimetre rule down the
+page edge is off by default (*Theme settings → Layout*). The cart is called *Cart*.
 
 **Ornament** — the grammar is in `assets/base.css` under *The label's ornament*:
 
 - the **double hairline** — a brass line on the trim, a lighter one set 4px inside it, on
   every framed panel;
-- the **arch** — the label's ogee silhouette, on picture panels only (`.plate`, `.card__art`),
-  never on a box of text, where a dome sized off the text height would fight the plate's;
+- the **arch** — the label's ogee silhouette, now on the cartouche only (`--arch-mark`);
+  `--arch` and `--arch-soft` resolve to the quiet 2px corner;
 - the **cartouche** — `snippets/wordmark.liquid`, the roundel off the hang tag;
 - the **two pills** — reversed green for a statement, brass outline with ✦ bullets for a claim;
 - the **ringed marks** — `sections/assurances.liquid`, and a *Ringed mark* block on the

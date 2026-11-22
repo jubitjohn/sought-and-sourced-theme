@@ -1,5 +1,5 @@
 <div class="wrap wrap--narrow" style="padding-bottom:60px">
-  <div class="collection-head"><h1>{{ settings.cart_name | default: 'Consignment' }}</h1></div>
+  <div class="collection-head"><h1>{{ settings.cart_name | default: 'Cart' }}</h1></div>
   {%- if cart.item_count > 0 -%}
     <form action="{{ routes.cart_url }}" method="post" novalidate>
       {% render 'cart-line-items' %}

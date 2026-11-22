@@ -1,0 +1,97 @@
+{%- comment -%}
+  The last leg of the journey: what happens between "place order" and the
+  tin in the customer's hands. A row of ringed steps joined by a brass line;
+  on a phone it turns into a vertical list down the same line.
+
+  Only state what your shipping policy actually promises. Each step is a block
+  so the wording can be changed without touching code.
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+<section class="order-path{% if s.tone == 'sheet' %} band--sheet{% endif %}">
+  <div class="wrap section-pad{% if s.label == blank %} section-pad--top{% endif %}">
+    {%- if s.label != blank -%}
+      <div class="speclabel">
+        <span class="speclabel__no">{{ s.number }}</span>
+        <span class="speclabel__name">{{ s.label }}</span>
+        <span class="speclabel__rule"></span>
+        <span class="speclabel__meta">{{ s.meta }}</span>
+      </div>
+    {%- endif -%}
+    {%- if s.heading != blank or s.text != blank -%}
+      <header class="order-path__intro reveal">
+        {%- if s.heading != blank -%}<h2>{{ s.heading }}</h2>{%- endif -%}
+        {%- if s.text != blank -%}<div class="rte">{{ s.text }}</div>{%- endif -%}
+      </header>
+    {%- endif -%}
+    <ol class="steps" role="list" style="--steps:{{ section.blocks.size | at_least: 1 }}">
+      {%- for block in section.blocks -%}
+        <li class="step reveal" {{ block.shopify_attributes }}>
+          <span class="step__ring">{% render 'icon', icon: block.settings.icon %}</span>
+          <div class="step__body">
+            <span class="step__n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+            <h3 class="step__title">{{ block.settings.title }}</h3>
+            {%- if block.settings.text != blank -%}<p class="step__text">{{ block.settings.text }}</p>{%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ol>
+    {%- if s.note != blank -%}<div class="order-path__note rte">{{ s.note }}</div>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Order path",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Section number" },
+    { "type": "text", "id": "label", "label": "Label", "default": "After you order", "info": "Leave empty to drop the section header." },
+    { "type": "text", "id": "meta", "label": "Right-hand note", "default": "from our hands to yours" },
+    {
+      "type": "select", "id": "tone", "label": "Background",
+      "options": [
+        { "value": "ground", "label": "Page ground" },
+        { "value": "sheet", "label": "Lighter sheet" }
+      ],
+      "default": "ground"
+    },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "From our hands to yours." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>What happens between the moment you order and the moment you open the tin.</p>" },
+    { "type": "richtext", "id": "note", "label": "Footnote", "info": "Optional. A good place for delivery times or a link to your shipping policy." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Glyph",
+          "options": [
+            { "value": "lock", "label": "Padlock — order placed" },
+            { "value": "airtight", "label": "Tin — filled and sealed" },
+            { "value": "parcel", "label": "Parcel — packed" },
+            { "value": "truck", "label": "Van — dispatched" },
+            { "value": "home", "label": "House — delivered" },
+            { "value": "cup", "label": "Cup — in the kitchen" },
+            { "value": "calendar", "label": "Calendar — dated" },
+            { "value": "return", "label": "Arrow — returns" }
+          ],
+          "default": "lock"
+        },
+        { "type": "text", "id": "title", "label": "Heading", "default": "You order" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Checkout is secure, and your order goes straight to our packing table." }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Order path",
+      "blocks": [
+        { "type": "step", "settings": { "icon": "lock", "title": "You order", "text": "Checkout is secure, and your order goes straight to our packing table." } },
+        { "type": "step", "settings": { "icon": "airtight", "title": "Filled & sealed", "text": "Whole pods from the current lot are weighed into a light-proof tin, sealed and dated." } },
+        { "type": "step", "settings": { "icon": "truck", "title": "Dispatched", "text": "Your parcel is handed to the courier, and you are sent the details to follow it." } },
+        { "type": "step", "settings": { "icon": "home", "title": "In your hands", "text": "Open the tin, crack a pod, and check the dates on the label for yourself." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

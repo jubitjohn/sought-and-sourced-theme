@@ -1,5 +1,5 @@
 {%- if settings.cart_type == 'drawer' -%}
-  {%- assign cart_name = settings.cart_name | default: 'Consignment' -%}
+  {%- assign cart_name = settings.cart_name | default: 'Cart' -%}
   <div class="cart-overlay" data-cart-overlay></div>
   <aside class="cart-drawer" id="CartDrawer" aria-label="{{ cart_name }}" aria-hidden="true">
     <div class="cart-drawer__head">
@@ -24,5 +24,5 @@
   </aside>
 {%- endif -%}
 {% schema %}
-{ "name": "Consignment drawer", "settings": [] }
+{ "name": "Cart drawer", "settings": [] }
 {% endschema %}

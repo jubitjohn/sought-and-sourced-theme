@@ -1,0 +1,158 @@
+{%- comment -%}
+  The journey of a pod: a long-form, chaptered story from the plant to the
+  customer's kitchen. Each chapter is a block. Photograph on one side, the
+  account on the other, alternating down a central spine that fills in brass
+  as the reader scrolls (theme.js → initJourney).
+
+  A chapter with no photograph is not a hole in the story: it is set as a
+  bottle-green plate carrying the chapter's glyph, so stages that are hard to
+  photograph (dispatch, delivery) still read as designed.
+
+  Works without JavaScript: the spine stays unfilled and every chapter shows.
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+<section class="journey{% if s.tone == 'sheet' %} band--sheet{% endif %}" id="{{ s.anchor | default: 'journey' | handle }}" data-journey>
+  <div class="wrap section-pad{% if s.label == blank %} section-pad--top{% endif %}">
+    {%- if s.label != blank -%}
+      <div class="speclabel">
+        <span class="speclabel__no">{{ s.number }}</span>
+        <span class="speclabel__name">{{ s.label }}</span>
+        <span class="speclabel__rule"></span>
+        <span class="speclabel__meta">{{ s.meta }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- if s.heading != blank or s.intro != blank -%}
+      <header class="journey__intro reveal">
+        {%- if s.kicker != blank -%}<p class="eyebrow">{{ s.kicker }}</p>{%- endif -%}
+        {%- if s.heading != blank -%}<h2 class="journey__h">{{ s.heading }}</h2>{%- endif -%}
+        {%- if s.intro != blank -%}<div class="rte journey__lede">{{ s.intro }}</div>{%- endif -%}
+      </header>
+    {%- endif -%}
+
+    <div class="journey__track" data-journey-track>
+    <span class="journey__spine" aria-hidden="true"><span class="journey__spine-fill"></span></span>
+    <ol class="journey__list" role="list">
+      {%- for block in section.blocks -%}
+        {%- assign b = block.settings -%}
+        {%- capture n -%}{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}{%- endcapture -%}
+        <li class="chapter" data-chapter {{ block.shopify_attributes }}>
+          <span class="chapter__node" aria-hidden="true">{{ n }}</span>
+
+          <div class="chapter__media reveal">
+            {%- if b.image != blank -%}
+              {%- assign alt_text = b.image_alt | default: b.image.alt | default: b.title | escape -%}
+              {%- capture pos -%}object-position:{{ b.image.presentation.focal_point }}{%- endcapture -%}
+              {{ b.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '480,720,960,1200,1400', sizes: '(max-width:860px) 88vw, 44vw', alt: alt_text, style: pos }}
+            {%- else -%}
+              <div class="chapter__plate">
+                {% render 'botanical', variant: 'field' %}
+                <span class="chapter__glyph">{% render 'icon', icon: b.icon %}</span>
+                {%- if b.stage != blank -%}<span class="chapter__plate-cap">{{ b.stage }}</span>{%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+
+          <div class="chapter__body reveal">
+            <p class="chapter__stage">
+              <span class="chapter__icon">{% render 'icon', icon: b.icon %}</span>
+              <span>{{ s.chapter_word }} {{ n }}{% if b.stage != blank %} · {{ b.stage }}{% endif %}</span>
+            </p>
+            {%- if b.title != blank -%}<h3 class="chapter__title">{{ b.title }}</h3>{%- endif -%}
+            {%- if b.text != blank -%}<div class="rte chapter__text">{{ b.text }}</div>{%- endif -%}
+            {%- if b.detail_key != blank and b.detail_value != blank -%}
+              <dl class="chapter__detail">
+                <dt>{{ b.detail_key }}</dt>
+                <dd>{{ b.detail_value }}</dd>
+              </dl>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ol>
+    </div>
+
+    {%- if s.cta_label != blank -%}
+      <div class="journey__end reveal">
+        {%- if s.closing != blank -%}<p class="journey__closing">{{ s.closing }}</p>{%- endif -%}
+        <a class="btn btn--primary" href="{{ s.cta_link | default: routes.all_products_collection_url }}">{{ s.cta_label }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Journey",
+  "class": "section-journey",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Section number", "default": "02" },
+    { "type": "text", "id": "label", "label": "Label", "default": "The journey", "info": "Leave empty to drop the section header." },
+    { "type": "text", "id": "meta", "label": "Right-hand note", "default": "from the hills to your hands" },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "journey", "info": "Buttons can link straight here with #journey. Letters and hyphens only." },
+    {
+      "type": "select", "id": "tone", "label": "Background",
+      "options": [
+        { "value": "ground", "label": "Page ground" },
+        { "value": "sheet", "label": "Lighter sheet" }
+      ],
+      "default": "ground"
+    },
+    { "type": "header", "content": "Introduction" },
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "How a pod reaches you" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Eight steps between the plant and your kitchen." },
+    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Nothing about good cardamom is fast. Here is everything that happens to a pod before you open the tin — and why each step matters to what you taste.</p>" },
+    { "type": "text", "id": "chapter_word", "label": "Word before each number", "default": "Chapter" },
+    { "type": "header", "content": "Closing" },
+    { "type": "text", "id": "closing", "label": "Closing line", "default": "One harvest. One lot. Sealed the day it ships." },
+    { "type": "text", "id": "cta_label", "label": "Button", "default": "Shop the collection", "info": "Leave empty to drop the closing line and button." },
+    { "type": "url", "id": "cta_link", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "chapter",
+      "name": "Chapter",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photograph", "info": "Optional. Without one, the chapter is set as a green plate carrying its glyph." },
+        { "type": "text", "id": "image_alt", "label": "Image description" },
+        {
+          "type": "select", "id": "icon", "label": "Glyph",
+          "options": [
+            { "value": "harvest", "label": "Plant — harvest" },
+            { "value": "sun", "label": "Sun — drying and curing" },
+            { "value": "hand", "label": "Hand — sorting" },
+            { "value": "sieve", "label": "Sieve — grading" },
+            { "value": "caliper", "label": "Caliper — measuring" },
+            { "value": "aroma", "label": "Aroma — the quality check" },
+            { "value": "airtight", "label": "Tin — packing" },
+            { "value": "parcel", "label": "Parcel — packed to order" },
+            { "value": "truck", "label": "Van — dispatch" },
+            { "value": "home", "label": "House — delivered" },
+            { "value": "cup", "label": "Cup — in the kitchen" },
+            { "value": "origin", "label": "Pin — an origin" },
+            { "value": "leaf", "label": "Leaf — natural" },
+            { "value": "calendar", "label": "Calendar — dated" }
+          ],
+          "default": "harvest"
+        },
+        { "type": "text", "id": "stage", "label": "Stage", "default": "The harvest", "info": "Two or three words, shown after the chapter number." },
+        { "type": "text", "id": "title", "label": "Heading", "default": "Picked green, by hand." },
+        { "type": "richtext", "id": "text", "label": "Story", "default": "<p>Cardamom does not ripen all at once, so each plant is picked over again and again through the season, a few ready pods at a time.</p>" },
+        { "type": "text", "id": "detail_key", "label": "Detail label", "default": "Season" },
+        { "type": "text", "id": "detail_value", "label": "Detail value", "default": "October – February" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Journey",
+      "blocks": [
+        { "type": "chapter", "settings": { "icon": "harvest", "stage": "The harvest", "title": "Picked green, by hand.", "detail_key": "Season", "detail_value": "October – February" } },
+        { "type": "chapter", "settings": { "icon": "sun", "stage": "The cure", "title": "Dried slowly, kept green.", "text": "<p>Cured until the pod is dry enough to keep, while it still holds its colour and the oil inside.</p>", "detail_key": "Aim", "detail_value": "Green husk, oil intact" } },
+        { "type": "chapter", "settings": { "icon": "sieve", "stage": "Grading", "title": "Graded by sieve.", "text": "<p>Sorted by the mesh a pod will pass through: 6 mm, 7 mm and 8 mm+.</p>", "detail_key": "Grades", "detail_value": "6 mm · 7 mm · 8 mm+" } },
+        { "type": "chapter", "settings": { "icon": "airtight", "stage": "Packing", "title": "Sealed whole, and dated.", "text": "<p>Packed whole into a light-proof tin, with the harvest and packing dates printed on the label.</p>", "detail_key": "On every tin", "detail_value": "Harvest & fill dates" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

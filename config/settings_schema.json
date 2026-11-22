@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Sought & Sourced",
-    "theme_version": "1.0.0",
+    "theme_version": "2.0.0",
     "theme_author": "Sought & Sourced",
     "theme_documentation_url": "https://shopify.dev/themes",
     "theme_support_url": "https://shopify.dev/themes"
@@ -34,7 +34,7 @@
   {
     "name": "Typography",
     "settings": [
-      { "type": "paragraph", "content": "Playfair Display for display — the label's high-contrast serif, set in caps with wide tracking for the wordmark and large for the product name. Instrument Sans for text and the small letterspaced caps. IBM Plex Mono for every measurement, grade, date and price. Loaded from Google Fonts in layout/theme.liquid." },
+      { "type": "paragraph", "content": "Cormorant Garamond for display — a high-contrast garamond, set in sentence case and given room; caps with wide tracking are kept for the wordmark only. Instrument Sans for text and the small letterspaced caps. IBM Plex Mono for every measurement, grade, date and price. Loaded from Google Fonts in layout/theme.liquid." },
       { "type": "range", "id": "type_base_size", "label": "Base text size", "min": 14, "max": 20, "step": 1, "unit": "px", "default": 16 },
       { "type": "range", "id": "type_display_scale", "label": "Display scale", "min": 80, "max": 130, "step": 5, "unit": "%", "default": 100 }
     ]
@@ -43,7 +43,7 @@
     "name": "Layout",
     "settings": [
       { "type": "range", "id": "layout_width", "label": "Content width", "min": 960, "max": 1400, "step": 20, "unit": "px", "default": 1120 },
-      { "type": "checkbox", "id": "show_mm_rule", "label": "Show the millimetre rule down the page edge", "default": true }
+      { "type": "checkbox", "id": "show_mm_rule", "label": "Show the millimetre rule down the page edge", "default": false }
     ]
   },
   {
@@ -61,9 +61,9 @@
     ]
   },
   {
-    "name": "Consignment",
+    "name": "Cart",
     "settings": [
-      { "type": "text", "id": "cart_name", "label": "What the cart is called", "default": "Consignment", "info": "Used in the header, the drawer and the buttons." },
+      { "type": "text", "id": "cart_name", "label": "What the cart is called", "default": "Cart", "info": "Used in the header, the drawer and the buttons." },
       { "type": "select", "id": "cart_type", "label": "Cart behaviour", "options": [ { "value": "drawer", "label": "Slide-out drawer" }, { "value": "page", "label": "Go to the cart page" } ], "default": "drawer" }
     ]
   },

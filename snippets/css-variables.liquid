@@ -29,7 +29,7 @@
     --botanical:{{ settings.color_botanical }};
     --alert:{{ settings.color_alert }};
 
-    --f-display:"Playfair Display","Iowan Old Style",Georgia,serif;
+    --f-display:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
     --f-body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
     --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
 
@@ -38,11 +38,15 @@
     --wrap:{{ settings.layout_width | default: 1120 }}px;
     --measure:66ch;
 
-    /* The label's silhouette. The arch belongs to the picture panel — the
-       plate on a product page, the art on a card — never to a box of text,
-       where a dome sized off the text height would fight the plate's. */
-    --arch:42% 42% 4px 4px / 18% 18% 4px 4px;
-    --arch-soft:34% 34% 0 0 / 15% 15% 0 0;
+    /* The label's ogee silhouette is kept for the brand cartouche only
+       (--arch-mark). Every picture panel and plaque now takes a quiet, near-
+       square corner, which reads more editorial and lets photography lead. */
+    --arch-mark:42% 42% 4px 4px / 18% 18% 4px 4px;
+    --arch:var(--radius);
+    --arch-soft:var(--radius);
+    --radius:2px;
+    --shadow-lift:0 22px 48px -28px rgba(7,48,31,.45);
+    --ease:cubic-bezier(.2,.7,.2,1);
 
     /* replaced at runtime by the true-scale probe in theme.js */
     --pxmm:3.7795px;

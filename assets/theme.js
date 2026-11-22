@@ -281,7 +281,7 @@
     });
   }
 
-  /* ---------------- consignment drawer ---------------- */
+  /* ---------------- cart drawer ---------------- */
   var drawer = document.getElementById("CartDrawer");
   var overlay = document.querySelector("[data-cart-overlay]");
 
@@ -374,4 +374,80 @@
       })
       .catch(function () {});
   }
+  /* ---------------- storytelling: reveal on scroll ---------------- */
+  // Content is only hidden once this script is running, and never inside the
+  // theme editor, where a section re-render would otherwise come back blank.
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var designMode = !!(window.Shopify && window.Shopify.designMode);
+  var revealObserver = null;
+
+  if (!reduceMotion && !designMode && "IntersectionObserver" in window) {
+    document.documentElement.classList.add("reveal-ready");
+    revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        revealObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+  }
+
+  function observeReveals(root) {
+    var items = (root || document).querySelectorAll(".reveal:not(.is-in)");
+    items.forEach(function (el) {
+      if (revealObserver) revealObserver.observe(el);
+      else el.classList.add("is-in");
+    });
+  }
+
+  /* ---------------- storytelling: the journey spine ---------------- */
+  // Fills the brass spine as the reader moves down the chapters, and marks the
+  // chapter whose node has crossed the middle of the screen as active.
+  var journeys = [];
+  var ticking = false;
+
+  function initJourneys(root) {
+    (root || document).querySelectorAll("[data-journey]").forEach(function (el) {
+      if (el.__journey) return;
+      el.__journey = true;
+      journeys.push({
+        track: el.querySelector("[data-journey-track]"),
+        chapters: Array.prototype.slice.call(el.querySelectorAll("[data-chapter]"))
+      });
+    });
+    paintJourneys();
+  }
+
+  function paintJourneys() {
+    ticking = false;
+    var mid = window.innerHeight * 0.55;
+    journeys.forEach(function (j) {
+      if (!j.track || !j.track.isConnected) return;
+      var r = j.track.getBoundingClientRect();
+      var p = r.height > 0 ? (mid - r.top) / r.height : 0;
+      p = Math.max(0, Math.min(1, p));
+      j.track.style.setProperty("--journey-progress", p.toFixed(4));
+      j.chapters.forEach(function (c) {
+        var node = c.querySelector(".chapter__node") || c;
+        c.classList.toggle("is-active", node.getBoundingClientRect().top < mid);
+      });
+    });
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(paintJourneys);
+  }
+
+  observeReveals();
+  initJourneys();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+
+  document.addEventListener("shopify:section:load", function (e) {
+    journeys = journeys.filter(function (j) { return j.track && j.track.isConnected; });
+    observeReveals(e.target);
+    initJourneys(e.target);
+  });
 })();

@@ -1,0 +1,43 @@
+{%- comment -%}
+  A single, large statement — the brand's position in one or two sentences.
+  Used as a pause between chapters of the home page. The deep tone reverses
+  the band out to bottle green, the way the label reverses its claims.
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+<section class="statement statement--{{ s.tone }}">
+  {%- if s.tone == 'deep' -%}{% render 'botanical', variant: 'field' %}{%- endif -%}
+  <div class="wrap statement__inner reveal">
+    {%- if s.show_sprig -%}<span class="statement__sprig">{% render 'botanical', variant: 'sprig' %}</span>{%- endif -%}
+    {%- if s.kicker != blank -%}<p class="eyebrow statement__kicker">{{ s.kicker }}</p>{%- endif -%}
+    {%- if s.quote != blank -%}<blockquote class="statement__quote">{{ s.quote }}</blockquote>{%- endif -%}
+    {%- if s.text != blank -%}<div class="rte statement__text">{{ s.text }}</div>{%- endif -%}
+    {%- if s.signature != blank -%}<p class="statement__sig">{{ s.signature }}</p>{%- endif -%}
+    {%- if s.link_label != blank -%}
+      <a class="btn {% if s.tone == 'deep' %}btn--light{% else %}btn--ghost{% endif %} statement__cta" href="{{ s.link | default: routes.all_products_collection_url }}">{{ s.link_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Statement",
+  "settings": [
+    {
+      "type": "select", "id": "tone", "label": "Background",
+      "options": [
+        { "value": "ground", "label": "Page ground" },
+        { "value": "sheet", "label": "Lighter sheet" },
+        { "value": "deep", "label": "Bottle green" }
+      ],
+      "default": "deep"
+    },
+    { "type": "checkbox", "id": "show_sprig", "label": "Leaf mark above", "default": true },
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Our approach" },
+    { "type": "inline_richtext", "id": "quote", "label": "Statement", "default": "We don't ask you to take <em>fresh</em> on trust. We print the dates, show the grade, and tell you where it grew." },
+    { "type": "richtext", "id": "text", "label": "Supporting text" },
+    { "type": "text", "id": "signature", "label": "Signature", "default": "— Sought & Sourced" },
+    { "type": "text", "id": "link_label", "label": "Button label" },
+    { "type": "url", "id": "link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Statement" }]
+}
+{% endschema %}
