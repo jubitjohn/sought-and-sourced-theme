@@ -127,6 +127,83 @@
         "link": ""
       }
     },
+    "gallery": {
+      "type": "photo-gallery",
+      "blocks": {
+        "g1": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Cardamom-Plantation-Munnar-2-of-6.jpg",
+            "image_alt": "",
+            "caption": "The Cardamom Hills",
+            "link": ""
+          }
+        },
+        "g2": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Guatemala_AltaVerapaz-FarmerDonAmilcar_Cardamom.webp",
+            "image_alt": "",
+            "caption": "Under the shade canopy",
+            "link": ""
+          }
+        },
+        "g3": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/images_2.jpg",
+            "image_alt": "",
+            "caption": "Picking",
+            "link": ""
+          }
+        },
+        "g4": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_d9qwc8d9qwc8d9qw.png",
+            "image_alt": "",
+            "caption": "Drying",
+            "link": ""
+          }
+        },
+        "g5": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_dhynmadhynmadhyn.png",
+            "image_alt": "",
+            "caption": "Sorting",
+            "link": ""
+          }
+        },
+        "g6": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_ntw9x9ntw9x9ntw9.png",
+            "image_alt": "",
+            "caption": "The pods",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6"
+      ],
+      "settings": {
+        "number": "08",
+        "label": "From the farm",
+        "meta": "field notes",
+        "heading": "",
+        "text": "",
+        "columns": "3",
+        "ratio": "landscape",
+        "feature_first": true
+      }
+    },
     "journey": {
       "type": "journey",
       "blocks": {
@@ -477,83 +554,6 @@
         "text": "<p>The aroma sits in an oil held inside the seed: mostly cineole, which gives the cool camphor lift, and terpinyl acetate, which gives the sweetness. Both evaporate. Grinding exposes them to air; light and warmth speed it up. An intact husk slows all of it down, which is why we sell pods and never powder.</p><p>So instead of calling it fresh, we print two dates and let you judge.</p>"
       }
     },
-    "gallery": {
-      "type": "photo-gallery",
-      "blocks": {
-        "g1": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/Cardamom-Plantation-Munnar-2-of-6.jpg",
-            "image_alt": "",
-            "caption": "The Cardamom Hills",
-            "link": ""
-          }
-        },
-        "g2": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/Guatemala_AltaVerapaz-FarmerDonAmilcar_Cardamom.webp",
-            "image_alt": "",
-            "caption": "Under the shade canopy",
-            "link": ""
-          }
-        },
-        "g3": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/images_2.jpg",
-            "image_alt": "",
-            "caption": "Picking",
-            "link": ""
-          }
-        },
-        "g4": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_d9qwc8d9qwc8d9qw.png",
-            "image_alt": "",
-            "caption": "Drying",
-            "link": ""
-          }
-        },
-        "g5": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_dhynmadhynmadhyn.png",
-            "image_alt": "",
-            "caption": "Sorting",
-            "link": ""
-          }
-        },
-        "g6": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_ntw9x9ntw9x9ntw9.png",
-            "image_alt": "",
-            "caption": "The pods",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "g1",
-        "g2",
-        "g3",
-        "g4",
-        "g5",
-        "g6"
-      ],
-      "settings": {
-        "number": "08",
-        "label": "From the farm",
-        "meta": "field notes",
-        "heading": "",
-        "text": "",
-        "columns": "3",
-        "ratio": "landscape",
-        "feature_first": true
-      }
-    },
     "order_path": {
       "type": "order-path",
       "blocks": {
@@ -667,12 +667,12 @@
     "assurances",
     "lots",
     "statement",
+    "gallery",
     "journey",
     "region",
     "router",
     "method",
     "freshness",
-    "gallery",
     "order_path",
     "grades",
     "dispatch"
