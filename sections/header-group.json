@@ -21,11 +21,11 @@
       "type": "header",
       "custom_css": [
         "/* Reduce header height */.header {padding-top: 8px !important; padding-bottom: 8px !important; min-height: 0 !important;}",
-        "/* Reduce logo size */.header__heading-logo {max-width: 220px !important; height: auto !important;}",
-        "/* Reduce header spacing */.header__inline-menu {margin-top: 0 !important; margin-bottom: 0 !important;}"
+        " /* Reduce logo size */.header__heading-logo {max-width: 220px !important; height: auto !important;}",
+        " /* Reduce header spacing */.header__inline-menu {margin-top: 0 !important; margin-bottom: 0 !important;}"
       ],
       "settings": {
-        "logo": "shopify://shop_images/cardamom_logo.png",
+        "logo": "shopify://shop_images/cardamom_logo_3f848dbb-8fa2-4827-94c4-4b6ef29d2d75.png",
         "tagline": "Pure · Authentic · Responsible",
         "show_sprig": true,
         "menu": "main-menu"
