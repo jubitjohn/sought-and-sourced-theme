@@ -12,12 +12,15 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "image": "shopify://shop_images/Premium_Idukki_Green_Cardamom_Poster.png",
+        "image": "shopify://shop_images/Sought_Sourced_Cardamom__Nature_s_Finest_1.png",
         "image_alt": "",
         "focal": "center",
-        "height": "full",
-        "scrim": 35,
-        "overlay_style": "bare",
+        "height": "short",
+        "scrim": 0,
+        "show_frame": false,
+        "overlay_style": "plaque",
+        "copy_position": "over",
+        "lap": 140,
         "align": "left",
         "show_sprig": true,
         "eyebrow": "Single origin · Idukki, Kerala",
@@ -27,7 +30,8 @@
         "cta_label": "Shop the collection",
         "cta_link": "",
         "cta2_label": "Follow the journey",
-        "cta2_link": ""
+        "cta2_link": "",
+        "load_fonts": true
       }
     },
     "assurances": {
