@@ -17,7 +17,10 @@
   assign h = section.settings
   assign sid = '#shopify-section-' | append: section.id
   assign style = h.overlay_style | default: 'plaque'
-  assign pos = h.copy_position | default: 'overlap'
+  assign pos = h.copy_position | default: 'below'
+  if pos == 'overlap' and style != 'plaque'
+    assign pos = 'below'
+  endif
   assign align = h.align | default: 'left'
   assign height = h.height | default: 'tall'
   assign lap = h.lap | default: 140
@@ -61,7 +64,10 @@
   {{ sid }} .hb__scrim{position:absolute;inset:0;background:rgba(12,24,17,var(--scrim,0));pointer-events:none}
   /* soft fade into the green band so the plaque has somewhere to land */
   {{ sid }} .hb__fade{position:absolute;left:0;right:0;bottom:0;height:38%;background:linear-gradient(to bottom, rgba(20,42,30,0) 0%, rgba(20,42,30,.55) 70%, rgba(20,42,30,.85) 100%);pointer-events:none}
-  {{ sid }} .hb--pos-none .hb__fade{display:none}
+  {{ sid }} .hb__fade{display:none}
+  {{ sid }} .hb--pos-over .hb__fade{display:block}
+  /* brass seam between the artwork and the copy */
+  {{ sid }} .hb--pos-below .hb__media,{{ sid }} .hb--pos-overlap .hb__media{border-bottom:1px solid var(--hb-brass);box-shadow:0 5px 0 -4px rgba(212,178,106,.5)}
   /* thin double brass frame, like the label border */
   {{ sid }} .hb__frame{position:absolute;inset:clamp(12px,2vw,26px);border:1px solid rgba(212,178,106,.75);pointer-events:none}
   {{ sid }} .hb__frame::after{content:"";position:absolute;inset:6px;border:1px solid rgba(212,178,106,.35)}
@@ -95,6 +101,14 @@
   {{ sid }} .hb__box--bare{text-align:left;color:var(--hb-cream)}
   {{ sid }} .hb--align-center .hb__box--bare{text-align:center}
   {{ sid }} .hb--align-right .hb__box--bare{text-align:right}
+  {{ sid }} .hb--pos-below .hb__box--bare{width:min(100%,760px);padding:clamp(40px,5vw,64px) clamp(24px,5vw,64px);border:1px solid rgba(212,178,106,.8);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.08))}
+  {{ sid }} .hb--pos-below .hb__box--bare::before{content:"";position:absolute;inset:7px;border:1px solid rgba(212,178,106,.3);pointer-events:none}
+  {{ sid }} .hb__pcorner{position:absolute;width:14px;height:14px;color:var(--hb-brass);display:none}
+  {{ sid }} .hb--pos-below .hb__box--bare .hb__pcorner{display:block}
+  {{ sid }} .hb__pcorner--tl{top:-7px;left:-7px}{{ sid }} .hb__pcorner--tr{top:-7px;right:-7px}{{ sid }} .hb__pcorner--bl{bottom:-7px;left:-7px}{{ sid }} .hb__pcorner--br{bottom:-7px;right:-7px}
+  {{ sid }} .hb__box--bare .hb__sprig{color:var(--hb-brass);margin:0 0 14px}
+  {{ sid }} .hb--align-center .hb__box--bare .hb__sprig{margin:0 auto 14px}
+  {{ sid }} .hb--align-right .hb__box--bare .hb__sprig{margin:0 0 14px auto}
   {{ sid }} .hb--pos-over .hb__box--bare{text-shadow:0 2px 18px rgba(0,0,0,.45)}
 
   {{ sid }} .hb__sprig{display:block;width:46px;height:46px;margin:-22px auto 14px;color:var(--hb-brass-deep)}
@@ -149,11 +163,16 @@
   /* ---------- Phones ---------- */
   @media (max-width: 749px){
     {{ sid }} .hb--h-short{--hb-h:clamp(260px,48vh,420px)}
-    {{ sid }} .hb--h-tall{--hb-h:clamp(300px,58vh,520px)}
+    {{ sid }} .hb--h-tall{--hb-h:clamp(320px,62vh,560px)}
+    {{ sid }} .hb__h{font-size:clamp(26px,7.4vw,34px)}
+    {{ sid }} .hb__box--bare .hb__h{font-size:clamp(28px,8vw,38px)}
     {{ sid }} .hb__content{padding:0 16px;justify-content:center !important}
-    {{ sid }} .hb--pos-overlap .hb__content{margin-top:calc(-1 * min(var(--hb-lap), 90px));padding-bottom:40px}
-    /* on a phone the plaque would hide most of the photo, so it always moves under it */
-    {{ sid }} .hb--pos-over .hb__content{position:relative;margin-top:-70px;padding-bottom:40px}
+    /* on a phone nothing sits on the photo: the copy always goes under it */
+    {{ sid }} .hb--pos-overlap .hb__content,{{ sid }} .hb--pos-over .hb__content{position:relative;margin-top:0;padding-top:32px;padding-bottom:40px}
+    {{ sid }} .hb--pos-below .hb__content{padding-top:32px;padding-bottom:40px}
+    {{ sid }} .hb--pos-over .hb__fade{display:none}
+    {{ sid }} .hb--pos-below .hb__box--bare{padding:36px 20px}
+    {{ sid }} .hb__box--bare .hb__sprig{margin:0 auto 12px}
     {{ sid }} .hb__box{width:100%}
     {{ sid }} .hb__box--plaque{border-radius:220px 220px 4px 4px / 110px 110px 4px 4px;padding:56px 22px 30px}
     {{ sid }} .hb__box--bare,{{ sid }} .hb__box--bare .hb__lede{text-align:center;margin-left:auto;margin-right:auto}
@@ -204,7 +223,13 @@
   {%- if has_copy -%}
     <div class="hb__content">
       <div class="hb__box hb__box--{{ style }}">
-        {%- if style == 'plaque' and h.show_sprig -%}
+        {%- if style == 'bare' -%}
+          {%- for c in (1..4) -%}
+            {%- case c -%}{%- when 1 -%}{%- assign cn = 'tl' -%}{%- when 2 -%}{%- assign cn = 'tr' -%}{%- when 3 -%}{%- assign cn = 'bl' -%}{%- else -%}{%- assign cn = 'br' -%}{%- endcase -%}
+            <svg class="hb__pcorner hb__pcorner--{{ cn }}" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 1 L17 9 L9 17 L1 9 Z" fill="currentColor"/></svg>
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if h.show_sprig -%}
           <span class="hb__sprig" aria-hidden="true">{% render 'botanical', variant: 'sprig' %}</span>
         {%- endif -%}
         {%- if h.eyebrow != blank -%}
@@ -290,7 +315,7 @@
       "type": "select", "id": "overlay_style", "label": "How the copy sits",
       "options": [
         { "value": "plaque", "label": "On a label plaque" },
-        { "value": "bare", "label": "Without a plaque" },
+        { "value": "bare", "label": "In a brass-ruled panel" },
         { "value": "none", "label": "No copy — artwork only" }
       ],
       "default": "plaque",
@@ -299,14 +324,14 @@
     {
       "type": "select", "id": "copy_position", "label": "Where the copy sits",
       "options": [
-        { "value": "overlap", "label": "Low, lapping the bottom of the image" },
         { "value": "below", "label": "Under the image" },
+        { "value": "overlap", "label": "Plaque lapping the bottom of the image" },
         { "value": "over", "label": "On top of the image" }
       ],
-      "default": "overlap",
-      "info": "'Low' and 'Under' keep the photograph clear. On phones the copy always sits under the image."
+      "default": "below",
+      "info": "'Under the image' keeps the artwork completely clear. On phones the copy always sits under the image."
     },
-    { "type": "range", "id": "lap", "label": "How far the plaque laps onto the image", "min": 40, "max": 300, "step": 10, "unit": "px", "default": 140, "info": "Only for 'Low'. Smaller pushes the copy further down, off the picture." },
+    { "type": "range", "id": "lap", "label": "How far the plaque laps onto the image", "min": 40, "max": 300, "step": 10, "unit": "px", "default": 140, "info": "Only for the lapping plaque. Smaller pushes the copy further down, off the picture." },
     {
       "type": "select", "id": "align", "label": "Left, centre or right",
       "options": [
@@ -332,4 +357,5 @@
   "presets": [{ "name": "Hero banner" }]
 }
 {% endschema %}
+
 
